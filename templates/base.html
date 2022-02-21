@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title %}David Hariri{% endblock %}
+        </title>
+        <meta name="description" content="My place on the web">
+        <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <nav>
+            <a href="/">David Hariri</a>
+        </nav>
+        {% block body %}{% endblock %}
+        <footer>
+            {% block footer %}
+            {{ now.date() }}<br>
+            <a href="/stack">Stack</a>
+            {% endblock %}
+        </footer>
+    </body>
+</html>

@@ -10,3 +10,6 @@ Experiences that every human should have
 - Run a marathon
 - Swim alone across a still lake in the mist
 - Swim alone in crashing waves
+
+Experiences that every software founder should have
+- Make something with all of your skill and heart that no one wants

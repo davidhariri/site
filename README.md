@@ -1,13 +1,14 @@
 ## Local
+
 ```
-pyenv virtualenv 3.9.10 test-site
-pyenv activate test-site
+pyenv virtualenv 3.11.0 dhariri.com
+pyenv activate dhariri.com
 pip install -r requirements.txt
 flask run
 ```
 
-## Docker
+## Deploy
+
 ```
-docker build --tag test-site .
-docker run -p 8000:8000 test-site
+fly deploy
 ```

@@ -8,7 +8,16 @@
     <meta property="og:url" content="https://dhariri.com/" />
     <meta property="og:image" content="https://dhariri.com/static/Me.webp" />
     <title>{% block title %}David Hariri{% endblock %}</title>
-    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link
+      href="/static/favicon-light.svg"
+      rel="icon"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      href="/static/favicon-dark.svg"
+      rel="icon"
+      media="(prefers-color-scheme: dark)"
+    />
     <link rel="stylesheet" href="/static/styles.css" />
     <link rel="stylesheet" href="/static/Inter/inter.css" />
     <script

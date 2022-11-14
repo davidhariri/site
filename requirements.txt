@@ -2,3 +2,6 @@ Flask==2.0.3
 gunicorn==20.1.0
 python-dotenv==0.19.2
 Markdown==3.3.6
+rfeed==1.1.1
+black==22.10.0
+mypy==0.990

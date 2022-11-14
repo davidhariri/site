@@ -15,12 +15,19 @@ for dir in ["pages", "blog"]:
 
     for file_name in os.listdir(dir):
         with open(f"{dir}/{file_name}", "r") as post_file:
-            if dir == "pages":
-                content = Page.from_file(file_name, post_file)
-            else:
-                content = BlogPost.from_file(file_name, post_file)
+            try:
+                content: Page | BlogPost | None = None
 
-            all_content[dir][content.path] = content
+                if dir == "pages":
+                    content = Page.from_file(file_name, post_file)
+                else:
+                    content = BlogPost.from_file(file_name, post_file)
+            except IndexError:
+                # Happens when an underscore is not found in the file name of blog posts. We should ignore these files.
+                continue
+        
+            if content is not None:
+                all_content[dir][content.path] = content
 
 
 @app.errorhandler(404)

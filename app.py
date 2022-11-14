@@ -1,6 +1,6 @@
 import os
 from flask import abort, Flask, render_template
-from rfeed import Item as RSSItem, Feed as RSSFeed
+from rfeed import Item as RSSItem, Feed as RSSFeed # type: ignore
 
 
 from service.blogpost import BlogPost
@@ -50,6 +50,16 @@ def render_blog_index():
     )
 
 
+@app.get("/blog/<post_path>/")
+def render_blog_post(post_path: str):
+    try:
+        post = all_content["blog"][post_path]
+    except KeyError:
+        abort(404)
+
+    return render_template("page.html", page=post)
+
+
 @app.get("/feed/")
 @app.get("/rss/")
 def render_feed():
@@ -83,12 +93,3 @@ def render_page(page_path: str):
 
     return render_template("page.html", page=page, pages=all_content["pages"].values())
 
-
-@app.get("/blog/<post_path>/")
-def render_blog_post(post_path: str):
-    try:
-        post = all_content["blog"][post_path]
-    except KeyError:
-        abort(404)
-
-    return render_template("page.html", page=post)

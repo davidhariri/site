@@ -10,27 +10,11 @@
     <title>{% block title %}David Hariri{% endblock %}</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/static/styles.css" />
-    <link rel="preconnect" href="https://rsms.me/" />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-
+    <link rel="stylesheet" href="/static/Inter/inter.css" />
     <script
-      type="text/javascript"
-      async=""
-      src="https://www.google-analytics.com/analytics.js"
-    ></script>
-    <script
-      async=""
+      async
       src="https://www.googletagmanager.com/gtag/js?id=UA-61519816-2"
     ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-61519816-2");
-    </script>
   </head>
   <body>
     <nav>
@@ -44,4 +28,13 @@
       {% block footer %}&copy; 2022 <a href="/">David Hariri</a>{% endblock %}
     </footer>
   </body>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "UA-61519816-2");
+  </script>
 </html>

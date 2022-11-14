@@ -20,7 +20,7 @@ I believe that optimal software solves deep user needs, but is also fun to use. 
 
 ---
 
-> "All work and no play makes Jack a dully boy."
+> "All work and no play makes Jack a dull boy."
 > — [Jack Torrance](https://www.youtube.com/watch?v=4lQ_MjU4QHw)
 
 I also love to read, be outside (running, hiking), take photographs and pass time with my family and friends.

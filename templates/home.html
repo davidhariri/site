@@ -1,11 +1,5 @@
-{% extends "base.html" %}
-{% block body %}
-{% for page in pages %}
-    <a href="/{{page.path}}">{{ page.title }}</a>
-{% endfor %}
-{% for post in posts %}
-    <a href="/blog/{{post.path}}"><h1>{{ post.title }}</h1></a>
-    <p>{{ post.date }}</p>
-    <hr>
-{% endfor %}
-{% endblock %}
+{% extends "base.html" %} {% block body %} {% for post in posts %}
+<a href="/blog/{{post.path}}"><h1>{{ post.title }}</h1></a>
+<p>{{ post.date }}</p>
+<hr />
+{% endfor %}{% endblock %} {% block footer %} {% endblock %}

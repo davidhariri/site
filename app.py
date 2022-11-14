@@ -40,14 +40,13 @@ def render_home():
     latest_posts = sorted(
         all_content["blog"].values(), key=lambda post: post.date, reverse=True
     )[:3]
-    pages = all_content["pages"].values()
-    return render_template("home.html", posts=latest_posts, pages=pages)
+    return render_template("home.html", posts=latest_posts, pages=all_content["pages"].values())
 
 
 @app.get("/blog/")
 def render_blog_index():
     return render_template(
-        "blog.html", title="Blog", posts=all_content["blog"].values()
+        "blog.html", title="Blog", posts=all_content["blog"].values(), pages=all_content["pages"].values()
     )
 
 
@@ -72,7 +71,6 @@ def render_feed():
         lastBuildDate=items[0].pubDate,
         items=items,
     )
-    print(feed.rss())
     return feed.rss()
 
 
@@ -83,7 +81,7 @@ def render_page(page_path: str):
     except KeyError:
         abort(404)
 
-    return render_template("page.html", page=page)
+    return render_template("page.html", page=page, pages=all_content["pages"].values())
 
 
 @app.get("/blog/<post_path>/")

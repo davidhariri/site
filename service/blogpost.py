@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from io import TextIOWrapper
-import markdown
+import markdown # type: ignore
 
 
 @dataclass
@@ -17,4 +17,4 @@ class BlogPost:
         title = file_name.split("_")[1].replace("-", " ")
         date = datetime.strptime(file_name.split("_")[0], "%Y-%m-%d")
         html_content = markdown.markdown(file.read())
-        return cls(file_name, title, date, html_content)
+        return cls(file_name.lower(), title, date, html_content)

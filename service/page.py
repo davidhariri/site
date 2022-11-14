@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from io import TextIOWrapper
-import markdown
+import markdown # type: ignore
 
 
 @dataclass
@@ -14,4 +14,4 @@ class Page:
         file_name = file_name.split(".")[0]
         title = file_name.replace("-", " ")
         html_content = markdown.markdown(file.read())
-        return cls(file_name, title, html_content)
+        return cls(file_name.lower(), title, html_content)

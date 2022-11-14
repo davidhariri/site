@@ -1,27 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>
-            {% block title %}David Hariri{% endblock %}
-        </title>
-        <meta name="description" content="My place on the web">
-        <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
-        <link rel="stylesheet" href="/static/styles.css">
-    </head>
-    <body>
-        <nav>
-            <a href="/">David Hariri</a>
-        </nav>
-        {% block body %}{% endblock %}
-        <footer>
-            {% block footer %}
-                <a href="https://twitter.com/davehariri">@davehariri</a>
-                <a href="mailto:david.hariri@gmail.com">Email</a>
-                <a href="https://github.com/davidhariri">GitHub</a>
-                <a href="/feed/">RSS</a>
-            {% endblock %}
-        </footer>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="David's place on the web" />
+    <meta property="og:site_name" content="David Hariri" />
+    <meta property="og:url" content="https://dhariri.com/" />
+    <meta property="og:image" content="https://dhariri.com/static/Me.webp" />
+    <title>{% block title %}David Hariri{% endblock %}</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <script
+      type="text/javascript"
+      async=""
+      src="https://www.google-analytics.com/analytics.js"
+    ></script>
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=UA-61519816-2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-61519816-2");
+    </script>
+  </head>
+  <body>
+    <nav>
+      <!-- <a href="/blog/">Blog</a><br /> -->
+      {% for page in pages %}
+      <a href="/{{page.path}}">{{ page.title }}</a><br />
+      {% endfor %}
+    </nav>
+    {% block body %}{% endblock %}
+    <footer>
+      {% block footer %}&copy; 2022 <a href="/">David Hariri</a>{% endblock %}
+    </footer>
+  </body>
 </html>

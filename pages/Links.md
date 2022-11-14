@@ -11,3 +11,5 @@ Here are links to people and projects that I find inspiring.
 - [Bret Victor](//worrydream.com) is a programmer with profound writing about human-computer interfaces.
 - [Bartosz Ciechanowski](https://ciechanow.ski/archives/) is a writer who creates incredible interactive visualizations of mechanical systems.
 - [Stewart Brand](//en.wikipedia.org/wiki/Stewart_Brand) is a writer and creator of the Whole Earth Catalog.
+
+[Change Log](//github.com/davidhariri/site/commits/main/pages/Links.md)

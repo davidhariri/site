@@ -1,4 +1,4 @@
-Here are links to people and projects that I find inspiring.
+Here are links to people and things that I think are worth knowing about.
 
 ### Projects
 

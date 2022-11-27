@@ -1,77 +1,74 @@
 import os
-from flask import abort, Flask, render_template
+from flask import abort, Flask, render_template, request
+from flask_caching import Cache
+from requests import HTTPError
 from rfeed import Item as RSSItem, Feed as RSSFeed # type: ignore
+from flask_pydantic import validate # type: ignore
 
-
-from service.blogpost import BlogPost
+from service.config import APP_SECRET
 from service.page import Page
+from service.post import PostCreateRequest, get_all_posts, get_single_post
+
+cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
 
 app = Flask(__name__)
+cache.init_app(app)
 
-all_content: dict[str, dict[str, Page | BlogPost]] = {}
+PAGE_DIR = "pages"
+PAGE_CONTENT: dict[str, Page] = {}
 
-for dir in ["pages", "blog"]:
-    all_content[dir] = {}
-
-    for file_name in os.listdir(dir):
-        with open(f"{dir}/{file_name}", "r") as post_file:
-            try:
-                content: Page | BlogPost | None = None
-
-                if dir == "pages":
-                    content = Page.from_file(file_name, post_file)
-                else:
-                    content = BlogPost.from_file(file_name, post_file)
-            except IndexError:
-                # Happens when an underscore is not found in the file name of blog posts. We should ignore these files.
-                continue
-        
-            if content is not None:
-                all_content[dir][content.path] = content
+for file_name in os.listdir(PAGE_DIR):
+    with open(f"{PAGE_DIR}/{file_name}", "r") as post_file:
+        content = Page.from_file(file_name, post_file)
+    
+        if content is not None:
+            PAGE_CONTENT[content.path] = content
 
 
 @app.errorhandler(404)
-def page_not_found(_):
+def render_not_found(_):
     return render_template("404.html"), 404
 
 
 @app.get("/")
+@cache.cached(timeout=60)
 def render_home():
-    latest_posts = sorted(
-        all_content["blog"].values(), key=lambda post: post.date, reverse=True
-    )[:3]
-    return render_template("home.html", posts=latest_posts, pages=all_content["pages"].values())
+    latest_posts = get_all_posts()[:3]
+    return render_template("home.html", posts=latest_posts, pages=PAGE_CONTENT.values())
 
 
 @app.get("/blog/")
+@cache.cached(timeout=60)
 def render_blog_index():
     return render_template(
-        "blog.html", title="Blog", posts=all_content["blog"].values(), pages=all_content["pages"].values()
+        "blog.html", title="Blog", posts=get_all_posts(), pages=PAGE_CONTENT.values()
     )
 
 
-@app.get("/blog/<post_path>/")
+@app.get("/blog/<string:post_path>/")
+@cache.memoize(timeout=60)
 def render_blog_post(post_path: str):
-    try:
-        post = all_content["blog"][post_path]
-    except KeyError:
+    post = get_single_post(post_path)
+
+    if not post:
         abort(404)
 
-    return render_template("page.html", page=post)
+    return render_template("post.html", post=post)
 
 
 @app.get("/feed/")
 @app.get("/rss/")
-def render_feed():
+@cache.cached(timeout=60)
+def read_feed():
     fqd = "https://dhariri.com"
     items = [
         RSSItem(
             title=post.title,
-            link=f"{fqd}/blog/{post.path}",
-            description=post.html_content,
-            pubDate=post.date,
+            link=f"{fqd}/blog/{post.url_slug}",
+            description=post.description or "",
+            pubDate=post.date_published,
         )
-        for post in all_content["blog"].values()
+        for post in get_all_posts()
     ]
     feed = RSSFeed(
         title="David Hariri",
@@ -84,12 +81,26 @@ def render_feed():
     return feed.rss()
 
 
-@app.get("/<page_path>/")
+@app.get("/<string:page_path>/")
+@cache.memoize(timeout=3600)
 def render_page(page_path: str):
     try:
-        page = all_content["pages"][page_path]
+        page = PAGE_CONTENT[page_path]
     except KeyError:
         abort(404)
 
-    return render_template("page.html", page=page, pages=all_content["pages"].values())
+    return render_template("page.html", page=page, pages=PAGE_CONTENT.values())
 
+
+@app.post("/api/v1/post/")
+@validate()
+def create_post(body: PostCreateRequest):
+    if request.headers.get("Authorization") != APP_SECRET:
+        return "UNAUTHORIZED", 401
+    
+    try:
+        body.save()
+    except HTTPError as e:
+        return str(e), 400
+
+    return "OK", 201

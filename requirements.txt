@@ -3,6 +3,7 @@ gunicorn==20.1.0
 python-dotenv==0.19.2
 Markdown==3.3.6
 rfeed==1.1.1
+requests==2.26.0
 pydantic==1.10.2
 Flask-Caching==2.0.1
 Flask-Pydantic==0.11.0

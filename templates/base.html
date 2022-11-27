@@ -18,7 +18,7 @@
       rel="icon"
       media="(prefers-color-scheme: dark)"
     />
-    <link rel="stylesheet" href="/static/styles.css?v=1" />
+    <link rel="stylesheet" href="/static/styles.css?v=2" />
     <link rel="stylesheet" href="/static/Inter/inter.css" />
     <script
       async
@@ -27,14 +27,17 @@
   </head>
   <body>
     <nav>
+      <a href="/">Home</a><br />
       <a href="/blog/">Blog</a><br />
       {% for page in pages %}
-      <a href="/{{page.path}}">{{ page.title }}</a><br />
+        <a href="/{{page.path}}">{{ page.title }}</a><br />
       {% endfor %}
     </nav>
     {% block body %}{% endblock %}
     <footer>
-      {% block footer %}&copy; 2022 <a href="/">David Hariri</a>{% endblock %}
+      &copy; 2022 <a href="mailto:david.hariri@gmail.com">David Hariri</a><br>
+      <a href="/feed/">Subscribe via RSS</a>
+      {% block footer %}{% endblock %}
     </footer>
   </body>
   <script>

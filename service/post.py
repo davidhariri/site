@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 import markdown # type: ignore
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, validator
 import requests
 import html2text # type: ignore
 
@@ -11,20 +11,38 @@ class Post(BaseModel):
     """
     A blog post, stored in the database.
     """
-    id: int
-    date_created: datetime
-    date_updated: datetime
-    date_published: datetime
+    id: int | None
+    date_created: datetime = Field(default_factory=datetime.utcnow)
+    date_updated: datetime = Field(default_factory=datetime.utcnow)
+    date_published: datetime = Field(default_factory=datetime.utcnow)
     title: str
     url_slug: str
     content: str
     description: str | None
     tags: set[str] | None
-    is_hidden: bool
+    is_hidden: bool | None = False
+
+    @validator("is_hidden")
+    def must_be_hidden_or_not_hidden(cls, v):
+        if v == None:
+            return False
+        return v
 
     @property
     def html_content(self) -> str:
         return markdown.markdown(self.content)
+    
+    @property
+    def pretty_date(self) -> str:
+        day = self.date_published.day
+
+        if 4 <= day <= 20 or 24 <= day <= 30:
+            suffix = "th"
+        else:
+            suffix = ["st", "nd", "rd"][day % 10 - 1]
+        
+        return self.date_published.strftime(f"%A %B %d{suffix}, %Y")
+
 
 class PostCreateRequest(BaseModel):
     content: str
@@ -34,6 +52,13 @@ class PostCreateRequest(BaseModel):
     date_published: datetime | None
     tags: list[str] | None
     is_hidden: bool | None
+
+    @validator("description")
+    def must_have_description(cls, v, values):
+        if v is None:
+            v = values["content"].splitlines()[0]
+        return v
+
 
     def generate_preview_fields(self):
         html_content = markdown.markdown(self.content)
@@ -60,14 +85,21 @@ class PostCreateRequest(BaseModel):
         if self.date_published is None:
             self.date_published = datetime.utcnow()
 
-    def save(self):
+
+    def save(self) -> str:
+        """
+        Save the post to the database and return the url_slug
+        """
         self.generate_preview_fields()
+        post = Post(**self.dict())
         response = requests.post(
             f"{SUPABASE_URL}/rest/v1/posts",
-            data=self.json(),
+            data=post.json(),
             headers={"apikey": SUPBASE_KEY, "Content-Type": "application/json"},
         )
         response.raise_for_status()
+        return post.url_slug
+
 
 def get_all_posts() -> list[Post]:
     """
@@ -79,6 +111,7 @@ def get_all_posts() -> list[Post]:
         posts, key=lambda post: post.date_published, reverse=True
     )
     return posts
+
 
 def get_single_post(post_url_slug: str) -> Post | None:
     """

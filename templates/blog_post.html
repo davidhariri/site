@@ -1,9 +1,8 @@
 {% extends "base.html" %} {% block title %}{{ post.title }} - David Hariri{%
 endblock %} {% block body %}
+<time>{{ post.pretty_date }}</time>
 <h1>{{ post.title }}</h1>
 <article>
-  {% if post.date_published %}
-  <time>{{ post.date_published }}</time>
-  {% endif %} {{ post.html_content|safe }}
+  {{ post.html_content|safe }}
 </article>
 {% endblock %}

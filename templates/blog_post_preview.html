@@ -1,0 +1,7 @@
+<div class="post_preview">
+    <time>{{ post.pretty_date }}</time><br>
+    <a href="/blog/{{post.url_slug}}"><h2>{{ post.title }}</h2></a>
+    {% if post.description %}
+        <p>{{ post.description }}</p>
+    {% endif %}
+</div>

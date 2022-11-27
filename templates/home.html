@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block body %} {% for post in posts %}
-<a href="/blog/{{post.url_slug}}"><h1>{{ post.title }}</h1></a>
-<p>{{ post.date }}</p>
-<hr />
-{% endfor %}{% endblock %} {% block footer %} {% endblock %}
+{% extends "base.html" %}
+{% block body %}
+    {% for post in posts %}
+        {% include "blog_post_preview.html" %}
+    {% endfor %}
+{% endblock %}

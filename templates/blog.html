@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}{{ title.title() }} - David Hariri{%
 endblock %} {% block body %} {% for post in posts %}
-<a href="/blog/{{post.path}}"><h1>{{ post.title }}</h1></a>
-<p>{{ post.date }}</p>
+<a href="/blog/{{post.url_slug}}"><h1>{{ post.title }}</h1></a>
+<p>{{ post.date_published }}</p>
 <hr />
 {% endfor %} {% endblock %} {% block footer %}
 <a href="/feed/">Subscribe via RSS</a>

@@ -14,5 +14,6 @@ Here are links to people and things that I think are worth knowing about.
 - [Bret Victor](http://worrydream.com) is a programmer with profound writing about human-computer interfaces.
 - [Bartosz Ciechanowski](https://ciechanow.ski/archives/) is a writer who creates incredible interactive visualizations of mechanical systems.
 - [Stewart Brand](//en.wikipedia.org/wiki/Stewart_Brand) is a writer and creator of the Whole Earth Catalog.
+- [Tehching Hsieh](https://en.wikipedia.org/wiki/Tehching_Hsieh) is a performance artist known for his "One Year Projects" that mix life and art and require incredible dedication and sacrifice. Watch [this video of his work](https://www.youtube.com/watch?v=FoNd254KrjU&t=11s) to understand why I have included him in this list.
 
 [Change Log](//github.com/davidhariri/site/commits/main/pages/Links.md)

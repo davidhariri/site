@@ -2,7 +2,7 @@
 
 I am an autodidact maker, mainly of programs for the web. I currently live in Toronto and work at [Ada](https://ada.support), a company I co-founded in 2015.
 
-I love hearing from other makers. Email me at [david.hariri@gmail.com](mailto:david.hariri@gmail.com)
+I love hearing from people. Email me at [david.hariri@gmail.com](mailto:david.hariri@gmail.com)
 
 Here are some things that I am dedicating most of my waking life to:
 
@@ -27,8 +27,9 @@ I also love to read, be outside (running, hiking), take photographs and pass tim
 
 **Elsewhere**
 
-- [@davehariri](https://twitter.com/davehariri) on Twitter
+- [david.hariri@gmail.com](mailto:david.hariri@gmail.com) on Email
 - [davidhariri](https://github.com/davidhariri) on Github
+- ~[@davehariri](https://twitter.com/davehariri) on Twitter~ _I still have an account here, but I'm not using it anymore_
 
 **Interviews**
 

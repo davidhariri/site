@@ -16,5 +16,6 @@ Here are links to people and things that I think are worth knowing about.
 - [Tehching Hsieh](https://en.wikipedia.org/wiki/Tehching_Hsieh) is a performance artist known for his "One Year Projects" that mix life and art and require incredible dedication and sacrifice. Watch [this video of his work](https://www.youtube.com/watch?v=FoNd254KrjU&t=11s) to understand why I have included him in this list.
 - [Ted Chiang](https://en.wikipedia.org/wiki/Ted_Chiang) is a brilliant sci-fi writer who writes short stories that take my mind places I didn't think were possible.
 - [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) is a pionoeer of computer software and the inventor of the Unix operating system (and philosophy) which my Mac is still based on.
+- [Yuki Kawauchi](https://en.wikipedia.org/wiki/Yuki_Kawauchi) is a Japanese elite runner who won gold at the 2018 Boston Marathon. He is completely self-trained, has no sponsorships and holds down a 40 hour per week job working night shifts for his government. [He trains 80-100km per week without](https://runningscience.co.za/elite-athletes-training-log/yuki-kawauchi/) and is known as elite distance running's "citizen runner" or ["oddball"](https://archive.md/BXSl2).
 
 [Change Log](//github.com/davidhariri/site/commits/main/pages/Links.md)

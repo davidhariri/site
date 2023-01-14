@@ -17,5 +17,6 @@ Here are links to people and things that I think are worth knowing about.
 - [Ted Chiang](https://en.wikipedia.org/wiki/Ted_Chiang) is a brilliant sci-fi writer who writes short stories that take my mind places I didn't think were possible.
 - [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) is a pionoeer of computer software and the inventor of the Unix operating system (and philosophy) which my Mac is still based on.
 - [Yuki Kawauchi](https://en.wikipedia.org/wiki/Yuki_Kawauchi) is a Japanese elite runner who won gold at the 2018 Boston Marathon. He is completely self-trained, has no sponsorships and holds down a 40 hour per week job working night shifts for his government. [He trains 130-140km per week](https://runningscience.co.za/elite-athletes-training-log/yuki-kawauchi/) and is known as elite distance running's ["oddball"](https://archive.md/BXSl2).
+- [Carl Sagan](https://en.wikipedia.org/wiki/Carl_Sagan) is my favourite science educator of all time (second place goes to [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman)). His research into extraterestrial life, his contributions to Voyager, and the genuine zeal for space he brought to Cosmos make him worthy of anyone's time.
 
 [Change Log](//github.com/davidhariri/site/commits/main/pages/Links.md)

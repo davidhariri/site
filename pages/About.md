@@ -8,7 +8,7 @@ Here are some things that I am dedicating most of my waking life to:
 
 **Artificially intelligent agents at [Ada](https://ada.support)**
 
-I believe that by 2030, 95% of people's communication with businesses will be with an AI agent. Talking to these agents will be delightful and fast.
+I believe that by 2030, 95% of people's communication with businesses will be with an AI agent. Talking to these agents will be delightful and fast. Our mission at Ada is to build the most resolving customer support automation platform in the world.
 
 **No-code workflow automation at [Stitch](https://stitchbits.co)**
 
@@ -29,7 +29,7 @@ I also love to read, be outside (running, hiking), take photographs and pass tim
 
 - [david.hariri@gmail.com](mailto:david.hariri@gmail.com) on Email
 - [davidhariri](https://github.com/davidhariri) on Github
-- ~[@davehariri](https://twitter.com/davehariri) on Twitter~ _I still have an account here, but I'm not using it anymore_
+- <strike>[@davehariri](https://twitter.com/davehariri) on Twitter</strike> _I still have an account here, but I don't post or browse Twitter anymore_
 
 **Interviews**
 

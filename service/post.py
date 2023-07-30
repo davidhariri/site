@@ -30,8 +30,8 @@ class Post(BaseModel):
 
     @property
     def html_content(self) -> str:
-        return markdown.markdown(self.content)
-    
+        return markdown.markdown(self.content, extensions=["fenced_code", "codehilite"])
+
     @property
     def pretty_date(self) -> str:
         day = self.date_published.day
@@ -40,7 +40,7 @@ class Post(BaseModel):
             suffix = "th"
         else:
             suffix = ["st", "nd", "rd"][day % 10 - 1]
-        
+
         return self.date_published.strftime(f"%A %B %d{suffix}, %Y")
 
 
@@ -67,10 +67,10 @@ class PostCreateRequest(BaseModel):
         handler.ignore_images = True
         handler.ignore_emphasis = True
         handler.ignore_tables = True
-        
+
         text_content = handler.handle(html_content)
         text_content = text_content.replace("\n> ", "\n")
-        
+
         if self.description is None:
             first_p = text_content.splitlines()[0]
 
@@ -81,7 +81,7 @@ class PostCreateRequest(BaseModel):
 
         if self.url_slug is None:
             self.url_slug = self.title.lower().replace("?", "").replace("!", "").replace(":", "").replace(";", "").replace(",", "").replace(".", "").replace(" ", "-")
-        
+
         if self.date_published is None:
             self.date_published = datetime.utcnow()
 
@@ -120,10 +120,9 @@ def get_single_post(post_url_slug: str) -> Post | None:
     post_data: list[dict] = requests.get(
         f"{SUPABASE_URL}/rest/v1/posts?url_slug=eq.{post_url_slug}",
         headers={"apikey": SUPBASE_KEY}).json()
-    
+
     if not post_data:
         return None
 
     post = Post(**post_data[0])
     return post
-

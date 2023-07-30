@@ -2,6 +2,7 @@ from datetime import datetime
 import os
 from flask import abort, Flask, render_template, request
 from flask_caching import Cache
+from werkzeug.middleware.profiler import ProfilerMiddleware
 from requests import HTTPError
 from rfeed import Item as RSSItem, Feed as RSSFeed # type: ignore
 from flask_pydantic import validate # type: ignore
@@ -17,6 +18,8 @@ app = Flask(__name__)
 
 cache.init_app(app)
 
+if os.environ.get("PROFILE", False):
+    app.wsgi_app = ProfilerMiddleware(app.wsgi_app, restrictions=[30])
 
 @app.errorhandler(404)
 def render_not_found(_):
@@ -89,7 +92,7 @@ def render_page(page_path: str):
 def create_post(body: PostCreateRequest):
     if request.headers.get("Authorization") != APP_SECRET:
         return "UNAUTHORIZED", 401
-    
+
     try:
         url_slug = body.save()
     except HTTPError as e:

@@ -18,6 +18,7 @@ I subscribe to over 250 YouTube channels so getting RSS links for each by doing 
 I did a quick search in the sources panel of my browsers dev tools for `UCYO_jab_esuFRV4b17AJtAw` and noticed that YouTube loads all of the data we need to make a `.opml` RSS file as we scroll to the bottom of the page into the DOM. Yay! We can run the following script in our console to create and download a file that we can then import into our favourite RSS reader.
 
 **Instructions**
+
 1. Navigate to [https://www.youtube.com/feed/channels](https://www.youtube.com/feed/channels)
 2. Open your browser's dev tools to the "Sources" page.
 3. You should see 'channels (www.youtube.com)' or something similar, click that and you should see the DOM. It should start with '<!DOCTYPE html>'.

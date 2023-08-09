@@ -37,3 +37,12 @@ a.click();
 _Tested in Safari and Chrome on MacOS_
 
 6. You should get a prompt to allow downloads on the page. Accept it and you should have the .opml file you need for your RSS reader.
+
+**Final Thoughts**
+
+1. Sometimes the script fails with a null exception. Refreshing and scrolling to the bottom again usually fixes it.
+2. It's a total hack. YouTube could change the way they load the data at any time and this would stop working.
+3. If you change subscriptions, it won't keep it in sync. You'll have to run the script again.
+4. It pulls in YouTube shorts, which I personally don't want.
+
+I'd love to one day create a simple server-side app that does this properly, but for now, this is good enough to get me off youtube.com.

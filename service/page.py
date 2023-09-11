@@ -16,7 +16,11 @@ class Page:
     def from_file(cls, file_name: str, file: TextIOWrapper) -> "Page":
         file_name = file_name.split(".")[0]
         title = file_name.replace("-", " ")
-        html_content = markdown.markdown(file.read(), extensions=["fenced_code", "codehilite"])
+        html_content = markdown.markdown(file.read(), extensions=[
+            "fenced_code",
+            "codehilite",
+            "toc",
+        ])
         return cls(file_name.lower(), title, html_content)
 
 

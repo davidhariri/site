@@ -1,16 +1,25 @@
+import os
 from flask import abort, Flask, render_template
 from flask_caching import Cache
-from rfeed import Item as RSSItem, Feed as RSSFeed # type: ignore
+from rfeed import Item as RSSItem, Feed as RSSFeed  # type: ignore
+import sentry_sdk
 
 from service.page import get_all_page_paths_and_pages, get_all_pages_sorted
 from service.post import ALL_POSTS, get_all_posts
 
+sentry_sdk.init(
+    dsn=os.getenv("SENTRY_DSN"),
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
+)
+
 FQD = "https://dhariri.com"
 
-cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
+cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
 app = Flask(__name__)
 
 cache.init_app(app)
+
 
 @app.errorhandler(404)
 def render_not_found(_):
@@ -21,7 +30,9 @@ def render_not_found(_):
 @cache.cached(timeout=60)
 def render_home():
     latest_posts = get_all_posts()[:3]
-    return render_template("home.html", posts=latest_posts, pages=get_all_pages_sorted())
+    return render_template(
+        "home.html", posts=latest_posts, pages=get_all_pages_sorted()
+    )
 
 
 @app.get("/blog/")

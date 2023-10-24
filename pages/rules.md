@@ -1,0 +1,3 @@
+- remember birthdays
+- give hand-made things (put your touch on a thing before giving it)
+- keep hand-made things (cards especially)

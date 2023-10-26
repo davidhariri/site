@@ -25,11 +25,11 @@ I am not a robot, I am a human. I love to read, be outside (running, hiking, ski
 
 **Elsewhere**
 
-- [david.hariri@gmail.com](mailto:david.hariri@gmail.com) on Email
 - [davidhariri](https://github.com/davidhariri) on Github
-- <strike>[@davehariri](https://twitter.com/davehariri) on Twitter</strike> _I still have an account here, but I don't post or browse Twitter anymore_
+- [@davehariri](https://x.com/davehariri) on X
 
 **Interviews**
 
 - [Black Box of PM](https://blackboxofpm.com/david-hariri-on-co-founding-ada-the-pivot-that-created-a-unicorn-and-what-product-market-fit-5e208dcc8ee1)
 - [Interface Lovers](https://www.loversmagazine.com/interviews/david-hariri)
+- [It Shipped That Way](https://www.itshipped.fm/episodes/18)

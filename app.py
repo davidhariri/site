@@ -1,17 +1,19 @@
 import os
-from flask import abort, Flask, render_template
+from flask import abort, Flask, render_template, request
 from flask_caching import Cache
 from rfeed import Item as RSSItem, Feed as RSSFeed  # type: ignore
 import sentry_sdk
 
 from service.page import get_all_page_paths_and_pages, get_all_pages_sorted
 from service.post import ALL_POSTS, get_all_posts
+from service.posthog import track_request
 
 sentry_sdk.init(
     dsn=os.getenv("SENTRY_DSN"),
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
 )
+
 
 FQD = "https://dhariri.com"
 
@@ -27,6 +29,7 @@ def render_not_found(_):
 
 
 @app.get("/")
+@track_request
 @cache.cached(timeout=60)
 def render_home():
     latest_posts = get_all_posts()[:3]
@@ -36,6 +39,7 @@ def render_home():
 
 
 @app.get("/blog/")
+@track_request
 @cache.cached(timeout=60)
 def render_blog_index():
     return render_template(
@@ -44,6 +48,7 @@ def render_blog_index():
 
 
 @app.get("/blog/<string:post_path>/")
+@track_request
 @cache.memoize(timeout=3600)
 def render_blog_post(post_path: str):
     try:
@@ -56,6 +61,7 @@ def render_blog_post(post_path: str):
 
 @app.get("/feed/")
 @app.get("/rss/")
+@track_request
 @cache.cached(timeout=60)
 def read_feed():
     items = [
@@ -79,6 +85,7 @@ def read_feed():
 
 
 @app.get("/<string:page_path>/")
+@track_request
 @cache.memoize(timeout=3600)
 def render_page(page_path: str):
     try:

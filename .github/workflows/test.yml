@@ -1,10 +1,9 @@
-name: Fly Deploy
+name: Run Tests on PR
 on:
-  push:
+  pull_request:
     branches:
       - main
-env:
-  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
 jobs:
   test:
     name: Run Tests
@@ -21,10 +20,3 @@ jobs:
         run: poetry install
       - name: Run Tests
         run: poetry run pytest
-  deploy:
-      name: Deploy app
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - uses: superfly/flyctl-actions/setup-flyctl@master
-        - run: flyctl deploy --remote-only

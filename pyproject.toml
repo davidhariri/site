@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "site"
+version = "0.1.0"
+description = "David Hariri's place on the web"
+authors = ["David Hariri <david.hariri@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.0"
+gunicorn = "^21.2.0"
+flask-caching = "^2.1.0"
+rfeed = "^1.1.1"
+sentry-sdk = "^1.32.0"
+markdown = "^3.5"
+pydantic = "^2.4.2"
+python-frontmatter = "^1.0.0"
+python-dotenv = "^1.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.10.1"
+mypy = "^1.6.1"
+debugpy = "^1.8.0"
+pytest = "^7.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

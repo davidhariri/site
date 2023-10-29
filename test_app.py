@@ -9,3 +9,8 @@ def test_404():
     with app.test_client() as client:
         response = client.get("/does-not-exist/")
         assert response.status_code == 404
+
+def test_blog_index():
+    with app.test_client() as client:
+        response = client.get("/blog/")
+        assert response.status_code == 200

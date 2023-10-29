@@ -1,19 +1,32 @@
+# Use the specified image as the base
 FROM python:3.11.0-slim-buster
 
+# Set the working directory
 WORKDIR /usr/src/app
 
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update && apt-get install -y netcat
+# Install system dependencies
+RUN apt-get update && apt-get install -y netcat libpq-dev gcc
 
-RUN apt-get install -y libpq-dev gcc
-RUN pip install --upgrade pip
+# Install Poetry
+RUN pip install --upgrade pip \
+    && pip install poetry
 
+# Copy only requirements to cache them in docker layer
+COPY pyproject.toml poetry.lock /usr/src/app/
+
+# Install project dependencies
+RUN poetry config virtualenvs.create false \
+  && poetry install --no-interaction --no-ansi
+
+# Copy all files
 COPY . /usr/src/app/
 
+# Expose the application's port
 EXPOSE 8000
 
-RUN pip install -r requirements.txt
-
+# Set the entry point of the application
 ENTRYPOINT ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app", "--timeout", "10"]

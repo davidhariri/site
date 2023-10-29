@@ -1,4 +1,0 @@
-black==22.10.0
-mypy==0.990
-pytest==7.4.0
-debugpy==1.6.7.post1

@@ -24,7 +24,13 @@
       data-handle="davidgen"
       src="https://static.ada.support/embed2.js"
       defer
-      async
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://api.pirsch.io/pirsch-extended.js"
+      id="pirschextendedjs"
+      data-code="QddGkfSsa4EoG45NhK8x1sdhqQXvaf7n"
     ></script>
   </head>
   <body>
@@ -32,12 +38,12 @@
       <a href="/">Home</a><br />
       <a href="/blog/">Blog</a><br />
       {% for page in pages %}
-        <a href="/{{page.path}}">{{ page.title }}</a><br />
+      <a href="/{{page.path}}">{{ page.title }}</a><br />
       {% endfor %}
     </nav>
     {% block body %}{% endblock %}
     <footer>
-      &copy; 2022 <a href="mailto:david.hariri@gmail.com">David Hariri</a><br>
+      &copy; 2022 <a href="mailto:david.hariri@gmail.com">David Hariri</a><br />
       <a href="/feed/">Subscribe via RSS</a>
       {% block footer %}{% endblock %}
     </footer>

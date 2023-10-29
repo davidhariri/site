@@ -1,19 +1,21 @@
 import os
-from datetime import datetime
+import datetime
 from pydantic import BaseModel, Field
 import markdown # type: ignore
 import frontmatter
 
 POSTS_DIRECTORY = "./posts"
 
+_now = lambda: datetime.datetime.now(datetime.UTC)
+
 class Post(BaseModel):
     """
     A blog post, stored in the database.
     """
     id: int | None
-    date_created: datetime = Field(default_factory=datetime.utcnow)
-    date_updated: datetime = Field(default_factory=datetime.utcnow)
-    date_published: datetime = Field(default_factory=datetime.utcnow)
+    date_created: datetime.datetime = Field(default_factory=_now)
+    date_updated: datetime.datetime = Field(default_factory=_now)
+    date_published: datetime.datetime = Field(default_factory=_now)
     title: str
     url_slug: str
     content: str
@@ -57,8 +59,6 @@ def __build_posts_dict() -> dict[str, Post]:
                 content=post_metadata.content,
                 description=post_metadata.get("description"),
                 tags=post_tags,
-                date_created=datetime.utcnow(),
-                date_updated=datetime.utcnow(),
                 date_published=post_metadata.get('date'),
             )
             posts_dict[post.url_slug] = post

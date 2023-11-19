@@ -16,7 +16,7 @@ How to measure this:
 
 - Monthly or annual recurring revenue
 - Average contract value
-- Gross revenue retention
+- Gross revenue / user retention
 
 **Test 2: Do people care about your thing?**
 
@@ -24,7 +24,8 @@ After people are paying for your product, are they talking about it? With their 
 
 How to measure this:
 
-- Monthly user or revenue retention
+- Monthly user growth (MAU)
+- Virality coefficient (k-factor)
 - Monthly NPS (or it's cousin ["how upset would you be if you could no longer use this product?"](https://blog.growthhackers.com/using-product-market-fit-to-drive-sustainable-growth-58e9124ee8db))
 
 ### My Experience

@@ -26,7 +26,7 @@ I am not a robot, I am a human. I love to read, be outside (running, hiking, ski
 **Elsewhere**
 
 - [davidhariri](https://github.com/davidhariri) on Github
-- [@davehariri](https://x.com/davehariri) on X
+- [@davehariri](https://x.com/davehariri) on 𝕏
 
 **Interviews**
 

@@ -44,3 +44,4 @@ I've been asked this a lot as a founder who has quit a startup and pivoted. Ther
 - [Rahul Vohra's account of Superhuman's PMF journey](https://review.firstround.com/how-superhuman-built-an-engine-to-find-product-market-fit)
 - [Sam Altman's essay 'Before Growth'](https://blog.samaltman.com/before-growth)
 - [David Sacks' framework: Saas Metrics that Matter](https://sacks.substack.com/p/the-saas-metrics-that-matter)
+- [Jason Cohen's writing on the topic](https://longform.asmartbear.com/product-market-fit/)

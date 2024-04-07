@@ -25,3 +25,7 @@ In response to last week, we've been combing through our services and double che
 5. SLO(s): We're in the process of defining these for our services. We're using [DataDog](https://www.datadoghq.com/) for this.
 6. Health Monitors, Alerts, Escalation Policies and Runbooks: We use [PagerDuty](https://www.pagerduty.com/) for this.
 7. Load Testing: In the past I've used [Locust](https://locust.io/) for this, but it's only useful for local testing. I'm looking for a cloud-based solution that can simulate real-world traffic patterns. I've heard good things about [k6](https://k6.io/) and [Artillery](https://artillery.io/).
+8. Rate Limiting: We use [Flask-Limiter](https://flask-limiter.readthedocs.io/en/stable/) and Redis for this.
+9. Load Balancing: We use [NGINX](https://www.nginx.com/) and [Gunicorn](https://gunicorn.org/) for this.
+10. Automatic Scaling Policies: We use [HPA](https://kubernetes.io/docs/tasks/run-application/scale-app/#horizontal-pod-autoscaler) for this.
+

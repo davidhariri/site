@@ -1,10 +1,11 @@
 :root {
     --text-color: #1e1e1d;
-    --description-color: #d1cec4;
+    --description-color: #b8b6b2;
     --bg-color: #faf9f4;
     --bg-set-in-color: #e9e8e1;
     --link-color: #008ed5;
     --link-visited-color: #9f50d7;
+    --inline-code-color: #e34361;
     --pic-frame: white;
     --hr-color: #e6e3d8;
 
@@ -19,11 +20,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color: #d1d0cc;
-    --description-color: #393837;
+    --description-color: #4d4b4a;
     --bg-color: #1e1e1d;
     --bg-set-in-color: #141413;
     --link-color: #3da1d4;
     --link-visited-color: #b17dd5;
+    --inline-code-color: #f56a81;
     --pic-frame: var(--description-color);
     --hr-color: var(--description-color);
 
@@ -49,6 +51,14 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Inter", sans-serif;
+}
+
+body * {
+  position: relative;
+}
+
+p, ol, ul, ol, blockquote {
+  line-height: 1.6;
 }
 
 p {
@@ -100,7 +110,8 @@ hr {
   outline: none;
 }
 
-ul li {
+ul li,
+ol li {
   margin-bottom: 0.4rem;
 }
 
@@ -109,6 +120,74 @@ img {
   border: 6px solid var(--pic-frame);
   border-radius: 4px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+blockquote {
+    margin: 0.5rem 0;
+    padding: 0 1rem;
+    color: var(--description-color);
+    border-left: 0.25rem solid var(--description-color);
+}
+
+blockquote a,
+blockquote a:visited {
+  color: inherit;
+  text-decoration: underline;
+}
+
+blockquote.callout {
+  padding-top: 1.5rem;
+}
+
+blockquote.callout:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -2px;
+  left: 9px;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  mask: url('Push%20Pin.svg') no-repeat center / contain;
+}
+
+blockquote.callout.note::before {
+  background-image: url('Push%20Pin.svg');
+}
+
+pre {
+    line-height: 175%;
+    padding: 1rem;
+}
+
+span.icon:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.25rem;
+  margin-top: -2px; /* Nudged up by 2px */
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+span.icon.rss:before {
+  mask-image: url('RSS.svg');
+}
+
+span.icon.email:before {
+  mask-image: url('Email.svg');
+}
+
+p code {
+  font-family: 'Fira Code', monospace;
+  color: var(--inline-code-color);
+  font-size: 0.9rem;
+  background-color: var(--bg-set-in-color);
+  border-radius: 0.25rem;
+  padding: 0.2rem 0.4rem;
 }
 
 .post_preview {
@@ -120,10 +199,6 @@ img {
   margin-top: 0.4rem;
 }
 
-pre {
-    line-height: 175%;
-    padding: 1rem;
-}
 
 .codehilite {
     border-radius: 0.25rem;

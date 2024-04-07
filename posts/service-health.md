@@ -14,6 +14,10 @@ We had [a full outage](https://status.ada.support/incidents/3n5rs1zqzmkh) last w
 
 In response to last week, we've been combing through our services and double checking our monitors, alerts, bottle-necks, and failure modes. I'll use this space to collect my list of things a high quality, high availability service should have:
 
+<blockquote class="callout note">
+This list is particularly useful for deploying WSGI services on <a href="https://kubernetes.io/">Kubernetes</a>. You can get some of this list by paying a bit more for a PaaS like <a href="https://fly.io/">Fly</a> or <a href="https://vercel.com/">Vercel</a>.
+</blockquote>
+
 1. Automated Integration Tests: We make use of [`pytest`](https://docs.pytest.org/en/8.0.x/), [dependency injection](https://www.youtube.com/watch?v=2ejbLVkCndI) and [`mocking`](https://pypi.org/project/requests-mock/) to test the _functionality_ of our code. We strive to not write ["change detection tests"](https://testing.googleblog.com/2015/01/testing-on-toilet-change-detector-tests.html).
 2. Synthetic End-to-end Testing: We use [DataDog Synthetics](https://www.datadoghq.com/product/synthetics/) for this. It's a great way to test the _availability_ of our services from multiple locations around the world.
 3. Fast CI/CD with [GitHub Actions](https://github.com/features/actions), [Docker](https://www.docker.com/), [Kubernetes](https://kubernetes.io/) and [ArgoCD](https://argoproj.github.io/argo-cd/)

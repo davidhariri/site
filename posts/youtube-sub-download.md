@@ -27,7 +27,7 @@ I did a quick search in the sources panel of my browsers dev tools for `UCYO_jab
 4. Scroll to the bottom. Keep scrolling until it has loaded all of your subscriptions.
 5. Open the console in the dev tools (if it's not already) and paste this script in and press **return** on your keyboard.
 
-```javascript
+```js
 var opmlData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<opml version=\"1.0\">\n<body>\n<outline text=\"YouTube Subscriptions\" title=\"YouTube Subscriptions\">\n" + JSON.stringify(ytInitialData.contents).match(/"channelId":\s*"([^"]+)",\s*"title":\s*{\s*"simpleText":\s*"([^"]+)"\s*}/g).map(match => /"channelId":\s*"([^"]+)"/.exec(match)[1]).map(cid => `<outline type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=${cid}" />`).join('\n') + "\n</outline>\n</body>\n</opml>";
 var blob = new Blob([opmlData], { type: 'text/xml' });
 var a = document.createElement('a');

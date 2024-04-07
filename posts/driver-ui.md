@@ -1,7 +1,9 @@
 ---
 title: Driver UI
 date: 2022-11-29 03:05:15.826605+00
-tags: ["design"]
+tags:
+    - design
+    - cars
 description: A quick thought on car usability
 ---
 We've regressed. I want knobs and patina back.

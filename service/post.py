@@ -1,8 +1,9 @@
+from dataclasses import dataclass
 import os
 import datetime
 from pydantic import BaseModel, Field
 import markdown # type: ignore
-import frontmatter
+import frontmatter # type: ignore
 
 POSTS_DIRECTORY = "./posts"
 
@@ -44,25 +45,18 @@ def __build_posts_dict() -> dict[str, Post]:
     for post_file in post_files:
         with open(os.path.join(POSTS_DIRECTORY, post_file), 'r', encoding='utf-8') as f:
             file_content = f.read()
-            # Use python-frontmatter to load the file's frontmatter and content
-            post_metadata = frontmatter.loads(file_content)
-            
-            try:
-                post_tags = set(post_metadata.get('tags', []))
-            except:
-                post_tags = set()
-
+            frontmatter_result = frontmatter.loads(file_content)
             post = Post(
                 id=None,
-                title=post_metadata.get("title"),
+                title=frontmatter_result.metadata.get('title'),
                 url_slug=post_file[:-3],
-                content=post_metadata.content,
-                description=post_metadata.get("description"),
-                tags=post_tags,
-                date_published=post_metadata.get('date'),
+                content=frontmatter_result.content,
+                description=frontmatter_result.metadata.get('description'),
+                tags=frontmatter_result.metadata.get('tags'),
+                date_published=frontmatter_result.metadata.get('date'),
             )
             posts_dict[post.url_slug] = post
-    
+
     return posts_dict
 
 ALL_POSTS = __build_posts_dict()

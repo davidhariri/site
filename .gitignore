@@ -4,3 +4,6 @@ __pycache__
 .env
 .vscode/
 drafts/
+venv/
+.pytest_cache/
+.mypy_cache/

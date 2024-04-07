@@ -1,7 +1,8 @@
 ---
 title: Salmon in the River
 date: 2022-12-12 00:04:06.924806+00
-tags: ["ML"]
+tags:
+    - ml
 description: Reflections on the notion of truth in ML
 ---
 Our VP of ML used this image in a presentation about the problem of truthfulness in generative AI. I think it sums up a model's notion of truth perfectly.

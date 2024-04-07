@@ -1,7 +1,9 @@
 ---
 title: Hard Times Create Strong Companies
 date: 2022-11-29 13:25:17+00
-tags: ["startups","stoicism"]
+tags:
+    - startups
+    - stoicism
 description: 
 ---
 [D.H.H. writes](https://world.hey.com/dhh/hard-times-make-strong-companies-f38edd00):

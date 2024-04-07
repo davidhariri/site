@@ -4,7 +4,6 @@
     --bg-color: #faf9f4;
     --bg-set-in-color: #e9e8e1;
     --link-color: #008ed5;
-    --link-visited-color: #9f50d7;
     --inline-code-color: #e34361;
     --pic-frame: white;
     --hr-color: #e6e3d8;
@@ -20,18 +19,17 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text-color: #d1d0cc;
-    --description-color: #4d4b4a;
+    --description-color: #6a6766;
     --bg-color: #1e1e1d;
     --bg-set-in-color: #141413;
     --link-color: #3da1d4;
-    --link-visited-color: #b17dd5;
     --inline-code-color: #f56a81;
     --pic-frame: var(--description-color);
     --hr-color: var(--description-color);
 
     --code-comment: #565a5a;
     --code-keyword: #e3545c;
-    --code-primitive: #1a99e9;
+    --code-primitive: #90c9ed;
     --code-decorator: #e4a9f0;
     --code-interpol: #61ec81;
   }
@@ -72,7 +70,7 @@ a {
 }
 
 a:visited {
-  color: var(--link-visited-color);
+  color: var(--link-color);
 }
 
 a:hover {
@@ -156,8 +154,11 @@ blockquote.callout.note::before {
 }
 
 pre {
-    line-height: 175%;
+    line-height: 1.6rem;
     padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: scroll;
+    background-color: var(--bg-set-in-color);
 }
 
 span.icon:before {
@@ -181,13 +182,18 @@ span.icon.email:before {
   mask-image: url('Email.svg');
 }
 
-p code {
+p code,
+a code {
   font-family: 'Fira Code', monospace;
   color: var(--inline-code-color);
   font-size: 0.9rem;
   background-color: var(--bg-set-in-color);
   border-radius: 0.25rem;
   padding: 0.2rem 0.4rem;
+}
+
+a code {
+  text-decoration: underline;
 }
 
 .post_preview {
@@ -197,13 +203,6 @@ p code {
 
 .post_preview h2 {
   margin-top: 0.4rem;
-}
-
-
-.codehilite {
-    border-radius: 0.25rem;
-    overflow-x: scroll;
-    background-color: var(--bg-set-in-color);
 }
 
 .codehilite .c { color: var(--code-comment); font-style: italic } /* Comment */

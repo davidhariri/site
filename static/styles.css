@@ -196,6 +196,52 @@ a code {
   text-decoration: underline;
 }
 
+span.message {
+  color: var(--description-color);
+  text-align: center;
+}
+
+.tag {
+  color: var(--description-color);
+  display: inline-block;
+  margin: 0 0.25rem 0rem 0.25rem;
+  text-transform: capitalize;
+}
+
+.tag:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.25rem;
+  width: 1rem; /* Adjusted for icon size */
+  height: 1rem; /* Adjusted for icon size */
+  background-color: currentColor;
+  mask-image: url('Tag.svg');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+a.tag {
+  text-decoration: underline;
+  color: var(--description-color);
+}
+
+ul.post-tags {
+  list-style-type: none; /* Removes default list styling */
+  padding: 0; /* Removes default padding */
+  margin: 0.5rem 0 0 0; /* Removes default margin */
+  display: flex; /* Makes the list horizontal */
+  flex-wrap: wrap; /* Allows list items to wrap if they exceed the container width */
+}
+
+ul.post-tags li {
+  margin-right: 0.5rem; /* Adds spacing between tags */
+}
+
+ul.post-tags .tag:first-child {
+  margin-left: 0; /* Removes left margin for the first tag */
+}
+
 .post_preview {
   margin: 0 0 2rem 0;
   box-shadow: 0 1px 0 var(--hr-color);
@@ -203,6 +249,14 @@ a code {
 
 .post_preview h2 {
   margin-top: 0.4rem;
+}
+
+.post_preview p {
+  margin-bottom: 0.5rem;
+}
+
+.post_preview .post-tags {
+  margin: 0 0 0.5rem 0;
 }
 
 .codehilite .c { color: var(--code-comment); font-style: italic } /* Comment */

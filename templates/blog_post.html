@@ -2,6 +2,13 @@
 endblock %} {% block body %}
 <time>{{ post.pretty_date }}</time>
 <h1>{{ post.title }}</h1>
+{% if post.tags %}
+<ul class="post-tags">
+    {% for tag in post.tags %}
+    <li><a class="tag" href="/blog/?tagged={{ tag }}">{{ tag }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
 <article>
   {{ post.html_content|safe }}
 </article>

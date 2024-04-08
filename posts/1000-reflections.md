@@ -2,6 +2,10 @@
 title: Reflections on running this year
 date: 2023-09-12 14:45:45+00
 description: Reflections on finally feeling like I am finding the joy in running and the principles I have picked up along the way.
+tags:
+    - running
+    - principles
+    - health
 ---
 
 Strava told me that I have run 1000 KM in 2023 so far. I don't know for sure, but I think this is the most I have ever run in a nine month period. There are 15 weeks left in the year so I should hit 1500 KM this year which I think would also be an annual record for me. And yet, this is my least effortful running year by far. For many people, 1500 KM a year is no big deal, but for me it is. I love running, but it does not love me. I'm not a natural runner and it's taken me a long time to develop a sustainable running practice.

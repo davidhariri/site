@@ -1,7 +1,9 @@
 ---
 title: My Dream Phone
 date: 2022-12-22 23:09:57.203842+00
-tags: 
+tags:
+    - design
+    - focus
 description: Some thoughts on my dream phone and reactions to learning about the Punkt MC01 Legend
 ---
 In 2021, I mocked up a quick concept of my dream phone, based on my experience using the Punkt MP02 for a couple of weeks. I would love to be able to use the MP02 as my daily driver, but it basically broke all of my communication channels in a way that really bothered my family, close friends and co-workers. The biggest issue was group text messaging which could be now somewhat solved by using Signal were it not for the fact that none of the people I just listed use Signal.

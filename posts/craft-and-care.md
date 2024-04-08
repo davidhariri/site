@@ -3,7 +3,6 @@ title: Craft and Care
 date: 2023-10-29 22:53:00.000000+00
 tags:
     - code
-    - business
     - principles
 description: A reaction to Allen Pike's 'Giving a shit' which recently trended on HN.
 ---

@@ -184,7 +184,7 @@ span.icon.email:before {
 
 p code,
 a code {
-  font-family: 'Fira Code', monospace;
+  font-family: monospace;
   color: var(--inline-code-color);
   font-size: 0.9rem;
   background-color: var(--bg-set-in-color);

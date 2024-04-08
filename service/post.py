@@ -9,6 +9,7 @@ POSTS_DIRECTORY = "./posts"
 
 _now = lambda: datetime.datetime.now(datetime.UTC)
 
+# TODO: Pydantic isn't necessary here
 class Post(BaseModel):
     """
     A blog post, stored in the database.
@@ -59,6 +60,7 @@ def __build_posts_dict() -> dict[str, Post]:
 
     return posts_dict
 
+# TODO: For a very large site, this will slow boot up
 ALL_POSTS = __build_posts_dict()
 
 def get_all_posts() -> list[Post]:

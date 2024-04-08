@@ -251,6 +251,14 @@ ul.post-tags .tag:first-child {
   margin-top: 0.4rem;
 }
 
+.post_preview p {
+  margin-bottom: 0.5rem;
+}
+
+.post_preview .post-tags {
+  margin: 0 0 0.5rem 0;
+}
+
 .codehilite .c { color: var(--code-comment); font-style: italic } /* Comment */
 .codehilite .k { color: var(--code-keyword); font-weight: bold } /* Keyword */
 .codehilite .o { color: var(--code-primitive) } /* Operator */

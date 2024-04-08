@@ -62,8 +62,6 @@ def __build_posts_dict() -> dict[str, Post]:
 
 # TODO: For a very large site, this will slow boot up
 ALL_POSTS = __build_posts_dict()
-
-def get_all_posts() -> list[Post]:
-    posts = list(ALL_POSTS.values())
-    posts.sort(key=lambda p: p.date_published, reverse=True)
-    return posts
+ALL_POSTS_LIST = list(ALL_POSTS.values())
+ALL_POSTS_LIST.sort(key=lambda p: p.date_published, reverse=True)
+ALL_TAGS = sorted({tag for post in ALL_POSTS_LIST if post.tags for tag in post.tags}, key=lambda x: x.lower())

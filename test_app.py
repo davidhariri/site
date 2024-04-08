@@ -1,6 +1,6 @@
 from datetime import datetime
 from app import app
-from service.post import get_all_posts
+from service.post import ALL_POSTS_LIST
 
 def test_home():
     with app.test_client() as client:
@@ -19,5 +19,5 @@ def test_blog_index():
 
 def test_post_now_date():
     with app.test_client() as client:
-        posts = get_all_posts()
+        posts = ALL_POSTS_LIST
         assert isinstance(posts[0].date_updated, datetime)

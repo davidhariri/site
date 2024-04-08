@@ -2,8 +2,9 @@
 title: YouTube Subscriptions via RSS
 date: 2023-08-09 21:36:20.708664+00
 tags:
-    - rss
+    - RSS
     - focus
+    - code
 description: A quick guide on how to watch YouTube in your RSS reader
 ---
 

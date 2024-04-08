@@ -1,8 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Blog - David Hariri{% endblock %}
 {% block body %}
-    {% if request.args.get("tagged") %}
-        <span class="message">Posts about <span class="tag">{{ request.args.get("tagged") }}</span></span><br>
+
+    {% if tagged %}
+        <span class="message">Posts about <span class="tag">{{ tagged }}</span></span><br>
+    {% else %}
+        <ul class="post-tags">
+            {% for tag in tags %}
+                <li><a class="tag" href="/blog/?tagged={{ tag }}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+        <br>
     {% endif %}
     {% if posts %}
         {% for post in posts %}

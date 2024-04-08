@@ -2,8 +2,7 @@
 title: My Partner
 date: 2022-11-26 22:19:23.517465+00
 tags:
-    - family
-    - gratitude
+    - Family
 description: 
 ---
 ![My wife and I, snow all around, taken at my families cottage in 2021](https://user-images.githubusercontent.com/5245670/202227111-3d604c7f-835c-4c0d-893d-14d6f84d0f83.JPG)

@@ -4,9 +4,9 @@ date: 2023-09-11 14:15:00.000000+00
 tags:
     - code
     - no-code
-    - AI
+    - ML
     - LLMs
-    - UI
+    - design
 description: Some brief thoughts on the future of no-code in a world where code generation is ubiquitous.
 ---
 

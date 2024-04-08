@@ -2,8 +2,8 @@
 title: Pray for Pain
 date: 2022-11-26 22:20:14.917309+00
 tags:
-    - journal
     - startups
+    - stoicism
 description: 
 ---
 In "Don't wish it was easier", [DHH Writes](https://world.hey.com/dhh/don-t-wish-it-was-easier-9018b6d7):

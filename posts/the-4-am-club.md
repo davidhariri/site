@@ -1,7 +1,8 @@
 ---
 title: The 4 AM Club
 date: 2022-12-08 21:31:03.133579+00
-tags: 
+tags:
+    - travel
 description: Reflections on working remotely from Sydney and the benefits of getting up before the sun.
 ---
 I've been in Sydney with my wife for the last 10 days. We will be here until December 21st. Sydney is a beautiful city- my favourite, in fact, but it's achilles heel has always been its timezone. If it's 1:00 PM in Toronto, it's 5:00 AM the next day in Sydney. In past visits to Sydney, Ada hasn't been a remote-first company. On this trip, I decided to try out a remote-first approach to working from here. I created a window for meetings during my early mornings that overlaps with Toronto. I begin work between 4:30AM and 5:30AM (12:30 PM - 1:30PM in Toronto) and finish up at around 4 or 5 PM Sydney-time. I take one or two breaks to run or swim in the afternoons.

@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Blog - David Hariri{% endblock %}
 {% block body %}
-    {% for post in posts %}
-        {% include "blog_post_preview.html" %}
-    {% endfor %}
+    {% if request.args.get("tagged") %}
+        <span class="message">Posts about <span class="tag">{{ request.args.get("tagged") }}</span></span><br>
+    {% endif %}
+    {% if posts %}
+        {% for post in posts %}
+            {% include "blog_post_preview.html" %}
+        {% endfor %}
+    {% else %}
+        <span class="message">No Posts</span>
+    {% endif %}
 {% endblock %}

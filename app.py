@@ -13,7 +13,6 @@ sentry_sdk.init(
     profiles_sample_rate=1.0,
 )
 
-
 FQD = "https://dhariri.com"
 
 cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
@@ -37,10 +36,17 @@ def render_home():
 
 
 @app.get("/blog/")
-@cache.cached(timeout=60)
+@cache.cached(timeout=60, query_string=True)
 def render_blog_index():
+    tag = request.args.get("tagged")
+    
+    if tag:
+        posts = [post for post in get_all_posts() if post.tags is not None and tag in post.tags]
+    else:
+        posts = get_all_posts()
+    
     return render_template(
-        "blog.html", title="Blog", posts=get_all_posts(), pages=get_all_pages_sorted()
+        "blog.html", title="Blog", posts=posts, pages=get_all_pages_sorted()
     )
 
 
@@ -68,7 +74,7 @@ def read_feed():
         )
         for post in get_all_posts()
     ]
-    feed = RSSFeed(
+    feed = RSSFeed( # TODO: Read this from a YAML config file
         title="David Hariri",
         link=f"{FQD}/blog/",
         description="The blog of David Hariri. Programming, design, and more.",

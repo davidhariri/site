@@ -89,6 +89,10 @@ time {
   color: var(--description-color);
 }
 
+hr {
+  margin: 2rem 0;
+}
+
 footer {
   display: block;
   align-self: bottom;
@@ -125,6 +129,7 @@ blockquote {
     padding: 0 1rem;
     color: var(--description-color);
     border-left: 0.25rem solid var(--description-color);
+    margin-bottom: 1rem;
 }
 
 blockquote a,

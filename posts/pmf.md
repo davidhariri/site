@@ -43,5 +43,6 @@ I've been asked this a lot as a founder who has quit a startup and pivoted. Ther
 ### Other Resources
 - [Rahul Vohra's account of Superhuman's PMF journey](https://review.firstround.com/how-superhuman-built-an-engine-to-find-product-market-fit)
 - [Sam Altman's essay 'Before Growth'](https://blog.samaltman.com/before-growth)
-- [David Sacks' framework: Saas Metrics that Matter](https://sacks.substack.com/p/the-saas-metrics-that-matter)
-- [Jason Cohen's writing on the topic](https://longform.asmartbear.com/product-market-fit/)
+- [David Sacks: Saas Metrics that Matter](https://sacks.substack.com/p/the-saas-metrics-that-matter)
+- [Jason Cohen's writing on PMF](https://longform.asmartbear.com/product-market-fit/)
+- [Lenny Rachitsky's writing on PMF](https://www.lennysnewsletter.com/p/how-to-know-if-youve-got-productmarket)

@@ -10,13 +10,13 @@ tags:
 
 [Will Larson](https://lethain.com) just wrote about his mental models for [using LLMs in production](https://lethain.com/mental-model-for-how-to-use-llms-in-products/). I agree with much of it, particularly the re-framing of what LLMs can _really do today_ for product developers.
 
-## On the unsupervised (no human in the loop) scenario
+## On the Unsupervised Case...
 
 > Because you cannot rely on LLMs to provide correct responses, and you cannot generate a confidence score for any given response, you have to either accept potential inaccuracies (which makes sense in many cases, humans are wrong sometimes too) or keep a Human-in-the-Loop (HITL) to validate the response.
 
 I only wish the post touched more on the unsupervised (no human in the loop) scenario. For many workflows, an LLM and human in the loop means the workflow is only marginally improved. To make systems that are autonomous it's not just about accepting potential inaccuracies, it's also about accepting responsibility for _driving them down_. This is the super hard part about unsupervised LLM application. You have to first educate customers on the trade-offs and risks they are taking and then you have to build systems that drive those risks to 0 and optimize those trade offs for value so that customers become increasingly confident in the system.
 
-## Using schemas in prompts
+## Using Schemas in Prompts
 
 A tactic that wasn't mentioned in the post is using [`JSONSchema`](https://json-schema.org/) within LLM prompts. This is a great way to ensure generations are more accurate and meet your systems expectations.
 
@@ -62,15 +62,19 @@ JSONSchema:
 Your review:
 """
 
-# Assuming openai API key is set in environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-response = openai.Completion.create(
-  engine="text-davinci-003",
-  prompt=prompt.format(
-    doc=docs[0],
-    schema=DocumentReview.model_json_schema()
-  ),
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[
+        {
+            "role": "system",
+            "content": prompt.format(
+                doc=docs[0],
+                schema=DocumentReview.model_json_schema()
+            )
+        }
+    ]
 )
 
 # Assuming the LLM returns a JSON string that fits our schema
@@ -79,9 +83,6 @@ try:
 except ValidationError as e:
     print(f"Error validating schema: {e}")
     return
-
-# Check that the document ID matches the document ID in the docs
-print(f"Document ID: {review.document_id}, Review: {review.review}")
 ```
 
 **Handling `ValidationError`**

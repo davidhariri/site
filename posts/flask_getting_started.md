@@ -1,7 +1,8 @@
 ---
 title: Getting Started with Flask in 2023
 date: 2023-07-30 20:06:44+00
-tags: 
+tags:
+- code
 description: All you need to get started using Flask for your next web application project.
 ---
 There are probably hundreds of blog posts about how to get started using [Flask](https://flask.palletsprojects.com/en/2.3.x/), but Flask and the python ecosystem has improved a lot in recent years. So here's a quick guide to getting started with Flask in 2023.

@@ -1,7 +1,8 @@
 ---
 title: Athenian Taxes
 date: 2023-01-05 21:36:20.708664+00
-tags: 
+tags:
+- philosophy 
 description: 
 ---
 From [Thomas Martin on Big Think](https://bigthink.com/the-past/ancient-greece-taxes/):

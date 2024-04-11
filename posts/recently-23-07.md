@@ -1,7 +1,8 @@
 ---
 title: Recently
 date: 2023-07-30 15:46:59+00
-tags: 
+tags:
+- recently
 description: Sharing reflections on a great summer so far in Toronto, embracing AI tools like ChatGPT, evolving in my role at Ada, exploring new coding practices and dabbling in music.
 ---
 Monica and I have been enjoying the summer here in Toronto. It was our 9th anniversary last week and we celebrated it at our family cottage. We had a game of Molky on the lawn, some painting, saunas, swims, running and we tried to recreate one of our all-time favourite meals: Cacio e Pepe and Branzino. It was the best weekend of my summer so far.

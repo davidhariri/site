@@ -1,7 +1,8 @@
 ---
 title: Site Performance
 date: 2023-07-30 16:58:54+00
-tags: 
+tags:
+- site updates
 description: A quick update on this site's performance (it should be a lot faster from now on!)
 ---
 Well, I'm incredibly dumb. In my last post, I complained about my site's performance. I noticed that my P50 load time was around 900ms which is inexcusably slow. I had thought it was because of Flycast or Supabase, but it turned out it was user error.

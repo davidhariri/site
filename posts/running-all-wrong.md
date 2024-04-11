@@ -1,7 +1,9 @@
 ---
 title: Running All Wrong
 date: 2023-01-06 21:16:00.296108+00
-tags: 
+tags:
+- running
+- health
 description: How slowing down is helping me speed up in the long run
 ---
 This is the year that I learned to run to maximize my aerobic function, not my pace.

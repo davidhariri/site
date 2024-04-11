@@ -1,7 +1,8 @@
 ---
 title:  My RSS Setup
 date: 2023-01-02 20:28:48.368754+00
-tags: 
+tags:
+- RSS
 description: My RSS setup. The reader clients and feeds I follow, including a link to all of them in OPML format.
 ---
 Recently, a few people have asked me for my RSS set up. Here is how I read news about topics that I care about without losing my focus or sanity.

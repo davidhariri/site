@@ -1,7 +1,8 @@
 ---
 title: SEAL Test
 date: 2022-11-27 03:52:20.388235+00
-tags: 
+tags:
+- health
 description: US Navy SEAL Competitive Physical Screening Test Score
 ---
 US Navy SEAL **Competitive** Physical

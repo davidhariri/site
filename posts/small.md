@@ -1,7 +1,8 @@
 ---
 title: Small
 date: 2022-11-27 03:22:35.966148+00
-tags: 
+tags:
+- startups
 description: Looking back, I wish that as a founder I had been more aware about the
 ---
 Looking back to 2018 when we were less than 100 people, I wish that as a founder I had been more aware about the benefits of being small. When you’re small, you’re quick and your work is cohesive. 

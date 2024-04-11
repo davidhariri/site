@@ -1,7 +1,8 @@
 ---
 title: We're Living Wrong
 date: 2023-01-14 19:51:15+00
-tags: 
+tags:
+- health
 description: Analysis and thoughts on the relationship between BMI, GDP and being healthy.
 ---
 I am here to bring the good news this Saturday

@@ -1,7 +1,9 @@
 ---
 title: LLMs as a New Kind of Computer
 date: 2023-04-29 18:28:36.600239+00
-tags: 
+tags:
+- LLMs
+- ML 
 description: Thoughts on Beren's post about LLMs as a new form of computer
 ---
 Beren [writes](https://www.beren.io/2023-04-11-Scaffolded-LLMs-natural-language-computers/):

@@ -1,12 +1,12 @@
 ---
 title: Friction to Publish
 description: It's too hard to publish a blog post on this site.
-date: 2024-04-09 11:26:00-0400
+date: 2024-04-09 20:46:00-0400
 tags:
 - rook
 - code
 - design
-- rss
+- RSS
 ---
 
 I was having a conversation over email with [Louie Mantia](https://lmnt.me) on the weekend about how to get more people writing on their own domain. He had [envisioned](https://lmnt.me/blog/sketchbook/punk.html) a combination RSS reader and publisher a while back which I thought looked so great (no surprise there).

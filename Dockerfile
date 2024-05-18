@@ -8,9 +8,6 @@ WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y netcat libpq-dev gcc
-
 # Install Poetry
 RUN pip install --upgrade pip \
     && pip install poetry

@@ -1,3 +1,7 @@
+[Jim Simons](https://en.wikipedia.org/wiki/Jim_Simons_(mathematician)) on Beauty:
+
+> "Be guided by beauty. I really mean that. Pretty much everything I’ve done has had an aesthetic component, at least to me. Now you might think ‘well, building a company that’s trading bonds, what’s so aesthetic about that?’ But, what’s aesthetic about it is doing it right. Getting the right kind of people, and approaching the problem, and doing it right […] it’s a beautiful thing to do something right."
+
 Dwight D. Eisenhower on Focus (1961 address to the Century Association):
 
 > "Who can define for us with accuracy the difference between the long and short term! Especially whenever our affairs seem to be in crisis, we are almost compelled to give our first attention to the urgent present rather than to the important future."

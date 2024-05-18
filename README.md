@@ -1,8 +1,8 @@
 ## Develop
 
 ```
-pyenv virtualenv 3.11.0 site
-pyenv activate site
+pip install poetry
+poetry shell
 poetry install --sync
 make run
 ```

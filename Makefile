@@ -1,3 +1,6 @@
+post:
+	python cli.py
+
 run:
 	flask run --port=5001
 

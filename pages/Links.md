@@ -20,5 +20,6 @@ Here are links to people and things that I think are worth knowing about.
 - [Carl Sagan](https://en.wikipedia.org/wiki/Carl_Sagan) is my favourite science educator of all time (second place goes to [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman)). His research into extraterestrial life, his contributions to Voyager, and the genuine zeal for space he brought to Cosmos make him worthy of anyone's time.
 - [Ilya Sutskever](http://www.cs.toronto.edu/~ilya/) is a brilliant AI researcher. He is a co-founder of OpenAI, co-creator of AlexNet and ChatGPT and has a knack for explaining complex ideas in simple terms and in a calm way. I highly recommend [this fireside talk](https://www.youtube.com/watch?v=0GKou6lSfi0) with him and Nvidia founder Jensen Huang. [His Lex Fridman interview](https://www.youtube.com/watch?v=13CZPWmke6A) is also worth a listen and especially interesting given it was recorded before the release of ChatGPT.
 - [Paul Graham](http://www.paulgraham.com/13sentences.html) for his essays on startups and the life of a founder.
+- [Salvatore Sanfilippo aka antirez](http://invece.org) invented Redis which is a very fast and easy to use database.
 
 [Change Log](//github.com/davidhariri/site/commits/main/pages/Links.md)

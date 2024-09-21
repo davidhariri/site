@@ -2,7 +2,7 @@
 title: Pocket to RSS
 date: 2024-09-21T17:02:59.730370-05:00
 tags:
-    - rss
+    - RSS
 description: I made a thing that converts your pocket saves into an rss feed
 ---
 

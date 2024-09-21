@@ -33,3 +33,5 @@ I am not a robot, I am a human. I love to read, be outside (running, hiking, ski
 - [Black Box of PM](https://blackboxofpm.com/david-hariri-on-co-founding-ada-the-pivot-that-created-a-unicorn-and-what-product-market-fit-5e208dcc8ee1)
 - [Interface Lovers](https://www.loversmagazine.com/interviews/david-hariri)
 - [It Shipped That Way](https://www.itshipped.fm/episodes/18)
+- [The Hard Part](https://podcasts.apple.com/ca/podcast/the-hard-part-with-evan-mccann/id1634787423?i=1000670194563)
+

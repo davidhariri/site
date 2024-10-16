@@ -8,3 +8,4 @@ venv/
 .pytest_cache/
 .mypy_cache/
 include
+migrate_*

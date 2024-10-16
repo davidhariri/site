@@ -122,6 +122,8 @@ def micropub():
     elif request.method == 'POST':
         if not verify_access_token():
             abort(401, description="Invalid or missing access token.")
+        
+        print(request.json)
 
         # Parse Micropub request
         h = request.json.get('type', ['entry'])[0]  # default to 'entry'

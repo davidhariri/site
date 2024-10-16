@@ -80,7 +80,13 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
                 },
                 {
                     "role": "user",
-                    "content": f"Generate a short description for the following blog post content:\n\n<content>\n{content}\n</content>. Do not write anything else other than the description."
+                    "content": f"""Generate a short description for the following blog post content:
+
+<content>
+{content}
+</content>. For example: 'Quick notes on my interview on the Hard Part Interview podcast.' or 'I made a thing that converts your pocket saves into an rss feed'
+
+Do not write anything else other than the description and do not wrap the description in quotes."""
                 }
             ],
             model="gpt-4o-mini",

@@ -8,6 +8,11 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    env:
+      MONGODB_URI: mongodb://localhost:27017/
+      DATABASE_NAME: site_db
+      MICROPUB_SECRET: open-sesame
+      FQD: http://localhost:5001
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python

@@ -1,19 +1,21 @@
-import os
-from flask import abort, Flask, render_template, request
+import uuid
+from urllib.parse import urljoin
+
+from flask import abort, Flask, jsonify, render_template, request
 from flask_caching import Cache
 from rfeed import Item as RSSItem, Feed as RSSFeed  # type: ignore
 import sentry_sdk
+from slugify import slugify
 
+from config import settings
 from service.page import get_all_page_paths_and_pages, get_all_pages_sorted
-from service.post import ALL_POSTS, ALL_POSTS_LIST, ALL_TAGS
+from service.post import create_post, get_posts, get_posts_index
 
 sentry_sdk.init(
-    dsn=os.getenv("SENTRY_DSN"),
+    dsn=settings.SENTRY_DSN,
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
 )
-
-FQD = "https://dhariri.com"
 
 cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
 app = Flask(__name__)
@@ -29,7 +31,7 @@ def render_not_found(_):
 @app.get("/")
 @cache.cached(timeout=60)
 def render_home():
-    latest_posts = ALL_POSTS_LIST[:3]
+    latest_posts = get_posts()[:3]
     return render_template(
         "home.html", posts=latest_posts, pages=get_all_pages_sorted()
     )
@@ -39,14 +41,15 @@ def render_home():
 @cache.cached(timeout=60, query_string=True)
 def render_blog_index():
     tag = request.args.get("tagged")
+    posts = get_posts()
+    # TODO: We should just get this from the database more directly
+    all_tags = sorted(set(tag for post in get_posts() for tag in (post.tags or [])), key=str.lower)
     
     if tag:
-        posts = [post for post in ALL_POSTS_LIST if post.tags is not None and tag in post.tags]
-    else:
-        posts = ALL_POSTS_LIST
+        posts = [post for post in posts if post.tags is not None and tag in post.tags]
     
     return render_template(
-        "blog.html", title="Blog", posts=posts, tags=ALL_TAGS, tagged=tag, pages=get_all_pages_sorted()
+        "blog.html", title="Blog", posts=posts, tags=all_tags, tagged=tag, pages=get_all_pages_sorted()
     )
 
 
@@ -54,7 +57,7 @@ def render_blog_index():
 @cache.memoize(timeout=3600)
 def render_blog_post(post_path: str):
     try:
-        post = ALL_POSTS.get(post_path)
+        post = get_posts_index()[post_path]
     except KeyError:
         abort(404)
 
@@ -68,15 +71,15 @@ def read_feed():
     items = [
         RSSItem(
             title=post.title,
-            link=f"{FQD}/blog/{post.url_slug}",
+            link=f"{settings.FQD}/blog/{post.url_slug}",
             description=post.description or "",
             pubDate=post.date_published,
         )
-        for post in ALL_POSTS_LIST
+        for post in get_posts()
     ]
     feed = RSSFeed( # TODO: Read this from a YAML config file
         title="David Hariri",
-        link=f"{FQD}/blog/",
+        link=f"{settings.FQD}/blog/",
         description="The blog of David Hariri. Programming, design, and more.",
         language="en-US",
         lastBuildDate=items[0].pubDate,
@@ -94,3 +97,58 @@ def render_page(page_path: str):
         abort(404)
 
     return render_template("page.html", page=page, pages=get_all_pages_sorted())
+
+# Micropub Logic
+
+def verify_access_token() -> bool:
+    auth_header = request.headers.get('Authorization', '')
+    if not auth_header.startswith('Bearer '):
+        return False
+    token = auth_header.split(' ')[1]
+    return token == settings.MICROPUB_SECRET
+
+@app.route('/micropub', methods=['GET', 'POST'])
+def micropub():
+    if request.method == 'GET':
+        # Provide metadata about your Micropub endpoint
+        response = {
+            "actions": ["create", "update", "delete"],
+            "types": ["h-entry"],
+            "syndicate-to": [
+                "https://dhariri.com/blog/",
+            ]
+        }
+        return jsonify(response)
+    elif request.method == 'POST':
+        if not verify_access_token():
+            abort(401, description="Invalid or missing access token.")
+
+        # Parse Micropub request
+        h = request.form.get('h', 'entry')  # default to 'entry'
+        if h != 'entry':
+            abort(400, description="Unsupported type.")
+
+        content = request.form.get('content', '').strip()
+        if not content:
+            abort(400, description="Missing content.")
+
+        title = request.form.get('title')
+        categories = request.form.getlist('category')  # tags
+
+        # Start of Selection
+        url_slug = slugify(title) if title else str(uuid.uuid4())
+
+        post = create_post(
+            title=title,
+            content=content,
+            url_slug=url_slug,
+            tags=set(categories) if categories else None,
+            description=request.form.get('summary')
+        )
+
+        post_url = urljoin(settings.FQD, f"/blog/{post.url_slug}/")
+
+        response = jsonify({"url": post_url})
+        response.status_code = 201
+        response.headers['Location'] = post_url
+        return response

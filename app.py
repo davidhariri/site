@@ -129,16 +129,17 @@ def micropub():
         print(request.json)
 
         # Parse Micropub request
-        h = request.json.get('h', 'entry')  # default to 'entry'
-        if h != 'entry':
+        h = request.json.get('type', ['entry'])[0]  # default to 'entry'
+        if h != 'h-entry':
             abort(400, description="Unsupported type.")
 
-        content = request.json.get('content', '').strip()
+        properties = request.json.get('properties', {})
+        content = properties.get('content', [''])[0].strip()
         if not content:
             abort(400, description="Missing content.")
 
-        title = request.json.get('title')
-        categories = request.json.get('category', [])  # tags
+        title = properties.get('name', [None])[0]
+        categories = properties.get('category', [])  # tags
 
         url_slug = slugify(title) if title else str(uuid.uuid4())
 
@@ -147,7 +148,7 @@ def micropub():
             content=content,
             url_slug=url_slug,
             tags=set(categories) if categories else None,
-            description=request.json.get('summary')
+            description=properties.get('summary', [None])[0]
         )
 
         post_url = urljoin(settings.FQD, f"/blog/{post.url_slug}/")

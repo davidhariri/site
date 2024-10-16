@@ -134,7 +134,10 @@ def micropub():
             abort(400, description="Unsupported type.")
 
         properties = request.json.get('properties', {})
-        content = properties.get('content', [''])[0].strip()
+        content_list = properties.get('content', [''])
+        if not isinstance(content_list, list) or not content_list or not isinstance(content_list[0], str):
+            abort(400, description="Invalid content format.")
+        content = content_list[0].strip()
         if not content:
             abort(400, description="Missing content.")
 

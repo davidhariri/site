@@ -62,20 +62,13 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
         url_slug = slugify(title)
     
     # Strip out the first element if it is an h1
-    content_lines = content.strip().split('\n')
-    if content_lines and content_lines[0].startswith('# '):
-        content_lines.pop(0)
-    content = '\n'.join(content_lines).strip()
+    content = content.strip()
+    if content.startswith('# '):
+        content = content[content.find('\n') + 1:].strip()
     
     # Extract hashtags and add them to tags
     hashtags = {word[1:] for word in content.split() if word.startswith('#')}
     tags = list(set(tags or []) | hashtags)
-    
-    # Wrap hashtags in markdown links
-    content = ' '.join(
-        f"[{word}](/blog/?tagged={word[1:]})" if word.startswith('#') else word
-        for word in content.split()
-    )
     
     if not description and settings.OPENAI_API_KEY:        
         openai.api_key = settings.OPENAI_API_KEY
@@ -103,7 +96,6 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
     )
     
     post_data = new_post.model_dump()
-    
     posts_collection.insert_one(post_data)
     
     return new_post

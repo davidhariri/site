@@ -6,9 +6,9 @@ from config import settings
 
 @pytest.fixture(scope="module", autouse=True)
 def insert_fake_post():
-    create_post(title="Fake Post", content="This is a fake post for testing.", url_slug="fake-post")
+    create_post(title="Fake Post", content="# Test Title\n\nThis is a fake post for testing.\n\nmy content\n\nmy other content", url_slug="fake-post")
     yield
-    delete_post(url_slug="fake-post")
+    delete_post("fake-post")
 
 def test_home():
     with app.test_client() as client:
@@ -102,3 +102,13 @@ def test_micropub_post_missing_content():
         response = client.post("/micropub", headers=headers, json=data)
         assert response.status_code == 400
         assert b"Missing content." in response.data
+
+def test_micropub_post_content_with_new_lines():
+    with app.test_client() as client:
+        # Fetch the already created fake-post and check the content rendering
+        post_url = f"{settings.FQD}/blog/fake-post/"
+        response = client.get(post_url)
+        assert response.status_code == 200
+        assert b"<p>my content</p>" in response.data
+        assert b"<p>my other content</p>" in response.data
+        assert b"<br>" not in response.data

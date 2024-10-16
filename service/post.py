@@ -57,27 +57,30 @@ def get_posts_index() -> dict[str, Post]:
     return {post.url_slug: post for post in posts}
 
 def create_post(title: str, content: str, tags: list[str] | None = None, description: str | None = None, url_slug: str | None = None) -> Post:
-    """
-    Create a new blog post and store it in the database.
-    
-    Args:
-        title (str): The title of the post.
-        content (str): The main content of the post.
-        url_slug (str): The URL-friendly slug for the post.
-        tags (list[str] | None, optional): A list of tags for the post. Defaults to None.
-        description (str | None, optional): A brief description of the post. Defaults to None.
-    
-    Returns:
-        Post: The newly created Post object.
-    """
     if url_slug is None:
         url_slug = slugify(title)
+    
+    # Strip out the first element if it is an h1
+    content_lines = content.strip().split('\n')
+    if content_lines and content_lines[0].startswith('# '):
+        content_lines.pop(0)
+    content = '\n'.join(content_lines).strip()
+    
+    # Extract hashtags and add them to tags
+    hashtags = {word[1:] for word in content.split() if word.startswith('#')}
+    tags = list(set(tags or []) | hashtags)
+    
+    # Wrap hashtags in markdown links
+    content = ' '.join(
+        f"[{word}](/blog/?tagged={word[1:]})" if word.startswith('#') else word
+        for word in content.split()
+    )
     
     new_post = Post(
         title=title,
         content=content,
         url_slug=url_slug,
-        tags=tags or [],
+        tags=tags,
         description=description
     )
     

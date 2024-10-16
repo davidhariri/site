@@ -109,9 +109,6 @@ def verify_access_token() -> bool:
 
 @app.route('/micropub', methods=['GET', 'POST'])
 def micropub():
-    print(request.headers)
-    print(request.args)
-    print(request.form)
     if request.method == 'GET':
         # Provide metadata about your Micropub endpoint
         response = {
@@ -125,8 +122,6 @@ def micropub():
     elif request.method == 'POST':
         if not verify_access_token():
             abort(401, description="Invalid or missing access token.")
-        
-        print(request.json)
 
         # Parse Micropub request
         h = request.json.get('type', ['entry'])[0]  # default to 'entry'
@@ -135,9 +130,12 @@ def micropub():
 
         properties = request.json.get('properties', {})
         content_list = properties.get('content', [''])
+
         if not isinstance(content_list, list) or not content_list or not isinstance(content_list[0], str):
             abort(400, description="Invalid content format.")
+        
         content = content_list[0].strip()
+        
         if not content:
             abort(400, description="Missing content.")
 

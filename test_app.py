@@ -49,16 +49,19 @@ def test_micropub_get():
 def test_micropub_post():
     with app.test_client() as client:
         headers = {
-            "Authorization": f"Bearer {settings.MICROPUB_SECRET}"
+            "Authorization": f"Bearer {settings.MICROPUB_SECRET}",
+            "Content-Type": "application/json"
         }
         data = {
-            "h": "entry",
-            "content": "Micropub test content",
-            "title": "Micropub Test Post",
-            "category": ["test", "micropub"],
-            "summary": "This is a summary for the micropub test post."
+            "type": ["h-entry"],
+            "properties": {
+                "content": ["Micropub test content"],
+                "name": ["Micropub Test Post"],
+                "category": ["test", "micropub"],
+                "summary": ["This is a summary for the micropub test post."]
+            }
         }
-        response = client.post("/micropub", headers=headers, data=data)
+        response = client.post("/micropub", headers=headers, json=data)
         assert response.status_code == 201
         response_data = response.get_json()
         assert "url" in response_data
@@ -67,29 +70,35 @@ def test_micropub_post():
 def test_micropub_post_invalid_token():
     with app.test_client() as client:
         headers = {
-            "Authorization": "Bearer invalid_token"
+            "Authorization": "Bearer invalid_token",
+            "Content-Type": "application/json"
         }
         data = {
-            "h": "entry",
-            "content": "Micropub test content",
-            "title": "Micropub Test Post",
-            "category": ["test", "micropub"],
-            "summary": "This is a summary for the micropub test post."
+            "type": ["h-entry"],
+            "properties": {
+                "content": ["Micropub test content"],
+                "name": ["Micropub Test Post"],
+                "category": ["test", "micropub"],
+                "summary": ["This is a summary for the micropub test post."]
+            }
         }
-        response = client.post("/micropub", headers=headers, data=data)
+        response = client.post("/micropub", headers=headers, json=data)
         assert response.status_code == 401
 
 def test_micropub_post_missing_content():
     with app.test_client() as client:
         headers = {
-            "Authorization": f"Bearer {settings.MICROPUB_SECRET}"
+            "Authorization": f"Bearer {settings.MICROPUB_SECRET}",
+            "Content-Type": "application/json"
         }
         data = {
-            "h": "entry",
-            "title": "Micropub Test Post",
-            "category": ["test", "micropub"],
-            "summary": "This is a summary for the micropub test post."
+            "type": ["h-entry"],
+            "properties": {
+                "name": ["Micropub Test Post"],
+                "category": ["test", "micropub"],
+                "summary": ["This is a summary for the micropub test post."]
+            }
         }
-        response = client.post("/micropub", headers=headers, data=data)
+        response = client.post("/micropub", headers=headers, json=data)
         assert response.status_code == 400
         assert b"Missing content." in response.data

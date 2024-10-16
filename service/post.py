@@ -5,7 +5,7 @@ import markdown  # type: ignore
 from pymongo import MongoClient
 from slugify import slugify
 from config import settings
-
+import openai
 
 client = MongoClient(settings.MONGODB_URI)
 db = client[settings.DATABASE_NAME]
@@ -56,6 +56,7 @@ def get_posts_index() -> dict[str, Post]:
     posts = get_posts()
     return {post.url_slug: post for post in posts}
 
+
 def create_post(title: str, content: str, tags: list[str] | None = None, description: str | None = None, url_slug: str | None = None) -> Post:
     if url_slug is None:
         url_slug = slugify(title)
@@ -75,6 +76,23 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
         f"[{word}](/blog/?tagged={word[1:]})" if word.startswith('#') else word
         for word in content.split()
     )
+    
+    if not description and settings.OPENAI_API_KEY:        
+        openai.api_key = settings.OPENAI_API_KEY
+        response = openai.chat.completions.create(
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant that generates short descriptions for blog posts."
+                },
+                {
+                    "role": "user",
+                    "content": f"Generate a short description for the following blog post content:\n\n<content>\n{content}\n</content>. Do not write anything else other than the description."
+                }
+            ],
+            model="gpt-4o-mini",
+        )
+        description = response.choices[0].message.content
     
     new_post = Post(
         title=title,

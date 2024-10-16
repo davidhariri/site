@@ -118,7 +118,7 @@ def micropub():
             "actions": ["create", "update", "delete"],
             "types": ["h-entry"],
             "syndicate-to": [
-                "https://dhariri.com/blog/",
+                f"{settings.FQD}/blog/",
             ]
         }
         return jsonify(response)
@@ -126,21 +126,20 @@ def micropub():
         if not verify_access_token():
             abort(401, description="Invalid or missing access token.")
         
-        print(request.form)
+        print(request.json)
 
         # Parse Micropub request
-        h = request.form.get('h', 'entry')  # default to 'entry'
+        h = request.json.get('h', 'entry')  # default to 'entry'
         if h != 'entry':
             abort(400, description="Unsupported type.")
 
-        content = request.form.get('content', '').strip()
+        content = request.json.get('content', '').strip()
         if not content:
             abort(400, description="Missing content.")
 
-        title = request.form.get('title')
-        categories = request.form.getlist('category')  # tags
+        title = request.json.get('title')
+        categories = request.json.get('category', [])  # tags
 
-        # Start of Selection
         url_slug = slugify(title) if title else str(uuid.uuid4())
 
         post = create_post(
@@ -148,7 +147,7 @@ def micropub():
             content=content,
             url_slug=url_slug,
             tags=set(categories) if categories else None,
-            description=request.form.get('summary')
+            description=request.json.get('summary')
         )
 
         post_url = urljoin(settings.FQD, f"/blog/{post.url_slug}/")

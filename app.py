@@ -8,10 +8,11 @@ from flask_caching import Cache
 from rfeed import Item as RSSItem, Feed as RSSFeed  # type: ignore
 import sentry_sdk
 from slugify import slugify
+import tweepy
 
 from config import settings
 from service.page import get_all_page_paths_and_pages, get_all_pages_sorted
-from service.post import create_post, get_posts, get_posts_index
+from service.post import create_post, get_posts, get_posts_index, Post
 
 sentry_sdk.init(
     dsn=settings.SENTRY_DSN,
@@ -129,6 +130,16 @@ def upload_file_to_s3(file, bucket_name, file_key):
     except ClientError as e:
         abort(500, description=f"Client error: {e}")
 
+def post_tweet(post_content: str):
+    client = tweepy.Client(
+        bearer_token=settings.TWITTER_API_BEARER_TOKEN,
+        consumer_key=settings.TWITTER_API_CONSUMER_KEY,
+        consumer_secret=settings.TWITTER_API_CONSUMER_SECRET,
+        access_token=settings.TWITTER_API_ACCESS_TOKEN,
+        access_token_secret=settings.TWITTER_API_ACCESS_TOKEN_SECRET,
+    )
+    client.create_tweet(text=post_content)
+
 @app.route('/micropub', methods=['GET', 'POST'])
 def micropub():
     if request.method == 'GET':
@@ -179,6 +190,14 @@ def micropub():
         )
 
         post_url = urljoin(settings.FQD, f"/blog/{post.url_slug}/")
+
+        if settings.TWITTER_API_BEARER_TOKEN:
+            # NOTE: You need more than just a bearer token to use the Twitter API to post to your own account
+            #       See post_tweet()
+            try:
+                post_tweet(f"{post.description}\n\n🔗 {post_url}")
+            except Exception as e:
+                sentry_sdk.capture_exception(e)
 
         response = jsonify({"url": post_url})
         response.status_code = 201

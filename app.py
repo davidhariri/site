@@ -1,7 +1,7 @@
 import uuid
 from urllib.parse import urljoin
 import boto3
-from botocore.exceptions import NoCredentialsError
+from botocore.exceptions import NoCredentialsError, ClientError
 
 from flask import abort, Flask, jsonify, render_template, request
 from flask_caching import Cache
@@ -109,7 +109,7 @@ def verify_access_token() -> bool:
     token = auth_header.split(' ')[1]
     return token == settings.MICROPUB_SECRET
 
-def upload_file_to_s3(file, bucket_name, file_key, acl="public-read"):
+def upload_file_to_s3(file, bucket_name, file_key):
     s3 = boto3.client(
         "s3",
         aws_access_key_id=settings.S3_ACCESS_KEY,
@@ -121,12 +121,13 @@ def upload_file_to_s3(file, bucket_name, file_key, acl="public-read"):
             bucket_name,
             file_key,
             ExtraArgs={
-                "ACL": acl,
                 "ContentType": file.content_type
             }
         )
     except NoCredentialsError:
         abort(500, description="AWS credentials not available.")
+    except ClientError as e:
+        abort(500, description=f"Client error: {e}")
 
 @app.route('/micropub', methods=['GET', 'POST'])
 def micropub():

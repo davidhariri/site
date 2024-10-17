@@ -112,8 +112,8 @@ def verify_access_token() -> bool:
 def upload_file_to_s3(file, bucket_name, file_key, acl="public-read"):
     s3 = boto3.client(
         "s3",
-        aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
+        aws_access_key_id=settings.S3_ACCESS_KEY,
+        aws_secret_access_key=settings.S3_SECRET_KEY
     )
     try:
         s3.upload_fileobj(

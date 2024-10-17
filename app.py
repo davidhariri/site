@@ -1,5 +1,7 @@
 import uuid
 from urllib.parse import urljoin
+import boto3
+from botocore.exceptions import NoCredentialsError
 
 from flask import abort, Flask, jsonify, render_template, request
 from flask_caching import Cache
@@ -107,6 +109,25 @@ def verify_access_token() -> bool:
     token = auth_header.split(' ')[1]
     return token == settings.MICROPUB_SECRET
 
+def upload_file_to_s3(file, bucket_name, file_key, acl="public-read"):
+    s3 = boto3.client(
+        "s3",
+        aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
+    )
+    try:
+        s3.upload_fileobj(
+            file,
+            bucket_name,
+            file_key,
+            ExtraArgs={
+                "ACL": acl,
+                "ContentType": file.content_type
+            }
+        )
+    except NoCredentialsError:
+        abort(500, description="AWS credentials not available.")
+
 @app.route('/micropub', methods=['GET', 'POST'])
 def micropub():
     if request.method == 'GET':
@@ -116,21 +137,23 @@ def micropub():
             "types": ["h-entry"],
             "syndicate-to": [
                 f"{settings.FQD}/blog/",
-            ]
+            ],
+            "media-endpoint": f"{settings.FQD}/micropub/media/"
         }
         return jsonify(response)
     elif request.method == 'POST':
         if not verify_access_token():
             abort(401, description="Invalid or missing access token.")
+    
+        data = request.get_json()
+        if not data:
+            abort(400, description="Invalid JSON payload.")
         
-        print(request.json)
-
-        # Parse Micropub request
-        h = request.json.get('type', ['entry'])[0]  # default to 'entry'
+        h = data.get('type', ['entry'])[0]  # default to 'entry'
         if h != 'h-entry':
             abort(400, description="Unsupported type.")
 
-        properties = request.json.get('properties', {})
+        properties = data.get('properties', {})
         content_list = properties.get('content', [''])
 
         if not isinstance(content_list, list) or not content_list or not isinstance(content_list[0], str):
@@ -160,3 +183,37 @@ def micropub():
         response.status_code = 201
         response.headers['Location'] = post_url
         return response
+
+@app.route('/micropub/media/', methods=['POST'])
+def micropub_media():    
+    if not verify_access_token():
+        abort(401, description="Invalid or missing access token.")
+    
+    if 'file' not in request.files:
+        abort(400, description="No file part in the request.")
+    
+    file = request.files['file']
+    if file.filename == '':
+        abort(400, description="No selected file.")
+    
+    # Check the file size using the Content-Length header
+    content_length = request.headers.get('Content-Length', type=int)
+    if content_length is not None and content_length > 10 * 1024 * 1024:  # 10 MB
+        abort(400, description="File is too large.")
+    
+    allowed_extensions = {'gif', 'jpg', 'jpeg', 'png', 'webp', 'mp4'}
+    file_ext = file.filename.rsplit('.', 1)[-1].lower()
+    if file_ext not in allowed_extensions:
+        abort(400, description="Unsupported file type.")
+    
+    # Generate a unique filename
+    unique_filename = f"{uuid.uuid4()}.{file_ext}"
+    
+    # Upload the file to S3
+    upload_file_to_s3(file, settings.S3_BUCKET_NAME, unique_filename)
+    
+    file_url = f"https://{settings.S3_BUCKET_NAME}.s3.amazonaws.com/{unique_filename}"
+    response = jsonify({"url": file_url})
+    response.status_code = 201
+    response.headers['Location'] = file_url
+    return response

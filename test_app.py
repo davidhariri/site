@@ -39,7 +39,11 @@ def test_single_post():
 
 def test_micropub_get():
     with app.test_client() as client:
-        response = client.get("/micropub")
+        headers = {
+            "Content-Type": "application/json"
+        }
+        response = client.get("/micropub", headers=headers)
+        print(response.data)
         assert response.status_code == 200
         data = response.get_json()
         assert "actions" in data

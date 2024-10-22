@@ -1,8 +1,10 @@
 This is my [now](https://nownownow.com/about) page.
 
+_Last updated October 2024_
+
 ## Working On
-- Leading the design of our new office at 46 Spadina Ave
-- Working out how to accelerate the adoption of our generative product
+- This site ([in the open](https://github.com/davidhariri/site))
+- Working out how to accelerate the adoption of our [generative product](https://www.ada.cx/platform/)
 - Helping us keep our architecture simple and robust
 
 ## Life Events
@@ -12,10 +14,3 @@ This is my [now](https://nownownow.com/about) page.
 ## Currently Reading:
 - A Brief History of Intelligence by Max Bennett
     - Loving this book so far. It's given me a deeper appreciation for the perfection in our own bodies.
-
-- The Rational Optimist: How Prosperity Evolves by Matt Ridley
-    - So-so on this. It's filled with great facts, but the presentation is dry.
-
-- _Listening to_: The Dream Machine: J.C.R. Licklider and the Revolution That Made Computing Personal by M. Mitchell Waldrop
-
-[Change Log](//github.com/davidhariri/site/commits/main/pages/Now.md)

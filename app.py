@@ -32,7 +32,7 @@ def render_not_found(_):
 
 
 @app.get("/")
-@cache.cached(timeout=60)
+@cache.cached(timeout=3600)
 def render_home():
     latest_posts = get_posts()[:3]
     return render_template(
@@ -41,7 +41,7 @@ def render_home():
 
 
 @app.get("/blog/")
-@cache.cached(timeout=60, query_string=True)
+@cache.cached(timeout=3600, query_string=True)
 def render_blog_index():
     tag = request.args.get("tagged")
     posts = get_posts()
@@ -57,7 +57,7 @@ def render_blog_index():
 
 
 @app.get("/blog/<string:post_path>/")
-@cache.memoize(timeout=3600)
+@cache.cached(timeout=3600)
 def render_blog_post(post_path: str):
     try:
         post = get_posts_index()[post_path]
@@ -69,7 +69,7 @@ def render_blog_post(post_path: str):
 
 @app.get("/feed/")
 @app.get("/rss/")
-@cache.cached(timeout=60)
+@cache.cached(timeout=3600)
 def read_feed():
     items = [
         RSSItem(
@@ -92,7 +92,7 @@ def read_feed():
 
 
 @app.get("/<string:page_path>/")
-@cache.memoize(timeout=3600)
+@cache.cached(timeout=3600)
 def render_page(page_path: str):
     try:
         page = get_all_page_paths_and_pages()[page_path]
@@ -198,6 +198,9 @@ def micropub():
                 post_tweet(f"{post.description}\n\n🔗 {post_url}")
             except Exception as e:
                 sentry_sdk.capture_exception(e)
+        
+        # Clear the cache for the affected pages
+        cache.clear()
 
         response = jsonify({"url": post_url})
         response.status_code = 201

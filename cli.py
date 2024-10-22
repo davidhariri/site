@@ -1,33 +1,30 @@
-import datetime
-import os
 import click
-from werkzeug.utils import secure_filename
-
-POST_TEMPLATE = """---
-title: {title}
-date: {date}
-tags:
-    - 
-description: 
----
-
-"""
+import requests
+from config import settings
 
 @click.command()
 @click.option("--title", prompt="Enter the title of the new post", help="Title of the new post")
-def create_new_post(title):
-    date = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-5))).isoformat()
-    filename = secure_filename(title).replace("_", "-").lower() + ".md"
-    filepath = os.path.join("posts", filename)
+@click.option("--content", prompt="Enter the content of the new post", help="Content of the new post")
+def create_new_post(title, content):
+    url = f"{settings.FQD}/micropub"
+    headers = {
+        "Authorization": f"Bearer {settings.MICROPUB_SECRET}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "type": ["h-entry"],
+        "properties": {
+            "name": [title],
+            "content": [content]
+        }
+    }
 
-    if os.path.exists(filepath):
-        click.echo("A post with the same title already exists. Please choose a different title.")
-        return
+    response = requests.post(url, headers=headers, json=data)
 
-    with open(filepath, "w") as file:
-        file.write(POST_TEMPLATE.format(title=title, date=date))
-
-    click.echo(f"New post created at {filepath}")
+    if response.status_code == 201:
+        click.echo(f"New post created at {response.json().get('url')}")
+    else:
+        click.echo(f"Failed to create post: {response.status_code} {response.text}")
 
 if __name__ == "__main__":
     create_new_post()

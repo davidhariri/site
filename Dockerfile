@@ -17,10 +17,13 @@ COPY pyproject.toml poetry.lock /usr/src/app/
 
 # Install project dependencies
 RUN poetry config virtualenvs.create false \
-  && poetry install --no-interaction --no-ansi
+  && poetry install --no-interaction --no-ansi --no-dev
 
-# Copy all files
+# Copy only necessary files
 COPY . /usr/src/app/
+
+# Remove cache to reduce image size
+RUN rm -rf /root/.cache/pip
 
 # Expose the application's port
 EXPOSE 8000

@@ -79,35 +79,47 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a helpful assistant that generates short descriptions for blog posts."
+                    "content": "You are a helpful assistant that replies with short, personal descriptions for blog posts. The user will provide the content in <content> tags. Keep it short, casual, first-person, and in the tone of voice of the user. For example: 'Quick notes on my interview on the Hard Part Interview podcast.' or 'I made a thing that converts your pocket saves into an rss feed'. Reply *only* with the description text and nothing else (no wrapping quotes, <description> tag etc.)."
                 },
                 {
                     "role": "user",
-                    "content": f"""Generate a short description for the following blog post content:
-
-<content>
+                    "content": f"""<content>
 {content}
-</content>. For example: 'Quick notes on my interview on the Hard Part Interview podcast.' or 'I made a thing that converts your pocket saves into an rss feed'
-
-Do not write anything else other than the description and do not wrap the description in quotes."""
+</content>"""
                 }
             ],
             model="gpt-4o-mini",
         )
         description = response.choices[0].message.content
     
-    new_post = Post(
-        title=title,
-        content=content,
-        url_slug=url_slug,
-        tags=tags,
-        description=description
-    )
+    existing_post = posts_collection.find_one({"url_slug": url_slug})
     
-    post_data = new_post.model_dump()
-    posts_collection.insert_one(post_data)
-    
-    return new_post
+    if existing_post:
+        posts_collection.update_one(
+            {"url_slug": url_slug},
+            {"$set": {
+                "title": title,
+                "content": content,
+                "tags": tags,
+                "description": description,
+                "date_updated": _now()
+            }}
+        )
+        updated_post = posts_collection.find_one({"url_slug": url_slug})
+        return Post(**updated_post)
+    else:
+        new_post = Post(
+            title=title,
+            content=content,
+            url_slug=url_slug,
+            tags=tags,
+            description=description
+        )
+        
+        post_data = new_post.model_dump()
+        posts_collection.insert_one(post_data)
+        
+        return new_post
 
 def delete_post(url_slug: str) -> None:
     posts_collection.delete_one({"url_slug": url_slug})

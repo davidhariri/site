@@ -29,7 +29,10 @@ class Post(BaseModel):
 
     @property
     def html_content(self) -> str:
-        return markdown.markdown(self.content, extensions=["fenced_code", "codehilite"])
+        return markdown.markdown(
+            self.content,
+            extensions=["fenced_code", "codehilite", "footnotes"]
+        )
 
     @property
     def pretty_date(self) -> str:

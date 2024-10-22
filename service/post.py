@@ -31,7 +31,7 @@ class Post(BaseModel):
     def html_content(self) -> str:
         return markdown.markdown(
             self.content,
-            extensions=["fenced_code", "codehilite", "footnotes", "md_in_html", "sane_lists"]
+            extensions=["fenced_code", "codehilite", "md_in_html", "footnotes", "sane_lists"]
         )
 
     @property

@@ -119,6 +119,7 @@ ol li {
 
 img {
   max-width: 100%;
+  box-sizing: border-box;
   border: 6px solid var(--pic-frame);
   border-radius: 4px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1);
@@ -128,6 +129,9 @@ figcaption {
   color: var(--description-color);
   font-style: italic;
   text-align: center;
+margin-top: -0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
 }
 
 blockquote {

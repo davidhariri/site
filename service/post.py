@@ -6,6 +6,7 @@ from pymongo import MongoClient
 from slugify import slugify
 from config import settings
 import openai
+from bs4 import BeautifulSoup
 
 client = MongoClient(settings.MONGODB_URI)
 db = client[settings.DATABASE_NAME]
@@ -29,10 +30,17 @@ class Post(BaseModel):
 
     @property
     def html_content(self) -> str:
-        return markdown.markdown(
+        html = markdown.markdown(
             self.content,
             extensions=["fenced_code", "codehilite", "md_in_html", "footnotes", "sane_lists"]
         )
+        soup = BeautifulSoup(html, 'html.parser')
+        
+        for img in soup.find_all('img'):
+            if img['src'].endswith('.png') or img['src'].endswith('.svg'):
+                img['class'] = img.get('class', []) + ['no_frame']
+        
+        return str(soup)
 
     @property
     def pretty_date(self) -> str:

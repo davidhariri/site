@@ -26,6 +26,7 @@ python-slugify = "^8.0.4"
 openai = "^1.51.2"
 boto3 = "^1.35.42"
 tweepy = "^4.14.0"
+beautifulsoup4 = "^4.12.3"
 
 
 [tool.poetry.group.dev.dependencies]

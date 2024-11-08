@@ -1,32 +1,20 @@
 <img src="/static/Me.webp" alt="A picture of me taken in 2021 when Ada's Series C investment was announced" width="144"/>
 
-I am an autodidact maker, mainly of programs for the web. I currently live in Toronto and work at [Ada](https://ada.support), a company I co-founded in 2016.
-
-I love hearing from people. Email me at [mail@dhariri.com](mailto:mail@dhariri.com)
+I love making software for the web. I currently live in Toronto and work at [Ada](https://ada.support), a company I co-founded with [Mike Murchison](https://murch.me) in 2016.
 
 Here are some things that I am dedicating most of my waking life to:
 
-**Artificially intelligent agents at [Ada](https://ada.support) (2016 — Present)**
+**AI Agents for Customer Support at [Ada](https://ada.support) (2016 — Present)**
 
-I believe that by 2030, 95% of people's communication with businesses will be with an AI agent. Talking to these agents will be delightful and fast. Our mission at Ada is to build the most resolving customer support automation platform in the world.
+I believe that by 2030, 95% of customer support will be handled by AI agents, not people. That used to be a weird idea, but since ChatGPT, it now feels almost inevitable. Customer support is often a repetitive and thankless job. Most businesses are forced to use contract labor to grow their customer support teams which often leads to a lack of training and a lack of motivation to satisfy customers. I want to change that by building a system that delights customers and beats competent human performance for the majority of many business' customer support needs.
 
-**No-code workflow automation at [Stitch](https://stitchbits.co) (2021 — Present)**
+**Making UIs that are fun to use (Perrenial)**
 
-I believe that programming is still too unapproachable for the average person. Why do we continue to force ourselves to learn abstractions built for the constraints of computing in the 1970s? In the future, I think everyone in a business will have a tool that allows them to automate the work of their whole company so that most of a companies work becomes more meaningful.
+I believe that the best software solves deep user needs, but should also be *delightful* to use. Fun UI is fast, approachable and pragmatic. I believe all software should be fun to use and easy to extend.
 
-**Making UIs that are fun to use**
+---
 
-I believe that optimal software solves deep user needs, but is also fun to use. Fun UI is fast, approachable and pragmatic. I believe all software should be fun to use and easy to extend.
-
-> "All work and no play makes Jack a dull boy."
-> — [Jack Torrance](https://www.youtube.com/watch?v=4lQ_MjU4QHw)
-
-I am not a robot, I am a human. I love to read, be outside (running, hiking, skiing), take photographs and pass time with my family and friends.
-
-**Elsewhere**
-
-- [davidhariri](https://github.com/davidhariri) on Github
-- [@davehariri](https://x.com/davehariri) on 𝕏
+Outside of coding and helping the team at Ada, I love to read, "touch grass" (running, hiking, skiing), take photographs and spend time with my family and friends.
 
 **Interviews**
 

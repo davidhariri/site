@@ -118,11 +118,12 @@ ol li {
 }
 
 img {
-  max-width: 100%;
+  max-width: calc(100% + 12px);
   box-sizing: border-box;
   border: 6px solid var(--pic-frame);
   border-radius: 4px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-left: -6px;
 }
 
 img.no_frame {
@@ -141,8 +142,7 @@ margin-top: -0.75rem;
 
 blockquote {
     margin: 0.5rem 0;
-    padding: 0 1rem;
-    color: var(--description-color);
+    padding: 0 1.25rem;
     border-left: 0.25rem solid var(--description-color);
     margin-bottom: 1rem;
 }

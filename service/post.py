@@ -1,12 +1,16 @@
 import datetime
 import uuid
+from flask import json
 from pydantic import BaseModel, Field
 import markdown  # type: ignore
 from pymongo import MongoClient
+import sentry_sdk
 from slugify import slugify
 from config import settings
 import openai
 from bs4 import BeautifulSoup
+
+from service.common import MARKDOWN_EXTENSIONS
 
 client = MongoClient(settings.MONGODB_URI)
 db = client[settings.DATABASE_NAME]
@@ -32,7 +36,7 @@ class Post(BaseModel):
     def html_content(self) -> str:
         html = markdown.markdown(
             self.content,
-            extensions=["fenced_code", "codehilite", "md_in_html", "footnotes", "sane_lists"]
+            extensions=MARKDOWN_EXTENSIONS,
         )
         soup = BeautifulSoup(html, 'html.parser')
         
@@ -67,39 +71,69 @@ def get_posts_index() -> dict[str, Post]:
     posts = get_posts()
     return {post.url_slug: post for post in posts}
 
+class PostMetadata(BaseModel):
+    description: str
+    tags: list[str]
 
 def create_post(title: str, content: str, tags: list[str] | None = None, description: str | None = None, url_slug: str | None = None) -> Post:
     if url_slug is None:
         url_slug = slugify(title)
+    
+    available_tags = ",".join(get_all_tags())
     
     # Strip out the first element if it is an h1
     content = content.strip()
     if content.startswith('# '):
         content = content[content.find('\n') + 1:].strip()
     
-    # Extract hashtags and add them to tags
-    hashtags = {word[1:] for word in content.split() if word.startswith('#')}
-    tags = list(set(tags or []) | hashtags)
-    
-    if not description and settings.OPENAI_API_KEY:        
-        openai.api_key = settings.OPENAI_API_KEY
-        response = openai.chat.completions.create(
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a helpful assistant that replies with short, personal descriptions for blog posts. The user will provide the content in <content> tags. Keep it short, casual, first-person, and in the tone of voice of the user. For example: 'Quick notes on my interview on the Hard Part Interview podcast.' or 'I made a thing that converts your pocket saves into an rss feed'. Reply *only* with the description text and nothing else (no wrapping quotes, <description> tag etc.)."
-                },
-                {
-                    "role": "user",
-                    "content": f"""<content>
-{content}
-</content>"""
-                }
-            ],
-            model="gpt-4o-mini",
-        )
-        description = response.choices[0].message.content
-    
+    if (description is None or tags is None) and settings.OPENAI_API_KEY:
+        try:
+            openai.api_key = settings.OPENAI_API_KEY
+            response = openai.beta.chat.completions.parse(
+                messages=[
+                    {
+                        "role": "system",
+                        "content": f"""You are a helpful assistant that summarizes blog posts by creating an opengraph description and a list of tags. Do not make your descriptions sales-y or inauthentic. Descriptions must be short enough to fit in a tweet. Tags must be from this list: {available_tags}
+
+    Here is an example
+
+    <example>
+    <content>
+    Clearing out my Pocket saves. I don't remember how I found this, but it's beautiful.
+
+    > There comes a moment in life, often in the quietest of hours, when one realizes that the world will continue on its wayward course, indifferent to our desires or frustrations. And it is then, perhaps, that a subtle truth begins to emerge: the only thing we truly possess, the only thing we might, with enough care, exert some mastery over, is our mind. It is not a realization of resignation, but rather of liberation. For if the mind can be ordered, if it can be made still in the midst of this restless life
+
+    - [The Quiet Art of Attention](https://billwear.github.io/art-of-attention.html)
+    </content>
+
+    You:
+    {{
+        "description": "A contemplative quote about finding stillness and clarity from 'The Quiet Art of Attention'"
+        "tags": ["Philosophy", "Quotes"]
+    }}
+    </example>"""
+                    },
+                    {
+                        "role": "user",
+                        "content": f"""<content>
+    {content}
+    </content>"""
+                    }
+                ],
+                model="gpt-4o",
+                response_format=PostMetadata,
+            )
+            metadata = response.choices[0].message.parsed
+
+            if description is None:
+                description = metadata.description
+            
+            if tags is None:
+                tags = metadata.tags
+
+        except openai.AuthenticationError as e:
+            sentry_sdk.capture_exception(e)
+        
     existing_post = posts_collection.find_one({"url_slug": url_slug})
     
     if existing_post:
@@ -131,3 +165,13 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
 
 def delete_post(url_slug: str) -> None:
     posts_collection.delete_one({"url_slug": url_slug})
+
+def get_all_tags() -> list[str]:
+    pipeline = [
+        {"$unwind": "$tags"},
+        {"$group": {"_id": None, "unique_tags": {"$addToSet": "$tags"}}},
+        {"$project": {"_id": 0, "tags": "$unique_tags"}}
+    ]
+    result = posts_collection.aggregate(pipeline)
+    tags = next(result, {"tags": []})["tags"]
+    return sorted(tags, key=str.lower)

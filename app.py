@@ -12,7 +12,7 @@ import tweepy
 
 from config import settings
 from service.page import get_all_page_paths_and_pages, get_all_pages_sorted
-from service.post import create_post, get_posts, get_posts_index, Post
+from service.post import create_post, get_all_tags, get_posts, get_posts_index, Post
 
 sentry_sdk.init(
     dsn=settings.SENTRY_DSN,
@@ -45,8 +45,7 @@ def render_home():
 def render_blog_index():
     tag = request.args.get("tagged")
     posts = get_posts()
-    # TODO: We should just get this from the database more directly
-    all_tags = sorted(set(tag for post in get_posts() for tag in (post.tags or [])), key=str.lower)
+    all_tags = get_all_tags()
     
     if tag:
         posts = [post for post in posts if post.tags is not None and tag in post.tags]

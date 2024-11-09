@@ -1,7 +1,9 @@
 import os
 from dataclasses import dataclass
 from io import TextIOWrapper
-import markdown # type: ignore
+import markdown
+
+from service.common import MARKDOWN_EXTENSIONS # type: ignore
 
 PAGE_DIR = "pages"
 
@@ -16,11 +18,7 @@ class Page:
     def from_file(cls, file_name: str, file: TextIOWrapper) -> "Page":
         file_name = file_name.split(".")[0]
         title = file_name.replace("-", " ")
-        html_content = markdown.markdown(file.read(), extensions=[
-            "fenced_code",
-            "codehilite",
-            "toc",
-        ])
+        html_content = markdown.markdown(file.read(), extensions=MARKDOWN_EXTENSIONS)
         return cls(file_name.lower(), title, html_content)
 
 

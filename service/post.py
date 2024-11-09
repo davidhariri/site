@@ -75,7 +75,11 @@ class PostMetadata(BaseModel):
     description: str
     tags: list[str]
 
-def create_post(title: str, content: str, tags: list[str] | None = None, description: str | None = None, url_slug: str | None = None) -> Post:
+class PostCreateResult(BaseModel):
+    post: Post
+    updated_existing: bool
+
+def create_post(title: str, content: str, tags: list[str] | None = None, description: str | None = None, url_slug: str | None = None) -> PostCreateResult:
     if url_slug is None:
         url_slug = slugify(title)
     
@@ -148,7 +152,7 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
             }}
         )
         updated_post = posts_collection.find_one({"url_slug": url_slug})
-        return Post(**updated_post)
+        return PostCreateResult(post=Post(**updated_post), updated_existing=True)
     else:
         new_post = Post(
             title=title,
@@ -161,7 +165,7 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
         post_data = new_post.model_dump()
         posts_collection.insert_one(post_data)
         
-        return new_post
+        return PostCreateResult(post=new_post, updated_existing=False)
 
 def delete_post(url_slug: str) -> None:
     posts_collection.delete_one({"url_slug": url_slug})

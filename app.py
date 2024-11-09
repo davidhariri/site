@@ -180,17 +180,19 @@ def micropub():
 
         url_slug = slugify(title) if title else str(uuid.uuid4())
 
-        post = create_post(
+        result = create_post(
             title=title,
             content=content,
             url_slug=url_slug,
             tags=set(categories) if categories else None,
             description=properties.get('summary', [None])[0]
         )
+        post = result.post
+        updated_existing = result.updated_existing
 
         post_url = urljoin(settings.FQD, f"/blog/{post.url_slug}/")
 
-        if settings.TWITTER_API_BEARER_TOKEN:
+        if settings.TWITTER_API_BEARER_TOKEN and not updated_existing:
             # NOTE: You need more than just a bearer token to use the Twitter API to post to your own account
             #       See post_tweet()
             try:

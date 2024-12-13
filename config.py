@@ -19,5 +19,9 @@ class Settings(BaseSettings):
     TWITTER_API_ACCESS_TOKEN: str | None = os.getenv("TWITTER_API_ACCESS_TOKEN")
     TWITTER_API_ACCESS_TOKEN_SECRET: str | None = os.getenv("TWITTER_API_ACCESS_TOKEN_SECRET")
     TWITTER_API_BEARER_TOKEN: str | None = os.getenv("TWITTER_API_BEARER_TOKEN")
+    DEBUG: bool = os.getenv("FLASK_DEBUG") == "1"
+    OG_TITLE: str = "David Hariri"
+    OG_URL: str = "https://dhariri.com"
+    OG_DESCRIPTION: str = "David's place on the web"
 
 settings = Settings()

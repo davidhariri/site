@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="David's place on the web" />
-  <meta property="og:site_name" content="David Hariri" />
-  <meta property="og:url" content="https://dhariri.com/" />
-  <link rel="micropub" href="https://dhariri.com/micropub">
+  <meta name="description" content="{{ og_description }}" />
+  <meta property="og:site_name" content="{{ og_title }}" />
+  <meta property="og:url" content="{{ og_url }}" />
+  <link rel="micropub" href="{{ og_url }}/micropub">
   <title>{% block title %}David Hariri{% endblock %}</title>
   <link href="/static/favicon-light.svg" rel="icon" media="(prefers-color-scheme: light)" />
   <link href="/static/favicon-dark.svg" rel="icon" media="(prefers-color-scheme: dark)" />
@@ -30,7 +30,8 @@
   <footer>
     <a href="mailto:mail@dhariri.com"><span class="icon email"></span>Email Me</a><br />
     <a href="/feed/">Subscribe via <span class="icon rss">RSS</span></a><br />
-    <a href="https://x.com/intent/user?screen_name=davehariri">Follow on <span class="icon twitter">Twitter</span></a><br />
+    <a href="https://bsky.app/profile/dhariri.com">Follow on <span class="icon bluesky">Bluesky</span></a> <a
+      href="https://x.com/davehariri">or <span class="icon twitter">Twitter</span></a><br />
     2010 — <a href="/now">2024</a>
     {% block footer %}{% endblock %}
   </footer>

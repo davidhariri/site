@@ -22,8 +22,18 @@ sentry_sdk.init(
 
 cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
 app = Flask(__name__)
+app.jinja_env.auto_reload = settings.DEBUG
 
 cache.init_app(app)
+
+@app.context_processor
+def inject_globals():
+    return {
+        'og_title': settings.OG_TITLE,
+        'og_description': settings.OG_DESCRIPTION, 
+        'og_url': settings.OG_URL
+    }
+
 
 
 @app.errorhandler(404)

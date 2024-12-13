@@ -121,7 +121,7 @@ img {
   max-width: calc(100% + 12px);
   box-sizing: border-box;
   border: 6px solid var(--pic-frame);
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1);
   margin-left: -6px;
 }
@@ -203,7 +203,11 @@ span.icon.email:before {
 }
 
 span.icon.twitter:before {
-  mask-image: url('twitter.svg');
+  mask-image: url('Twitter.svg');
+}
+
+span.icon.bluesky:before {
+  mask-image: url('BlueSky.svg');
 }
 
 p code,

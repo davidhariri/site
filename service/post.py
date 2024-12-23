@@ -82,7 +82,8 @@ async def create_post(title: str, content: str, tags: list[str] | None = None, d
     if url_slug is None:
         url_slug = slugify(title)
     
-    available_tags = ",".join(get_all_tags())
+    available_tags = await get_all_tags()
+    available_tags_str = ",".join(available_tags)
     
     # Strip out the first element if it is an h1
     content = content.strip()
@@ -96,7 +97,7 @@ async def create_post(title: str, content: str, tags: list[str] | None = None, d
                 messages=[
                     {
                         "role": "system",
-                        "content": f"""You are a helpful assistant that summarizes blog posts by creating an opengraph description and a list of tags. Do not make your descriptions sales-y or inauthentic. Descriptions must be short enough to fit in a tweet. Tags must be from this list: {available_tags}
+                        "content": f"""You are a helpful assistant that summarizes blog posts by creating an opengraph description and a list of tags. Do not make your descriptions sales-y or inauthentic. Descriptions must be short enough to fit in a tweet. Tags must be from this list: {available_tags_str}
 
     Here is an example
 
@@ -145,7 +146,7 @@ async def create_post(title: str, content: str, tags: list[str] | None = None, d
             {"$set": {
                 "title": title,
                 "content": content,
-                "tags": tags,
+                "tags": tags if isinstance(tags, list) else list(tags) if tags else None,
                 "description": description,
                 "date_updated": _now()
             }}
@@ -157,7 +158,7 @@ async def create_post(title: str, content: str, tags: list[str] | None = None, d
             title=title,
             content=content,
             url_slug=url_slug,
-            tags=tags,
+            tags=tags if isinstance(tags, list) else list(tags) if tags else None,
             description=description
         )
         

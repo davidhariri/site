@@ -144,7 +144,7 @@ async def micropub_api():
         }
         return jsonify(response)
     elif request.method == "POST":
-        if not await verify_access_token(request, settings):
+        if not verify_access_token(request, settings):
             abort(401, description="Invalid or missing access token.")
 
         data = await request.get_json()

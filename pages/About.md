@@ -1,4 +1,4 @@
-<img src="/static/Me.webp" alt="A picture of me taken in 2021 when Ada's Series C investment was announced" width="144"/>
+<img src="/static/me_raw.png" alt="A picture of me taken in 2022" width="144"/>
 
 I love making software for the web. I try to make things that are useful and easy to use and that scale. I currently live in Toronto and work at [Ada](https://ada.support), a company I co-founded with [Mike Murchison](https://murch.me) in 2016. Ada fully resolves aproximately six million customer support requests per month for over 400 customers.
 
@@ -6,7 +6,7 @@ The projects I'm currently working on are listed on my [now page](/now).
 
 Outside of coding and helping the team at Ada, I love to read, "touch grass" (running, hiking, skiing), take photographs and spend time with my family and friends.
 
-**Podcasts**
+**Podcast Interviews**
 
 - [Black Box of PM](https://blackboxofpm.com/david-hariri-on-co-founding-ada-the-pivot-that-created-a-unicorn-and-what-product-market-fit-5e208dcc8ee1)
 - [Interface Lovers](https://www.loversmagazine.com/interviews/david-hariri)

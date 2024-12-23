@@ -1,9 +1,8 @@
 from datetime import datetime
 import pytest
 from app import app
-from service.post import get_posts, create_post, delete_post
+from service.post import get_posts, create_post
 from config import settings
-from quart.testing import QuartClient
 
 
 @pytest.mark.asyncio(loop_scope="session")

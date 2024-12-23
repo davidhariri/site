@@ -5,8 +5,8 @@ FROM python:3.12-slim
 WORKDIR /usr/src/app
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 # Install Poetry
 RUN pip install --upgrade pip \
@@ -28,5 +28,8 @@ RUN rm -rf /root/.cache/pip
 # Expose the application's port
 EXPOSE 8000
 
+# Install hypercorn for ASGI support
+RUN pip install hypercorn
+
 # Set the entry point of the application
-ENTRYPOINT ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app", "--timeout", "10"]
+ENTRYPOINT ["hypercorn", "--bind", "0.0.0.0:8000", "app:app", "--workers", "4"]

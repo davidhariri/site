@@ -3,7 +3,7 @@ import uuid
 from flask import json
 from pydantic import BaseModel, Field
 import markdown  # type: ignore
-from pymongo import MongoClient
+from motor.motor_asyncio import AsyncIOMotorClient
 import sentry_sdk
 from slugify import slugify
 from config import settings
@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 from service.common import MARKDOWN_EXTENSIONS
 
-client = MongoClient(settings.MONGODB_URI)
+client = AsyncIOMotorClient(settings.MONGODB_URI)
 db = client[settings.DATABASE_NAME]
 posts_collection = db["posts"]
 
@@ -57,18 +57,17 @@ class Post(BaseModel):
 
         return self.date_published.strftime(f"%A %B %d{suffix}, %Y")
 
-def get_posts() -> list[Post]:
+async def get_posts() -> list[Post]:
     posts_cursor = posts_collection.find().sort("date_published", -1)
     posts = []
-    for post_data in posts_cursor:
+    async for post_data in posts_cursor:
         post_data['id'] = str(post_data["_id"])
         post = Post(**post_data)
         posts.append(post)
     return posts
 
-
-def get_posts_index() -> dict[str, Post]:
-    posts = get_posts()
+async def get_posts_index() -> dict[str, Post]:
+    posts = await get_posts()
     return {post.url_slug: post for post in posts}
 
 class PostMetadata(BaseModel):
@@ -79,7 +78,7 @@ class PostCreateResult(BaseModel):
     post: Post
     updated_existing: bool
 
-def create_post(title: str, content: str, tags: list[str] | None = None, description: str | None = None, url_slug: str | None = None) -> PostCreateResult:
+async def create_post(title: str, content: str, tags: list[str] | None = None, description: str | None = None, url_slug: str | None = None) -> PostCreateResult:
     if url_slug is None:
         url_slug = slugify(title)
     
@@ -138,10 +137,10 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
         except openai.AuthenticationError as e:
             sentry_sdk.capture_exception(e)
         
-    existing_post = posts_collection.find_one({"url_slug": url_slug})
+    existing_post = await posts_collection.find_one({"url_slug": url_slug})
     
     if existing_post:
-        posts_collection.update_one(
+        await posts_collection.update_one(
             {"url_slug": url_slug},
             {"$set": {
                 "title": title,
@@ -151,7 +150,7 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
                 "date_updated": _now()
             }}
         )
-        updated_post = posts_collection.find_one({"url_slug": url_slug})
+        updated_post = await posts_collection.find_one({"url_slug": url_slug})
         return PostCreateResult(post=Post(**updated_post), updated_existing=True)
     else:
         new_post = Post(
@@ -163,19 +162,20 @@ def create_post(title: str, content: str, tags: list[str] | None = None, descrip
         )
         
         post_data = new_post.model_dump()
-        posts_collection.insert_one(post_data)
+        await posts_collection.insert_one(post_data)
         
         return PostCreateResult(post=new_post, updated_existing=False)
 
-def delete_post(url_slug: str) -> None:
-    posts_collection.delete_one({"url_slug": url_slug})
+async def delete_post(url_slug: str) -> None:
+    await posts_collection.delete_one({"url_slug": url_slug})
 
-def get_all_tags() -> list[str]:
+async def get_all_tags() -> list[str]:
     pipeline = [
         {"$unwind": "$tags"},
         {"$group": {"_id": None, "unique_tags": {"$addToSet": "$tags"}}},
         {"$project": {"_id": 0, "tags": "$unique_tags"}}
     ]
-    result = posts_collection.aggregate(pipeline)
-    tags = next(result, {"tags": []})["tags"]
+    cursor = posts_collection.aggregate(pipeline)
+    result = await cursor.to_list(length=1)
+    tags = result[0]["tags"] if result else []
     return sorted(tags, key=str.lower)

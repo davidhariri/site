@@ -22,7 +22,7 @@ class Page:
         return cls(file_name.lower(), title, html_content)
 
 
-def get_all_page_paths_and_pages() -> dict[str, Page]:
+async def get_all_page_paths_and_pages() -> dict[str, Page]:
     """
     Get all the page paths and Page objects from the /pages directory
 
@@ -39,8 +39,8 @@ def get_all_page_paths_and_pages() -> dict[str, Page]:
 
     return page_content
 
-def get_all_pages_sorted() -> list[Page]:
+async def get_all_pages_sorted() -> list[Page]:
     """
     Get all the Page objects from the /pages directory
     """
-    return sorted(list(get_all_page_paths_and_pages().values()), key=lambda page: page.title)
+    return sorted(list((await get_all_page_paths_and_pages()).values()), key=lambda page: page.title)

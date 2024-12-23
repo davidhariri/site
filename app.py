@@ -30,6 +30,7 @@ cache.init_app(app)
 
 @app.context_processor
 def inject_globals():
+    """Inject global variables into the Jinja context for all templates`"""
     return {
         "og_title": settings.OG_TITLE,
         "og_description": settings.OG_DESCRIPTION,
@@ -39,12 +40,14 @@ def inject_globals():
 
 @app.errorhandler(404)
 def render_not_found(_):
+    """Display the custom 404 page"""
     return render_template("404.html"), 404
 
 
 @app.get("/")
 @cache.cached(timeout=3600)
 def render_home():
+    """Display the main home page with the latest posts"""
     latest_posts = get_posts()[:3]
     return render_template(
         "home.html", posts=latest_posts, pages=get_all_pages_sorted()
@@ -54,6 +57,8 @@ def render_home():
 @app.get("/blog/")
 @cache.cached(timeout=3600, query_string=True)
 def render_blog_index():
+    """Display the blog index page with all posts"""
+    # TODO: This should be paginated
     tag = request.args.get("tagged")
     posts = get_posts()
     all_tags = get_all_tags()
@@ -74,6 +79,7 @@ def render_blog_index():
 @app.get("/blog/<string:post_path>/")
 @cache.cached(timeout=3600)
 def render_blog_post(post_path: str):
+    """Display a single blog post"""
     try:
         post = get_posts_index()[post_path]
     except KeyError:
@@ -86,6 +92,7 @@ def render_blog_post(post_path: str):
 @app.get("/rss/")
 @cache.cached(timeout=3600)
 def read_feed():
+    """Generate an RSS feed for all blog posts"""
     items = [
         RSSItem(
             title=post.title,
@@ -109,6 +116,7 @@ def read_feed():
 @app.get("/<string:page_path>/")
 @cache.cached(timeout=3600)
 def render_page(page_path: str):
+    """Display a single page"""
     try:
         page = get_all_page_paths_and_pages()[page_path]
     except KeyError:
@@ -175,6 +183,9 @@ def post_bsky(post_content: str):
 
 @app.route("/micropub", methods=["GET", "POST"])
 def micropub():
+    """
+    Micropub endpoint for creating, updating, and deleting posts.
+    """
     if request.method == "GET":
         # Provide metadata about your Micropub endpoint
         response = {
@@ -233,8 +244,9 @@ def micropub():
 
         # Post to Twitter if configured in the environment
         if settings.TWITTER_API_BEARER_TOKEN and not updated_existing:
-            # NOTE: You need more than just a bearer token to use the Twitter API to post to your own account
-            #       See post_tweet()
+            # NOTE: You need more than just a bearer token to use the Twitter API
+            #   to post to your own account, this is just a simple way to see if any ENV
+            #   variables are set for the Twitter API.
             try:
                 post_tweet(post_social_content)
             except Exception as e:
@@ -258,6 +270,7 @@ def micropub():
 
 @app.route("/micropub/media/", methods=["POST"])
 def micropub_media():
+    """MicroPub media endpoint for uploading files."""
     if not verify_access_token():
         abort(401, description="Invalid or missing access token.")
 

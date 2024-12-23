@@ -240,3 +240,12 @@ async def micropub_media():
     response.status_code = 201
     response.headers["Location"] = file_url
     return response
+
+
+@app.after_request
+async def add_cache_headers(response):
+    # Add cache headers for static files
+    if response.mimetype in ['text/css', 'text/javascript', 'image/svg+xml', 'image/png', 'image/jpeg']:
+        response.cache_control.max_age = 3600  # 1 hour
+        response.cache_control.public = True
+    return response

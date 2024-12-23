@@ -28,6 +28,7 @@ pymdown-extensions = "^10.12"
 atproto = "^0.0.56"
 quart = "^0.19.9"
 motor = "^3.6.0"
+uvicorn = "^0.34.0"
 
 
 [tool.poetry.group.dev.dependencies]

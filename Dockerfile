@@ -17,7 +17,7 @@ COPY pyproject.toml poetry.lock ./
 # Install project dependencies
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi --no-dev \
-    && pip install --no-cache-dir hypercorn
+    && pip install --no-cache-dir uvicorn
 
 # Copy application code
 COPY . .
@@ -30,10 +30,10 @@ WORKDIR /usr/src/app
 # Copy only the installed packages and application code
 COPY --from=builder /usr/local/lib/python3.12/site-packages/ /usr/local/lib/python3.12/site-packages/
 COPY --from=builder /usr/src/app/ ./
-COPY --from=builder /usr/local/bin/hypercorn /usr/local/bin/
+COPY --from=builder /usr/local/bin/uvicorn /usr/local/bin/
 
 # Expose the application's port
 EXPOSE 8000
 
 # Set the entry point of the application
-ENTRYPOINT ["hypercorn", "--bind", "0.0.0.0:8000", "app:app", "--workers", "4"]
+ENTRYPOINT ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "app:app", "--workers", "1"]

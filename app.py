@@ -246,6 +246,6 @@ async def micropub_media():
 async def add_cache_headers(response):
     # Add cache headers for static files
     if response.mimetype in ['text/css', 'text/javascript', 'image/svg+xml', 'image/png', 'image/jpeg']:
-        response.cache_control.max_age = 3600  # 1 hour
+        response.cache_control.max_age = 31536000  # 1 year
         response.cache_control.public = True
     return response

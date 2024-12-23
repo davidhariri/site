@@ -4,7 +4,6 @@ import boto3
 from botocore.exceptions import NoCredentialsError, ClientError
 
 from flask import abort, Flask, jsonify, render_template, request
-from flask_caching import Cache
 from rfeed import Item as RSSItem, Feed as RSSFeed  # type: ignore
 import sentry_sdk
 from slugify import slugify
@@ -21,11 +20,8 @@ sentry_sdk.init(
     profiles_sample_rate=1.0,
 )
 
-cache = Cache(config={"CACHE_TYPE": "SimpleCache"})
 app = Flask(__name__)
 app.jinja_env.auto_reload = settings.DEBUG
-
-cache.init_app(app)
 
 
 @app.context_processor
@@ -45,7 +41,6 @@ def render_not_found(_):
 
 
 @app.get("/")
-@cache.cached(timeout=3600)
 def render_home():
     """Display the main home page with the latest posts"""
     latest_posts = get_posts()[:3]
@@ -55,7 +50,6 @@ def render_home():
 
 
 @app.get("/blog/")
-@cache.cached(timeout=3600, query_string=True)
 def render_blog_index():
     """Display the blog index page with all posts"""
     # TODO: This should be paginated
@@ -77,7 +71,6 @@ def render_blog_index():
 
 
 @app.get("/blog/<string:post_path>/")
-@cache.cached(timeout=3600)
 def render_blog_post(post_path: str):
     """Display a single blog post"""
     try:
@@ -90,7 +83,6 @@ def render_blog_post(post_path: str):
 
 @app.get("/feed/")
 @app.get("/rss/")
-@cache.cached(timeout=3600)
 def read_feed():
     """Generate an RSS feed for all blog posts"""
     items = [
@@ -114,7 +106,6 @@ def read_feed():
 
 
 @app.get("/<string:page_path>/")
-@cache.cached(timeout=3600)
 def render_page(page_path: str):
     """Display a single page"""
     try:
@@ -258,9 +249,6 @@ def micropub():
                 post_bsky(post_social_content)
             except Exception as e:
                 sentry_sdk.capture_exception(e)
-
-        # Clear the cache for the affected pages
-        cache.clear()
 
         response = jsonify({"url": post_url})
         response.status_code = 201

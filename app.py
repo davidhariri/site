@@ -187,7 +187,7 @@ async def micropub_api():
         post_url = urljoin(settings.FQD, f"/blog/{post.url_slug}/")
         post_social_content = f"{post.title}\n\n{post.description}\n\n🔗 {post_url}"
 
-        for service in [TwitterService, BlueskyService]:
+        for service in [TwitterService(), BlueskyService()]:
             try:
                 await service.post(content=post_social_content, settings=settings)
             except Exception as e:

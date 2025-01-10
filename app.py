@@ -189,7 +189,7 @@ async def micropub_api():
 
         for service in [TwitterService, BlueskyService]:
             try:
-                await service.post(post_social_content, settings)
+                await service.post(content=post_social_content, settings=settings)
             except Exception as e:
                 logger.error(f"Error posting to {service.__name__}: {e}")
                 continue

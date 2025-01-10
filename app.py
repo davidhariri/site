@@ -191,7 +191,7 @@ async def micropub_api():
             try:
                 await service.post(content=post_social_content, settings=settings)
             except Exception as e:
-                logger.error(f"Error posting to {service.__name__}: {e}")
+                logger.error(f"Error posting to {service.__class__.__name__}: {e}")
                 continue
 
         response = jsonify({"url": post_url})

@@ -7,6 +7,7 @@ Here are links to people and things that I think are worth knowing about.
 - [Long Now Foundation](//longnow.org/) is a foundation created by Stewart Brand to encourage humany to think in longer time horizons (>10,000 years).
 - [Handmade Web](http://luckysoap.com/statements/handmadeweb.html) is an essay about the qualities of handmade and why the web ought to remain handmade.
 - [Basics of the Unix Philosophy](http://www.catb.org/esr/writings/taoup/html/ch01s06.html) is an overview of the Unix philosophy which states that the value of a computer system is proportional to its simplicity, that programs should do one thing (and do it well!) and that programs should work with other programs using well-defined interfaces.
+- [Grug Brain Development](https://grugbrain.dev) is a manifesto about the benefits of being simple minded and avoiding complexity.
 
 ### People
 

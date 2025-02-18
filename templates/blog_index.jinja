@@ -1,0 +1,21 @@
+{% extends "base.jinja" %}
+{% block title %}Blog - David Hariri{% endblock %}
+{% block body %}
+    <ul class="post-tags">
+        {% for tag in tags %}
+            <li><a class="tag" href="/tagged/{{ tag }}.html">{{ tag }}</a></li>
+        {% endfor %}
+    </ul>
+    {% if years %}
+        {% for year in years %}
+            <h2>{{ year }}</h2>
+            <ul>
+                {% for post in posts[year] %}
+                    <li><a href="/{{ post.url_slug }}.html">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% else %}
+        <span class="message">No posts yet</span>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.jinja" %}
+{% block title %}Blog - David Hariri{% endblock %}
+{% block body %}
+    {% if posts %}
+        <span class="message">Posts about <span class="tag">{{ tagged }}</span></span><br>
+        {% for post in posts %}
+            {% include "post_preview.jinja" with context %}
+        {% endfor %}
+    {% else %}
+        <span class="message">No posts about {{ tagged }}</span>
+    {% endif %}
+{% endblock %}

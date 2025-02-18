@@ -1,14 +1,8 @@
-post:
-	python cli.py
+site:
+	python make_site.py
+
+clean:
+	rm -rf public
 
 run:
-	quart run --port=5001
-
-test:
-	pytest test_app.py
-
-docker-build:
-	docker build -t site .
-
-docker-run:
-	docker run --env-file .env -p 8000:8000 site
+	python -m http.server --directory=public 8000

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{ config.site_description }}" />
+  <meta property="og:site_name" content="{{ config.site_title }}" />
+  <meta property="og:url" content="{{ config.site_domain }}" />
+  <title>{% block title %}David Hariri{% endblock %}</title>
+  <link href="/static/favicon-light.svg" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="/static/favicon-dark.svg" rel="icon" media="(prefers-color-scheme: dark)" />
+  <link rel="stylesheet" href="/static/styles.css?v=2" />
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a><br />
+    <a href="/blog.html">Blog</a><br />
+    {% for page in pages %}
+      <a href="/{{page.url_slug}}.html">{{ page.title }}</a><br />
+    {% endfor %}
+  </nav>
+  {% block body %}{% endblock %}
+  <footer>
+    <a href="mailto:mail@dhariri.com"><span class="icon email"></span>Email Me</a><br />
+    <a href="/rss.xml">Subscribe via <span class="icon rss">RSS</span></a>
+    or <a href="https://x.com/davehariri"><span class="icon twitter">Twitter</span></a><br />
+    2010 — <a href="/now.html">2025</a>
+    {% block footer %}{% endblock %}
+  </footer>
+</body>
+
+</html>

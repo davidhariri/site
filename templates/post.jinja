@@ -1,0 +1,16 @@
+{% extends "base.jinja" %}
+{% block title %}{{ post.title }} - David Hariri{% endblock %}
+{% block body %}
+<time>{{ post.date_published }}</time>
+<h1>{{ post.title }}</h1>
+{% if post.tags %}
+<ul class="post-tags">
+    {% for tag in post.tags %}
+    <li><a class="tag" href="/tagged/{{ tag }}.html">{{ tag }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+<article>
+  {{ post.content|safe }}
+</article>
+{% endblock %}

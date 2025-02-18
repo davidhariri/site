@@ -78,10 +78,10 @@ p {
 
 p.message {
   margin-top: 0rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 1px;
   background-color: var(--bg-set-in-color);
   padding: 0.6rem 1rem;
-  border-radius: 1.2rem;
+  border-radius: 1.3rem;
   max-width: 65%;
   position: relative;
   margin-left: auto;
@@ -101,7 +101,7 @@ p.message:last-of-type {
 p.message.loud {
   animation: loud 1.2s cubic-bezier(.67,-0.62,.18,1.44) 0.5s;
   transform-origin: center;
-  border: 2px solid var(--bg-color);
+  box-shadow: inset 0 0 0 2px var(--bg-color);
   z-index: 1;
 }
 

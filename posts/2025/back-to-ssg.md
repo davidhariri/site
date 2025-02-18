@@ -13,4 +13,4 @@ Last year I made more than 30 commits to this site’s application code just to 
 
 Ultimately, this was becoming expensive and annoying to tune. Publishing was easy, but editing a post after it had been published required me to edit it in the database. And, the performance of the site was slower than some of my friends sites that were simpler.
 
-So, I’ve re-launched this site on Netlify and built a static-site generate in the process. As usual, all the code is [on Github](https://github.com/davidhariri/site).
+So, I’ve re-launched this site on Netlify and built a [one-file static-site generator](https://github.com/davidhariri/site/blob/main/make_site.py) in the process. Should I open source it?

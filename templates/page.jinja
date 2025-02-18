@@ -1,6 +1,7 @@
 {% extends "base.jinja" %}
 {% block title %}{{ page.title }} - David Hariri{%endblock %}
 {% block body %}
+<time>Last updated {{ page.date_last_updated.strftime("%B %d %Y") }}</time>
 <h1>{{ page.title }}</h1>
 <main>{{ page.content|safe }}</main>
 {% endblock %}

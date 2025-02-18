@@ -1,0 +1,38 @@
+name: Deploy Site
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    concurrency: deploy-group    # ensure only one deployment runs at a time
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          
+      - name: Install uv
+        run: |
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          
+      - name: Install dependencies
+        run: |
+          uv sync
+          
+      - name: Build site
+        run: make site
+        
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './public'
+          production-branch: main
+          deploy-message: "Deploy from GitHub Actions"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

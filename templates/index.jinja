@@ -1,0 +1,6 @@
+{% extends "base.jinja" %}
+{% block body %}
+    {% for post in posts %}
+        {% include "post_preview.jinja" with context %}
+    {% endfor %}
+{% endblock %}

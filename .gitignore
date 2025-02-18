@@ -2,10 +2,12 @@ __pycache__
 *.pyc
 .DS_Store
 .env
+.venv
 .vscode/
-drafts/
 venv/
 .pytest_cache/
 .mypy_cache/
 include
 migrate_*
+public/**
+drafts/**

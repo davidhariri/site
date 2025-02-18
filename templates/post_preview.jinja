@@ -1,0 +1,12 @@
+<div class="post_preview">
+    <time>{{ post.pretty_date }}</time><br>
+    <a href="/{{post.url_slug}}.html"><h2>{{ post.title }}</h2></a>
+    <p>{{ post.description or "" }}</p>
+    {% if post.tags %}
+        <ul class="post-tags">
+            {% for tag in post.tags %}
+                <li class="tag"><a href="/tagged/{{ tag }}.html">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

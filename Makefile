@@ -1,5 +1,5 @@
 site:
-	python make_site.py
+	uv run make_site.py
 
 clean:
 	rm -rf public

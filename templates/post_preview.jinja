@@ -1,5 +1,5 @@
 <div class="post_preview">
-    <time>{{ post.pretty_date }}</time><br>
+    <time>{{ post.date_published.strftime("%B %d %Y") }}</time><br>
     <a href="/{{post.url_slug}}.html"><h2>{{ post.title }}</h2></a>
     <p>{{ post.description or "" }}</p>
     {% if post.tags %}

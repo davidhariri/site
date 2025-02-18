@@ -1,7 +1,7 @@
 {% extends "base.jinja" %}
 {% block title %}{{ post.title }} - David Hariri{% endblock %}
 {% block body %}
-<time>{{ post.date_published }}</time>
+<time>{{ post.date_published.strftime("%B %d %Y") }}</time>
 <h1>{{ post.title }}</h1>
 {% if post.tags %}
 <ul class="post-tags">

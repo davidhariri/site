@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-16'
+date_published: 2024-10-16
 description: 'Exploring the Micropub spec and its integration with iA Writer, I’ve
   implemented a way to post directly to my blog from the app, embracing the #indieweb
   ethos along the way.'

@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-17'
+date_published: 2024-10-17
 description: Reflections on Tyler Cowen's insights from a captivating interview with
   Rick Rubin, exploring Japan's economic evolution and my personal experiences that
   highlight the contrast between the country's past vibrancy and its current state.

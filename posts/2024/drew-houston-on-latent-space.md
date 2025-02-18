@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-19'
+date_published: 2024-10-19
 description: Insights from Drew Houston on the Latent Space podcast about his founder
   journey, the challenges of leadership, and the evolution of "Founder Mode."
 tags:

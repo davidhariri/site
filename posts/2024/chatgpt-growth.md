@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-22'
+date_published: 2024-10-22
 description: 'Reflecting on the mind-boggling growth of #ChatGPT and how it shattered
   expectations.'
 tags:

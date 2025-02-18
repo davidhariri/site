@@ -1,5 +1,5 @@
 ---
-date_published: '2022-12-08'
+date_published: 2022-12-08
 description: Reflections on working remotely from Sydney and the benefits of getting
   up before the sun.
 tags:

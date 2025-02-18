@@ -10,7 +10,7 @@ import shutil
 import markdown
 import frontmatter
 import jinja2
-from datetime import datetime
+from datetime import date, datetime
 from rfeed import Feed, Item
 from dataclasses import dataclass
 import yaml
@@ -21,7 +21,7 @@ class Attrs:
     title: str
     description: str
     url_slug: str
-    date_published: datetime | None
+    date_published: date | None
     content: str
 
 @dataclass
@@ -30,7 +30,7 @@ class Post(Attrs):
 
 @dataclass
 class Page(Attrs):
-    date_last_updated: datetime | None
+    date_last_updated: date | None
 
 
 @dataclass
@@ -118,7 +118,7 @@ ALL_TAGS = sorted(ALL_TAGS)
 ALL_POSTS.sort(key=lambda x: x.year, reverse=True)
 
 for year in ALL_POSTS:
-    year.posts.sort(key=lambda x: x.date_published, reverse=True)
+    year.posts.sort(key=lambda x: x.date_published if x.date_published else datetime.min, reverse=True)
 
 def setup_jinja():
     """Set up and return Jinja environment"""
@@ -277,7 +277,7 @@ def compile_rss():
         link=f"https://{SITE_CONFIG.site_domain}/blog.html",
         description=SITE_CONFIG.site_description,
         language="en-US",
-        lastBuildDate=max(post.date_published for year in ALL_POSTS for post in year.posts),
+        lastBuildDate=max((datetime.combine(post.date_published, datetime.min.time()) for year in ALL_POSTS for post in year.posts), default=datetime.now()),
         items=[],
     )
 
@@ -288,7 +288,7 @@ def compile_rss():
                     title=post.title,
                     link=f"https://{SITE_CONFIG.site_domain}/{post.url_slug}",
                     description=post.description,
-                    pubDate=post.date_published,
+                    pubDate=datetime.combine(post.date_published, datetime.min.time()),
                 )
             )
 

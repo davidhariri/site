@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-10'
+date_published: 2024-11-10
 description: A humorous take on asking ChatGPT to illustrate a depiction of one's
   life, featuring mysterious 'Horchar Blend'.
 tags:

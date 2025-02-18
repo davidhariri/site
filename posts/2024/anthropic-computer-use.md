@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-30'
+date_published: 2024-10-30
 description: Just tried out Anthropic's Computer Use demo in a Docker setup! It can
   control a virtual machine and run tasks like adding a knowledge base for our bots.
   Super impressive, but it did trip up on some commands and interactions. Excited

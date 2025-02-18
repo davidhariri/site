@@ -1,8 +1,8 @@
 ---
 title: "Quotes"
 description: "Quotes that I like"
-date_published: "2022-11-27"
-date_last_updated: "2024-05-17"
+date_published: 2022-11-27
+date_last_updated: 2024-05-17
 ---
 
 [Jim Simons](https://en.wikipedia.org/wiki/Jim_Simons_(mathematician)) on Beauty:

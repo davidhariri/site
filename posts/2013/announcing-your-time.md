@@ -1,5 +1,5 @@
 ---
-date_published: '2013-05-27'
+date_published: 2013-05-27
 description: null
 tags:
 - Archive

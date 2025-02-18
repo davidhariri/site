@@ -1,5 +1,5 @@
 ---
-date_published: '2024-12-16'
+date_published: 2024-12-16
 description: Enjoyed a unique tart experience with Tartvillain, hand served by the
   creator Carlos.
 tags:

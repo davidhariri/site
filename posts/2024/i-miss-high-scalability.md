@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-02'
+date_published: 2024-11-02
 description: Reflecting on my 2016 days of binge-reading High Scalability while working
   on scaling Ada. I really miss the old vibe! The deep dive into Netflix's transcoding
   blew my mind—190,000 CPU hours just for one season of Stranger Things! Check out

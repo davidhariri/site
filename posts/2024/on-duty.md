@@ -1,5 +1,5 @@
 ---
-date_published: '2024-05-13'
+date_published: 2024-05-13
 description: A reminder to myself that duty to ones nature is reason enough
 tags:
 - Philosophy

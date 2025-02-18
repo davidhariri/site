@@ -1,5 +1,5 @@
 ---
-date_published: '2023-07-30'
+date_published: 2023-07-30
 description: Sharing reflections on a great summer so far in Toronto, embracing AI
   tools like ChatGPT, evolving in my role at Ada, exploring new coding practices and
   dabbling in music.

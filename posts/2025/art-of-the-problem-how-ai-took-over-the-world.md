@@ -1,5 +1,5 @@
 ---
-date_published: '2025-01-16'
+date_published: 2025-01-16
 description: Learn about artificial intelligence with Brit from 'Art of the Problem,'
   who excels in creating engaging and educational videos.
 tags:

@@ -1,5 +1,5 @@
 ---
-date_published: '2023-07-30'
+date_published: 2023-07-30
 description: All you need to get started using Flask for your next web application
   project.
 tags:

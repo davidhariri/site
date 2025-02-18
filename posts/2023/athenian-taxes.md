@@ -1,5 +1,5 @@
 ---
-date_published: '2023-01-05'
+date_published: 2023-01-05
 description: null
 tags:
 - Philosophy

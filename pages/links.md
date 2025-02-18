@@ -1,8 +1,8 @@
 ---
 title: "Links"
 description: "Links to people and things that I think are worth knowing about."
-date_published: "2014-02-18"
-date_last_updated: "2025-02-18"
+date_published: 2014-02-18
+date_last_updated: 2025-02-18
 ---
 
 ### Projects & Curiosities

@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-04'
+date_published: 2024-11-04
 description: Sharing my thoughts on the greatness of small phones while typing on
   my iPhone 13 mini. Seriously, I’m holding out hope for an iPhone 16 mini pro!
 tags: []

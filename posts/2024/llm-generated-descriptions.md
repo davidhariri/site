@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-16'
+date_published: 2024-10-16
 description: In this blog post, I share a recent enhancement to my website's intake
   endpoint that utilizes LLM technology to automatically generate short descriptions
   for my blog posts. By integrating OpenAI's API, I can now effortlessly create engaging

@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-17'
+date_published: 2024-10-17
 description: 'Streamlined blogging: I''m sharing my thoughts faster than ever, with
   instant publishing to both my RSS feed and X account.'
 tags:

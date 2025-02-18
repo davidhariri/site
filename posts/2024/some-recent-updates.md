@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-09'
+date_published: 2024-11-09
 description: Site updates including improved AI description generation, updates to
   personal pages, and the shutdown of Stitch to focus on Ada.
 tags:

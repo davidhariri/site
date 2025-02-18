@@ -1,5 +1,5 @@
 ---
-date_published: '2024-04-10'
+date_published: 2024-04-10
 description: It's too hard to publish a blog post on this site.
 tags:
 - Projects

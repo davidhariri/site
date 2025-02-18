@@ -1,5 +1,5 @@
 ---
-date_published: '2023-08-09'
+date_published: 2023-08-09
 description: A quick guide on how to watch YouTube in your RSS reader
 tags:
 - Web

@@ -1,5 +1,5 @@
 ---
-date_published: '2024-09-21'
+date_published: 2024-09-21
 description: I made a thing that converts your pocket saves into an rss feed
 tags:
 - RSS

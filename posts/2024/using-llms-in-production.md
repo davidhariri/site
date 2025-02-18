@@ -1,5 +1,5 @@
 ---
-date_published: '2024-04-09'
+date_published: 2024-04-09
 description: A nod to Will Larson's post on using LLMs in production and some additional
   notes based on my own experience.
 tags:

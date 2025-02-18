@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-03'
+date_published: 2024-11-03
 description: Thoughts from my chat with Tom MacWright about finding the right balance
   with tech debt in startups. It's a tricky game between speed and sustainability!
 tags:

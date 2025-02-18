@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-16'
+date_published: 2024-11-16
 description: Significant improvements to Ada's knowledge retrieval enhance customer
   support accuracy, thanks to innovative team collaboration and ML advances.
 tags:

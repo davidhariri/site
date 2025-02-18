@@ -1,5 +1,5 @@
 ---
-date_published: '2024-12-13'
+date_published: 2024-12-13
 description: Updated my site so posts also share on Bluesky. Considering using Bluesky
   for comments inspired by Emily Liu's approach.
 tags:

@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-09'
+date_published: 2024-11-09
 description: Balancing work and family life, the author reflects on the joys and challenges
   of prioritizing weekends as family time.
 tags:

@@ -1,5 +1,5 @@
 ---
-date_published: '2023-04-29'
+date_published: 2023-04-29
 description: Thoughts on Beren's post about LLMs as a new form of computer
 tags:
 - LLMs

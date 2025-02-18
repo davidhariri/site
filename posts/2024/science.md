@@ -1,5 +1,5 @@
 ---
-date_published: '2024-05-17'
+date_published: 2024-05-17
 description: Science is writing it down
 tags:
 - Quotes

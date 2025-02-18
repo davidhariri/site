@@ -1,5 +1,5 @@
 ---
-date_published: '2024-04-08'
+date_published: 2024-04-08
 description: I've open sourced the code that powers this website
 tags:
 - Projects

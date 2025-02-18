@@ -1,5 +1,5 @@
 ---
-date_published: '2023-10-29'
+date_published: 2023-10-29
 description: A reaction to Allen Pike's 'Giving a shit' which recently trended on
   HN.
 tags:

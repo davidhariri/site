@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-05'
+date_published: 2024-11-05
 description: I just discovered that halp.com redirects to Atlassian Service Management—love
   that Atlassian has such a great sense of humor!
 tags: []

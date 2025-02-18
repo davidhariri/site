@@ -1,8 +1,8 @@
 ---
 title: "Tools"
 description: "The tools that I use day to day to build software"
-date_published: "2022-11-14"
-date_last_updated: "2024-11-09"
+date_published: 2022-11-14
+date_last_updated: 2024-11-09
 ---
 
 The following are most of the tools that I use day to day to build software. They are the tools I most understand, most rely on and the tools that I am most fond of. I think people might be surprised at how vanilla my set up is. I am typically the last person to adopt a new tool because I favour the things I know how to use productively.

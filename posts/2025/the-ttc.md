@@ -1,5 +1,5 @@
 ---
-date_published: '2025-01-31'
+date_published: 2025-01-31
 description: A rant about my growing concerns over safety while using the TTC.
 tags:
 - Life

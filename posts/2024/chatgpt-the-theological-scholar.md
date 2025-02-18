@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-22'
+date_published: 2024-10-22
 description: Exploring my dad's deep conversations with ChatGPT about the Bahá'í faith
   and the rich religious texts that may influence its knowledge.
 tags:

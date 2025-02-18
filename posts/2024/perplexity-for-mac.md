@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-25'
+date_published: 2024-10-25
 description: Just checked out the new Perplexity MacOS app and it’s a game changer!
   It's already my go-to research tool, especially for those tricky service-desk KPIs.
   The inline citations and easy-to-copy tables make my life so much easier!

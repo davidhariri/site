@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-17'
+date_published: 2024-10-17
 description: Exploring the importance of thinking probabilistically when working with
   LLMs, this post highlights insights on effective eval methodologies, the quirks
   of model behavior, and practical tips for building robust evaluation processes that

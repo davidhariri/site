@@ -1,5 +1,5 @@
 ---
-date_published: '2023-11-20'
+date_published: 2023-11-20
 description: My personal experience and framework for finding product market fit
 tags:
 - Startups

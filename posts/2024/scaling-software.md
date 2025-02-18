@@ -1,5 +1,5 @@
 ---
-date_published: '2024-05-18'
+date_published: 2024-05-18
 description: My answer to the question 'What is the most important yet often overlooked
   aspect of scaling software?'
 tags:

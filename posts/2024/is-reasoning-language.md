@@ -1,5 +1,5 @@
 ---
-date_published: '2024-12-17'
+date_published: 2024-12-17
 description: Exploring the nature of reasoning in AI models, questioning if making
   LLMs express their thoughts out loud limits their potential.
 tags:

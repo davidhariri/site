@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-15'
+date_published: 2024-11-15
 description: Exploring the miraculous adaptation of the wood frog, which survives
   winter by freezing like a stone but remains alive.
 tags:

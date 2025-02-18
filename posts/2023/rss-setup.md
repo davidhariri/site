@@ -1,5 +1,5 @@
 ---
-date_published: '2023-01-02'
+date_published: 2023-01-02
 description: My RSS setup. The reader clients and feeds I follow, including a link
   to all of them in OPML format.
 tags:

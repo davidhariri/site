@@ -1,5 +1,5 @@
 ---
-date_published: '2023-01-14'
+date_published: 2023-01-14
 description: Analysis and thoughts on the relationship between BMI, GDP and being
   healthy.
 tags:

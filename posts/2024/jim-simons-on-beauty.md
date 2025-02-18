@@ -1,5 +1,5 @@
 ---
-date_published: '2024-05-10'
+date_published: 2024-05-10
 description: Jim Simons' loved beauty
 tags:
 - Philosophy

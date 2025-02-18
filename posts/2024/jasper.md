@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-23'
+date_published: 2024-10-23
 description: I’m officially a dad to my now four-month-old son, Jasper. It’s been
   a long journey to get here, but every moment is worth it. I plan to share more about
   our fertility journey someday, but right now, I'm just savoring these precious moments

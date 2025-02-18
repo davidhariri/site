@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-20'
+date_published: 2024-10-20
 description: Reflections on the beauty of finding stillness and clarity in the mind
   amidst life's chaos, inspired by a passage on the transformative power of attention.
 tags:

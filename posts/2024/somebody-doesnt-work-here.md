@@ -1,5 +1,5 @@
 ---
-date_published: '2024-05-11'
+date_published: 2024-05-11
 description: A great quote about creating a culture of ownership from the tale of
   Slack's first years
 tags:

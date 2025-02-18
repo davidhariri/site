@@ -1,5 +1,5 @@
 ---
-date_published: '2024-05-08'
+date_published: 2024-05-08
 description: null
 tags:
 - Craft

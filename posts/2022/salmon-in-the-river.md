@@ -1,5 +1,5 @@
 ---
-date_published: '2022-12-12'
+date_published: 2022-12-12
 description: Reflections on the notion of truth in ML
 tags:
 - ML

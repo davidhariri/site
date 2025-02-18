@@ -1,5 +1,5 @@
 ---
-date_published: '2023-01-06'
+date_published: 2023-01-06
 description: How slowing down is helping me speed up in the long run
 tags:
 - Running

@@ -1,5 +1,5 @@
 ---
-date_published: '2022-12-22'
+date_published: 2022-12-22
 description: Some thoughts on my dream phone and reactions to learning about the Punkt
   MC01 Legend
 tags:

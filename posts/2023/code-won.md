@@ -1,5 +1,5 @@
 ---
-date_published: '2023-09-11'
+date_published: 2023-09-11
 description: Some brief thoughts on the future of no-code in a world where code generation
   is ubiquitous.
 tags:

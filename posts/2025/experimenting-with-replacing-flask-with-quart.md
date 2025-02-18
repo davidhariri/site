@@ -1,5 +1,5 @@
 ---
-date_published: '2025-01-10'
+date_published: 2025-01-10
 description: Exploring the benefits of switching from Flask to Quart for improved
   performance and asynchronous capabilities in Ada's application.
 tags:

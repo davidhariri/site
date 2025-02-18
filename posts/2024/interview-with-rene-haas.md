@@ -1,5 +1,5 @@
 ---
-date_published: '2024-12-25'
+date_published: 2024-12-25
 description: Insights from a podcast about the impact of RISC vs CISC in chip production
   and how giants like Apple and Amazon have shaped the landscape.
 tags:

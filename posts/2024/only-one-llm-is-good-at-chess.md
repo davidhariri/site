@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-16'
+date_published: 2024-11-16
 description: Exploring how different LLMs perform at chess, with most failing except
   turbo-instruct. Discusses tuning and training influences.
 tags:

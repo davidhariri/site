@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-27'
+date_published: 2024-10-27
 description: I stumbled upon a fun little experiment with ChatGPT tonight—someone
   mentioned it might have Easter eggs, so I asked for a random YouTube link. Turns
   out, it definitely trolled me! I love when tech has a sense of humor.

@@ -1,5 +1,5 @@
 ---
-date_published: '2024-09-21'
+date_published: 2024-09-21
 description: Quick notes on my interview on the Hard Part Interview podcast.
 tags:
 - Podcasts

@@ -1,8 +1,8 @@
 ---
 title: "About"
 description: "About me"
-date_published: "2025-02-18"
-date_last_updated: "2025-02-18"
+date_published: 2025-02-18
+date_last_updated: 2025-02-18
 ---
 
 <img src="/static/media/me_raw.png" alt="A picture of me taken in 2022" width="144"/>

@@ -1,5 +1,5 @@
 ---
-date_published: '2024-04-07'
+date_published: 2024-04-07
 description: My list of qualities that resilient, highly availabile services should
   have.
 tags:

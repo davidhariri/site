@@ -1,5 +1,5 @@
 ---
-date_published: '2022-11-27'
+date_published: 2022-11-27
 description: Looking back, I wish that as a founder I had been more aware about the
 tags:
 - Startups

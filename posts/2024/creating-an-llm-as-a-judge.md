@@ -1,5 +1,5 @@
 ---
-date_published: '2024-11-02'
+date_published: 2024-11-02
 description: Just found an incredible guide on building LLMs as a judge by Hamel Husain!
   Super insightful, especially since we’re using a similar system at Ada to evaluate
   transcript resolutions. Excited about how smartly it's avoiding blind spots in test

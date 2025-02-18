@@ -1,5 +1,5 @@
 ---
-date_published: '2023-03-06'
+date_published: 2023-03-06
 description: Reflections on running the 2023 Chilly Half-Marathon race in Burlington
 tags:
 - Running

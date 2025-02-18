@@ -1,8 +1,8 @@
 ---
 title: "Now"
 description: "What I'm working on"
-date_published: "2022-02-18"
-date_last_updated: "2024-11-01"
+date_published: 2022-02-18
+date_last_updated: 2024-11-01
 ---
 
 This is my [now](https://nownownow.com/about) page.

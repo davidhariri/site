@@ -1,5 +1,5 @@
 ---
-date_published: '2024-04-08'
+date_published: 2024-04-08
 description: I added tags to my blog posts. You can use them to browse my posts now.
 tags:
 - Site Updates

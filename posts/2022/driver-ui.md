@@ -1,5 +1,5 @@
 ---
-date_published: '2022-11-29'
+date_published: 2022-11-29
 description: A quick thought on car usability
 tags:
 - Design

@@ -1,5 +1,5 @@
 ---
-date_published: '2023-07-30'
+date_published: 2023-07-30
 description: A quick update on this site's performance (it should be a lot faster
   from now on!)
 tags:

@@ -1,5 +1,5 @@
 ---
-date_published: '2024-10-31'
+date_published: 2024-10-31
 description: I just got access to the new ChatGPT search feature on macOS! Excited
   to compare how it stacks up against my go-to tool, Perplexity, for research. Gave
   it a spin with a few examples and shared my thoughts on the strengths and weaknesses

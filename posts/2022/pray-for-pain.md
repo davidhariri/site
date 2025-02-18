@@ -1,5 +1,5 @@
 ---
-date_published: '2022-11-26'
+date_published: 2022-11-26
 description: null
 tags:
 - Philosophy

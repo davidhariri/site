@@ -1,5 +1,5 @@
 ---
-date_published: '2023-09-12'
+date_published: 2023-09-12
 description: Reflections on finally feeling like I am finding the joy in running and
   the principles I have picked up along the way.
 tags:

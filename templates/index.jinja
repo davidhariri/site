@@ -2,6 +2,7 @@
 {% block body %}
     <p class="message loud">Welcome!</p>
     <p class="message">I'm <a href="about.html">David</a> and this my website.</p>
+    <hr>
     {% for post in posts %}
         {% include "post_preview.jinja" with context %}
     {% endfor %}

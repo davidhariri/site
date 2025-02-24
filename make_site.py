@@ -365,6 +365,24 @@ def compile_sitemap():
         f.write("\n".join(sitemap))
 
 
+def compile_robots():
+    """
+    Generate robots.txt file to control search engine crawling
+    """
+    robots_content = [
+        f"# robots.txt for {SITE_CONFIG.site_domain or 'this site'}",
+        "User-agent: *",
+        "Allow: /",
+        "",
+        "# Sitemap location",
+        f"Sitemap: https://{SITE_CONFIG.site_domain}/sitemap.xml",
+    ]
+    
+    # Write the robots.txt file
+    with open(os.path.join("public", "robots.txt"), "w") as f:
+        f.write("\n".join(robots_content))
+
+
 def compile_site():
     ensure_dir("public")
     compile_index()
@@ -376,10 +394,12 @@ def compile_site():
     copy_static_files()
 
     if SITE_CONFIG.site_domain is None:
-        print("⏭️ No site_domain in SiteConfig. Skipping RSS and Sitemap Generation.")
-    else:
-        compile_rss()
-        compile_sitemap()
+        print("No site_domain in SiteConfig. Skipping RSS, Sitemap, and Robots Generation.")
+        return
+    
+    compile_rss()
+    compile_sitemap()
+    compile_robots()
 
 
 if __name__ == "__main__":

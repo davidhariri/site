@@ -383,6 +383,30 @@ def compile_robots():
         f.write("\n".join(robots_content))
 
 
+def compile_redirects():
+    """
+    Generate _redirects file for Netlify to handle URL structure changes.
+    Redirects posts from /blog/post-name to /<year>/post-name
+    for posts published before February 20, 2025.
+    """
+    cutoff_date = datetime(2025, 2, 16).date()
+    redirects = []
+    
+    for post in POSTS_ALL:
+        if post.date_published and post.date_published < cutoff_date:
+            # Extract just the filename without year prefix
+            filename = os.path.basename(post.url_slug)
+            
+            # Create redirect from old URL structure to new URL structure
+            old_path = f"/blog/{filename}"
+            new_path = f"/{post.url_slug}"
+            redirects.append(f"{old_path} {new_path} 301")
+    
+    # Write the redirects file
+    with open(os.path.join("public", "_redirects"), "w") as f:
+        f.write("\n".join(redirects))
+
+
 def compile_site():
     ensure_dir("public")
     compile_index()
@@ -391,6 +415,7 @@ def compile_site():
     compile_posts()
     compile_tagged_posts()
     compile_404()
+    compile_redirects()
     copy_static_files()
 
     if SITE_CONFIG.site_domain is None:

@@ -1,5 +1,20 @@
 {% extends "base.jinja" %}
 {% block title %}{{ post.title }} - David Hariri{% endblock %}
+
+{% block og_title %}{{ post.title }}{% endblock %}
+{% block og_description %}{{ post.description }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_image %}{% if post.cover_photo %}https://{{ config.site_domain }}{{ post.cover_photo }}{% else %}https://{{ config.site_domain }}/static/default-share-image.jpg{% endif %}{% endblock %}
+{% block og_image_alt %}{{ post.title }}{% endblock %}
+
+{% block twitter_title %}{{ post.title }}{% endblock %}
+{% block twitter_description %}{{ post.description }}{% endblock %}
+{% block twitter_image %}{% if post.cover_photo %}https://{{ config.site_domain }}{{ post.cover_photo }}{% else %}https://{{ config.site_domain }}/static/default-share-image.jpg{% endif %}{% endblock %}
+
+{% block article_published_time %}{{ post.date_published.isoformat() }}{% endblock %}
+
+{% block canonical_url %}/{{ post.url_slug }}.html{% endblock %}
+
 {% block body %}
 <time>{{ post.date_published.strftime("%B %d %Y") }}</time>
 <h1>{{ post.title }}</h1>

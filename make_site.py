@@ -14,7 +14,6 @@ from datetime import date, datetime
 from rfeed import Feed, Item
 from dataclasses import dataclass
 import yaml
-import copy
 from urllib.parse import quote
 
 
@@ -26,6 +25,8 @@ class BaseContent:
     date_published: date | None
     raw_content: str
     content: str
+    tags: list[str] = None
+    cover_photo: str | None = None
 
     @classmethod
     def from_frontmatter(cls, content: str, url_slug: str, **kwargs):
@@ -58,18 +59,20 @@ class BaseContent:
             date_published=date_published,
             raw_content=content,
             content=html_content,
+            tags=data.metadata.get("tags", []),
+            cover_photo=data.metadata.get("cover_photo", None),
             **kwargs,
         )
 
 
 @dataclass
 class Post(BaseContent):
-    tags: list[str]
+    pass
 
 
 @dataclass
 class Page(BaseContent):
-    date_last_updated: date | None
+    date_last_updated: date | None = None
 
 @dataclass
 class SiteConfig:
@@ -106,8 +109,7 @@ for root, _, files in os.walk("posts"):
             
             post = Post.from_frontmatter(
                 content,
-                url_slug=url_slug,
-                tags=post_data.metadata.get("tags", [])
+                url_slug=url_slug
             )
 
             POSTS_ALL.append(post)

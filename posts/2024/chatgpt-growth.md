@@ -5,6 +5,7 @@ description: 'Reflecting on the mind-boggling growth of #ChatGPT and how it shat
 tags:
 - LLMs
 title: ChatGPT Growth
+cover_photo: /static/media/3989c1fc-cd3b-4098-b6ab-89b0721f8b40.png
 ---
 
 Sometimes I forget just how insanely fast #ChatGPT grew. 

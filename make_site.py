@@ -15,6 +15,7 @@ from rfeed import Feed, Item
 from dataclasses import dataclass
 import yaml
 import copy
+from urllib.parse import quote
 
 
 @dataclass
@@ -310,6 +311,60 @@ def compile_404():
         f.write(rendered)
 
 
+def compile_sitemap():
+    """
+    Generate sitemap.xml containing all pages, posts and tag pages
+    """
+    # Start with the XML declaration and root element
+    sitemap = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+    ]
+
+    # Helper function to add a URL to the sitemap
+    def add_url(path, date=None):
+        # URL encode the path, preserving forward slashes
+        encoded_path = '/'.join(quote(segment) for segment in path.split('/'))
+        
+        url = [f"  <url>"]
+        url.append(f"    <loc>https://{SITE_CONFIG.site_domain}/{encoded_path}</loc>")
+        if date:
+            url.append(f"    <lastmod>{date.isoformat()}</lastmod>")
+        url.append("  </url>")
+        sitemap.extend(url)
+
+    # Add homepage
+    add_url("index.html")
+
+    # Add blog index
+    add_url("blog.html")
+
+    # Add all pages
+    for page in PAGES:
+        add_url(
+            f"{page.url_slug}.html",
+            page.date_last_updated or page.date_published
+        )
+
+    # Add all posts
+    for post in POSTS_ALL:
+        add_url(
+            f"{post.url_slug}.html",
+            post.date_published
+        )
+
+    # Add all tag pages
+    for tag in ALL_TAGS:
+        add_url(f"tagged/{tag}.html")
+
+    # Close root element
+    sitemap.append("</urlset>")
+
+    # Write the sitemap file
+    with open(os.path.join("public", "sitemap.xml"), "w") as f:
+        f.write("\n".join(sitemap))
+
+
 def compile_site():
     ensure_dir("public")
     compile_index()
@@ -321,9 +376,10 @@ def compile_site():
     copy_static_files()
 
     if SITE_CONFIG.site_domain is None:
-        print("⏭️ No site_domain in SiteConfig. Skipping RSS Generation.")
+        print("⏭️ No site_domain in SiteConfig. Skipping RSS and Sitemap Generation.")
     else:
         compile_rss()
+        compile_sitemap()
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ title: ChatGPT Search vs Perplexity Initial Thoughts
 
 It looks like #ChatGPT search has gone live to at least everyone on the waitlist? I just got an email from them saying as much and it is already in the #macOS app for me.
 
-![](/static/media/4e4dabb7-fee9-471d-951c-68b31edae869.png)
+![](/static/media/4e4dabb7-fee9-471d-951c-68b31edae869.png){: .no-frame}
 
 <figcaption>ChatGPT Search on macOS</figcaption>
 
@@ -20,17 +20,17 @@ The question on my mind is how well does this work compared to Perplexity which 
 
 > In mid journey, what are srefs?
 
-![](/static/media/2c05568b-1c3f-4a26-a7b8-882537114271.png)
+![](/static/media/2c05568b-1c3f-4a26-a7b8-882537114271.png){: .no-frame}
 
-![](/static/media/5f4092d9-0da7-4d91-bcd1-8f3f301ee6b7.png)
+![](/static/media/5f4092d9-0da7-4d91-bcd1-8f3f301ee6b7.png){: .no-frame}
 
 I think ChatGPT Search wins this one. The crux of my question is *“how do I use them?”* which Perplexity takes a while to get to and ChatGPT understands right away.
 
 > What are the top 5 best metrics to measure a customer support contact centers performance by?
 
-![](/static/media/b4461644-47f0-4b75-9b86-da24ad1bb851.png)
+![](/static/media/b4461644-47f0-4b75-9b86-da24ad1bb851.png){: .no-frame}
 
-![](/static/media/73a73833-87c1-4313-9771-c9909b8b9ae3.png)
+![](/static/media/73a73833-87c1-4313-9771-c9909b8b9ae3.png){: .no-frame}
 
 Interesting that their answers are significantly different. I would give the edge to ChatGPT Search here, but both are good answers.
 

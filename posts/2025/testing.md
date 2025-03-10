@@ -4,7 +4,6 @@ date_published: 2025-03-10
 tags:
   - Code
   - Startups
-  - Learnings
 description: A few lessons I've learned about testing code while building Ada
 ---
 

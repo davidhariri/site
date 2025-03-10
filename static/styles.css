@@ -465,6 +465,7 @@ a.footnote-ref:hover {
 
 .footnote a {
   color: var(--description-color);
+  text-decoration: underline;
 }
 
 .codehilite .c {

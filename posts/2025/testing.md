@@ -29,5 +29,5 @@ Now, we're a much more mature team and I've learned a lot about testing. Our tes
 5. Use unit tests **sparingly** to test functions that have thorny logic.
 6. Keep your test suite fast to run, especially in CI.
 
-[^1]: [TDD](https://martinfowler.com/bliki/TestDrivenDevelopment.html) is a software development process that emphasizes writing tests before writing code.
+[^1]: [TDD](https://martinfowler.com/bliki/TestDrivenDevelopment.html) stands for Test-Driven Development and is a software development process that emphasizes writing tests before writing code.
 

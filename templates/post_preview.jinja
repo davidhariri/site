@@ -1,6 +1,8 @@
 <div class="post_preview">
-    <time>{{ post.date_published.strftime("%B %d %Y") }}</time><br>
-    <a href="/{{post.url_slug}}.html"><h2>{{ post.title }}</h2></a>
+    <time>{{ post.date_published|ordinal_date }}</time><br>
+    <a href="/{{post.url_slug}}.html">
+        <h2>{{ post.title }}</h2>
+    </a>
     <p>{{ post.description or "" }}</p>
     {% if post.tags %}
         <ul class="post-tags">

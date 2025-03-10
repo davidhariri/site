@@ -11,4 +11,5 @@ dependencies = [
     "markdown>=3.7",
     "pymdown-extensions>=10.14.3",
     "pygments>=2.19.1",
+    "watchfiles>=1.0.4",
 ]

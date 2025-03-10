@@ -15,6 +15,8 @@ from rfeed import Feed, Item
 from dataclasses import dataclass
 import yaml
 from urllib.parse import quote
+import argparse  # Add argparse for CLI argument parsing
+import uuid  # Add UUID for cache busting
 
 
 @dataclass
@@ -22,7 +24,7 @@ class BaseContent:
     title: str
     description: str
     url_slug: str
-    date_published: date | None
+    date_published: datetime | None
     raw_content: str
     content: str
     tags: list[str] = None
@@ -33,10 +35,14 @@ class BaseContent:
         data = frontmatter.loads(content)
         date_published = data.metadata.get("date_published")
         
-        if isinstance(date_published, str):
-            date_published = datetime.fromisoformat(
-                date_published.replace("Z", "+00:00")
-            )
+        # Ensure date_published is always a datetime object or None
+        if date_published is not None:
+            if isinstance(date_published, str):
+                date_published = datetime.fromisoformat(
+                    date_published.replace("Z", "+00:00")
+                )
+            elif isinstance(date_published, date) and not isinstance(date_published, datetime):
+                date_published = datetime.combine(date_published, datetime.min.time())
 
         md = markdown.Markdown(
             extensions=[
@@ -72,7 +78,7 @@ class Post(BaseContent):
 
 @dataclass
 class Page(BaseContent):
-    date_last_updated: date | None = None
+    date_last_updated: datetime | None = None
 
 @dataclass
 class SiteConfig:
@@ -91,61 +97,111 @@ POSTS_BY_TAG: dict[str, list[Post]] = {}
 POSTS_ALL: list[Post] = []
 PAGES: list[Page] = []
 
-# Load all posts into ALL_POSTS, and POSTS_BY_YEAR
-for root, _, files in os.walk("posts"):
-    for file in files:
-        if not file.endswith(".md"):
+def load_posts(include_drafts=False):
+    """
+    Load all posts into POSTS_ALL, POSTS_BY_YEAR, and POSTS_BY_TAG.
+    Optionally include drafts if include_drafts is True.
+    """
+    global POSTS_ALL, POSTS_BY_YEAR, POSTS_BY_TAG
+    
+    # Reset the post collections to avoid duplicates when reloading
+    POSTS_ALL = []
+    POSTS_BY_YEAR = {}
+    POSTS_BY_TAG = {}
+    
+    # Directories to load posts from
+    directories = ["posts"]
+    if include_drafts:
+        directories.append("drafts")
+    
+    for directory in directories:
+        if not os.path.exists(directory):
             continue
             
-        file_path = os.path.join(root, file)
+        for root, _, files in os.walk(directory):
+            for file in files:
+                if not file.endswith(".md"):
+                    continue
+                    
+                file_path = os.path.join(root, file)
+                
+                with open(file_path, "r") as f:
+                    content = f.read()
+                    
+                    # Get relative path from the source directory and strip .md extension
+                    rel_path = os.path.relpath(file_path, directory)
+                    url_slug = os.path.splitext(rel_path)[0]
+                    try:
+                        post = Post.from_frontmatter(
+                            content,
+                            url_slug=url_slug
+                        )
+                    except yaml.scanner.ScannerError as e:
+                        print(f"Error parsing {file_path}: {e}")
+                        continue
+                    
+                    POSTS_ALL.append(post)
+                    
+                    if post.date_published:
+                        POSTS_BY_YEAR.setdefault(post.date_published.year, []).append(post)
+                    
+                    if post.tags:
+                        for tag in post.tags:
+                            POSTS_BY_TAG.setdefault(tag.strip(), []).append(post)
+
+def load_pages():
+    """Load all pages into PAGES."""
+    global PAGES
+    PAGES = []
+    
+    if not os.path.exists("pages"):
+        return
         
-        with open(file_path, "r") as f:
+    for page in os.listdir("pages"):
+        if not page.endswith(".md"):
+            continue
+            
+        with open(os.path.join("pages", page), "r") as f:
             content = f.read()
-            post_data = frontmatter.loads(content)
+            page_data = frontmatter.loads(content)
+            date_last_updated = page_data.metadata.get("date_last_updated")
             
-            # Get relative path from posts directory and strip .md extension
-            rel_path = os.path.relpath(file_path, "posts")
-            url_slug = os.path.splitext(rel_path)[0]
+            # Ensure date_last_updated is a datetime object if it exists
+            if date_last_updated is not None:
+                if isinstance(date_last_updated, str):
+                    date_last_updated = datetime.fromisoformat(
+                        date_last_updated.replace("Z", "+00:00")
+                    )
+                elif isinstance(date_last_updated, date) and not isinstance(date_last_updated, datetime):
+                    date_last_updated = datetime.combine(date_last_updated, datetime.min.time())
+                    
+            url_slug = os.path.splitext(page)[0]
             
-            post = Post.from_frontmatter(
-                content,
-                url_slug=url_slug
+            PAGES.append(
+                Page.from_frontmatter(
+                    content, url_slug=url_slug, date_last_updated=date_last_updated
+                )
             )
 
-            POSTS_ALL.append(post)
-            POSTS_BY_YEAR.setdefault(post.date_published.year, []).append(post)
-            
-            for tag in post.tags:
-                POSTS_BY_TAG.setdefault(tag.strip(), []).append(post)
+def sort_posts():
+    """Sort posts by date."""
+    global ALL_TAGS
+    
+    # sort ALL_TAGS alphabetically
+    ALL_TAGS = sorted(POSTS_BY_TAG.keys())
 
-# Load all pages into ALL_PAGES
-for page in os.listdir("pages"):
-    with open(os.path.join("pages", page), "r") as f:
-        content = f.read()
-        page_data = frontmatter.loads(content)
-        date_last_updated = page_data.metadata.get("date_last_updated")
-        url_slug = os.path.splitext(page)[0]
-        
-        PAGES.append(
-            Page.from_frontmatter(
-                content, url_slug=url_slug, date_last_updated=date_last_updated
-            )
-        )
+    # Define a key function that handles None values
+    def sort_key(post):
+        if post.date_published is None:
+            return datetime.min
+        return post.date_published
 
-# MARK - Sorting
+    # sort ALL_POSTS with most recent posts first
+    POSTS_ALL.sort(key=sort_key, reverse=True)
 
-# sort ALL_TAGS alphabetically
-ALL_TAGS = sorted(POSTS_BY_TAG.keys())
-
-# sort ALL_POSTS with most recent posts first
-POSTS_ALL.sort(key=lambda x: x.date_published, reverse=True)
-
-# sort posts in each year with most recent posts first
-for year, posts in POSTS_BY_YEAR.items():
-    posts.sort(
-        key=lambda x: x.date_published if x.date_published else datetime.min,
-        reverse=True,
-    )
+    # sort posts in each year with most recent posts first
+    for year, posts in POSTS_BY_YEAR.items():
+        posts.sort(key=sort_key, reverse=True)
 
 # MARK - Helper functions
 
@@ -156,6 +212,23 @@ def setup_jinja():
     )
     env.globals["config"] = SITE_CONFIG
     env.globals["pages"] = PAGES
+    env.globals["cache_bust_id"] = str(uuid.uuid4())
+    
+    # Add custom filter for ordinal date formatting
+    def ordinal_date(dt):
+        """Format date with ordinal suffix (1st, 2nd, 3rd, etc.)"""
+        day = dt.day
+        suffix = ""
+        
+        if 11 <= day <= 13:
+            suffix = "th"
+        else:
+            suffix = {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
+            
+        # Use a more cross-platform compatible approach
+        return f"{dt.strftime('%B')} {day}{suffix} {dt.strftime('%Y')}"
+    
+    env.filters["ordinal_date"] = ordinal_date
     return env
 
 
@@ -247,6 +320,9 @@ def compile_tagged_posts():
         # Get posts for this tag from POSTS_BY_TAG
         tagged_posts = POSTS_BY_TAG[tag]
 
+        # Sort posts by date_published in descending order (newest first)
+        tagged_posts.sort(key=lambda post: post.date_published if post.date_published else datetime.min, reverse=True)
+
         with open(os.path.join(tag_dir, f"{tag}.html"), "w") as f:
             f.write(template.render(posts=tagged_posts, tagged=tag))
 
@@ -278,22 +354,39 @@ def compile_rss():
     """
     Generate RSS feed XML file
     """
+    # Get the last build date from the most recent post or use current time
+    last_build_date = datetime.now()
+    if POSTS_ALL:
+        # Ensure we're using a datetime object
+        if isinstance(POSTS_ALL[0].date_published, datetime):
+            last_build_date = POSTS_ALL[0].date_published
+        elif isinstance(POSTS_ALL[0].date_published, date):
+            last_build_date = datetime.combine(POSTS_ALL[0].date_published, datetime.min.time())
+    
     feed = Feed(
         title=SITE_CONFIG.site_title,
         link=f"https://{SITE_CONFIG.site_domain}/blog.html",
         description=SITE_CONFIG.site_description,
         language=SITE_CONFIG.site_language,
-        lastBuildDate=datetime.combine(POSTS_ALL[0].date_published, datetime.min.time()) if POSTS_ALL else datetime.now(),
+        lastBuildDate=last_build_date,
         items=[],
     )
 
     for post in POSTS_ALL:
+        # Ensure we're using a datetime object for pubDate
+        pub_date = datetime.now()
+        if post.date_published:
+            if isinstance(post.date_published, datetime):
+                pub_date = post.date_published
+            elif isinstance(post.date_published, date):
+                pub_date = datetime.combine(post.date_published, datetime.min.time())
+                
         feed.items.append(
             Item(
                 title=post.title,
                 link=f"https://{SITE_CONFIG.site_domain}/{post.url_slug}",
                 description=post.description,
-                pubDate=datetime.combine(post.date_published, datetime.min.time()),
+                pubDate=pub_date,
             )
         )
 
@@ -324,14 +417,19 @@ def compile_sitemap():
     ]
 
     # Helper function to add a URL to the sitemap
-    def add_url(path, date=None):
+    def add_url(path, date_obj=None):
         # URL encode the path, preserving forward slashes
         encoded_path = '/'.join(quote(segment) for segment in path.split('/'))
         
         url = [f"  <url>"]
         url.append(f"    <loc>https://{SITE_CONFIG.site_domain}/{encoded_path}</loc>")
-        if date:
-            url.append(f"    <lastmod>{date.isoformat()}</lastmod>")
+        if date_obj:
+            # Ensure date_obj is a date object for the sitemap
+            if isinstance(date_obj, datetime):
+                date_str = date_obj.date().isoformat()
+            else:
+                date_str = date_obj.isoformat()
+            url.append(f"    <lastmod>{date_str}</lastmod>")
         url.append("  </url>")
         sitemap.extend(url)
 
@@ -343,9 +441,10 @@ def compile_sitemap():
 
     # Add all pages
     for page in PAGES:
+        last_updated = page.date_last_updated or page.date_published
         add_url(
             f"{page.url_slug}.html",
-            page.date_last_updated or page.date_published
+            last_updated
         )
 
     # Add all posts
@@ -391,7 +490,8 @@ def compile_redirects():
     Redirects posts from /blog/post-name to /<year>/post-name
     for posts published before February 20, 2025.
     """
-    cutoff_date = datetime(2025, 2, 16).date()
+    # Convert cutoff_date to datetime for consistent comparison
+    cutoff_date = datetime(2025, 2, 16)
     redirects = []
     
     for post in POSTS_ALL:
@@ -409,7 +509,14 @@ def compile_redirects():
         f.write("\n".join(redirects))
 
 
-def compile_site():
+def compile_site(include_drafts=False):
+    """Compile the site with optional inclusion of drafts."""
+    # Load content
+    load_posts(include_drafts)
+    load_pages()
+    sort_posts()
+    
+    # Build site
     ensure_dir("public")
     compile_index()
     compile_blog_index()
@@ -430,4 +537,10 @@ def compile_site():
 
 
 if __name__ == "__main__":
-    compile_site()
+    # Set up command line argument parsing
+    parser = argparse.ArgumentParser(description="Static site generator")
+    parser.add_argument("--with-drafts", action="store_true", help="Include drafts in the compiled site")
+    args = parser.parse_args()
+    
+    # Compile the site with or without drafts based on the command line argument
+    compile_site(include_drafts=args.with_drafts)

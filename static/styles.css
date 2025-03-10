@@ -3,7 +3,8 @@
   --description-color: #b8b6b2;
   --bg-color: #faf9f4;
   --bg-set-in-color: #e9e8e1;
-  --link-color: #008ed5;
+  --link-color: #00a6a8;
+  --text-selection-color: #d2f4f3;
   --inline-code-color: #e34361;
   --pic-frame: white;
   --hr-color: #e6e3d8;
@@ -22,13 +23,14 @@
     --description-color: #6a6766;
     --bg-color: #1e1e1d;
     --bg-set-in-color: #141413;
-    --link-color: #3da1d4;
-    --inline-code-color: #f56a81;
+    --link-color: #008c8d;
+    --text-selection-color: #005e5f;
+    --inline-code-color: #e16a97;
     --pic-frame: var(--description-color);
     --hr-color: var(--description-color);
 
     --code-comment: #565a5a;
-    --code-keyword: #e3545c;
+    --code-keyword: #e16a97;
     --code-primitive: #90c9ed;
     --code-decorator: #e4a9f0;
     --code-interpol: #61ec81;
@@ -48,6 +50,24 @@ h6 {
   margin-bottom: 0rem;
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Inter'), url('/static/fonts/Inter-Regular.woff2') format('woff2');
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Inter'), url('/static/fonts/Inter-SemiBold.woff2') format('woff2');
+  text-rendering: optimizeLegibility;
+}
+
 body {
   max-width: 32rem;
   margin: 0 auto;
@@ -57,12 +77,26 @@ body {
   line-height: 1.4;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body * {
   position: relative;
 }
+
+::selection {
+  background-color: var(--text-selection-color);
+  color: inherit;
+}
+
+::-moz-selection {
+  background-color: var(--text-selection-color);
+  color: inherit;
+}
+
 
 p,
 ol,
@@ -172,6 +206,9 @@ img {
   border-radius: 8px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1);
   margin-left: -6px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img.no_frame {
@@ -183,7 +220,7 @@ figcaption {
   color: var(--description-color);
   font-style: italic;
   text-align: center;
-  margin-top: -0.75rem;
+  margin-top: -0.5rem;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }
@@ -251,12 +288,8 @@ span.icon.email:before {
   mask-image: url('Email.svg');
 }
 
-span.icon.twitter:before {
-  mask-image: url('Twitter.svg');
-}
-
-span.icon.bluesky:before {
-  mask-image: url('BlueSky.svg');
+span.icon.site:before {
+  mask-image: url('Site.svg');
 }
 
 p code,
@@ -277,6 +310,35 @@ a code {
 span.message {
   color: var(--description-color);
   text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+table th, table td {
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid var(--hr-color);
+  vertical-align: top;
+}
+
+table th:first-child, table td:first-child {
+  padding-left: 0;
+}
+
+table th:last-child, table td:last-child {
+  padding-right: 0;
+}
+
+table th {
+  text-align: left;
+}
+
+table tr:last-child td {
+  border-bottom: none;
 }
 
 .tag {
@@ -329,6 +391,27 @@ ul.post-tags .tag:first-child {
   /* Removes left margin for the first tag */
 }
 
+article header h1 {
+  text-align: center;
+}
+
+article header {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+article header h1 {
+  font-size: 3rem;
+  text-wrap: balance;
+}
+
+article header .post-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .post_preview {
   margin: 0 0 2rem 0;
   box-shadow: 0 1px 0 var(--hr-color);
@@ -344,6 +427,30 @@ ul.post-tags .tag:first-child {
 
 .post_preview .post-tags {
   margin: 0 0 0.5rem 0;
+}
+
+a.footnote-ref {
+  font-size: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-color);
+  background-color: var(--description-color);
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: 0.6rem;
+  height: 0.5rem;
+  text-align: center;
+  margin-left: 0.1rem;
+  margin-right: 0.2rem;
+}
+
+a.footnote-ref:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  text-decoration: none;
 }
 
 .footnote {

@@ -25,9 +25,16 @@
   <meta name="theme-color" content="#faf9f4" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1e1e1d" media="(prefers-color-scheme: dark)">
   <title>{% block title %}David Hariri{% endblock %}</title>
-  <link href="/static/favicon-light.svg" rel="icon" media="(prefers-color-scheme: light)" />
-  <link href="/static/favicon-dark.svg" rel="icon" media="(prefers-color-scheme: dark)" />
-  <link rel="stylesheet" href="/static/styles.css?v=2" />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg?v={{ cache_bust_id }}" media="(prefers-color-scheme: no-preference)" />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg?v={{ cache_bust_id }}" media="(prefers-color-scheme: light)" />
+  <link rel="apple-touch-icon" href="/static/touch-icon.png?v={{ cache_bust_id }}" media="(prefers-color-scheme: light)" />
+  <link rel="apple-touch-icon" href="/static/touch-icon@2x.png?v={{ cache_bust_id }}" sizes="180x180" media="(prefers-color-scheme: light)" />
+  <link rel="apple-touch-icon" href="/static/touch-icon-dark.png?v={{ cache_bust_id }}" media="(prefers-color-scheme: dark)" />
+  <link rel="apple-touch-icon" href="/static/touch-icon-dark@2x.png?v={{ cache_bust_id }}" sizes="180x180" media="(prefers-color-scheme: dark)" />
+  <link rel="mask-icon" href="/static/safari-favorite.svg?v={{ cache_bust_id }}" color="#000000" />
+  <link rel="stylesheet" href="/static/styles.css?v={{ cache_bust_id }}" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" rel="preload" as="style">
+  <noscript><link rel="stylesheet" href="https://rsms.me/inter/inter.css"></noscript>
   <script defer data-domain="dhariri.com" src="https://plausible.io/js/script.js"></script>
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
   <link rel="canonical" href="https://{{ config.site_domain }}{% block canonical_url %}/{% endblock %}">
@@ -45,10 +52,8 @@
   <footer>
     <a href="mailto:mail@dhariri.com"><span class="icon email"></span>Email Me</a><br />
     Subscribe <a href="/rss.xml"><span class="icon rss">via RSS</span></a><br />
-    Follow me <a href="https://x.com/intent/user?screen_name=davehariri"><span class="icon twitter">on Twitter</span></a><br />
-    © 2010 — <a href="/now.html">2025</a>
+    <span class="icon site"></span>2010 — <a href="/now.html">2025</a><br />
     {% block footer %}{% endblock %}
   </footer>
 </body>
-
 </html>

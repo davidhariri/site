@@ -23,7 +23,7 @@ Now, we're a much more mature team and I've learned a lot about testing. Our tes
 ## Learnings
 
 1. TDD didn't work for us and still wouldn't work for us. I'm not sure when it's the right methodology.
-2. The most valuable tests we have are _integration tests_ that test the behaviour of the system as a user experiences it. These tests rare have to be changed even as the system underneath is refactored. This principle applies to good LLM evals too.
+2. The most valuable tests we have are _integration tests_ that test the behaviour of the system as a user experiences it. These tests rarely have to be changed even as the system underneath is refactored. This principle applies to good LLM evals too.
 3. You might not need as many tests as you think. I'd trade 1,000 unit tests for 100 integration tests any day.
 4. Use mocking and dependency injection to remove dependencies on external services like databases and APIs.
 5. Use unit tests **sparingly** to test functions that have thorny logic.

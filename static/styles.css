@@ -211,7 +211,7 @@ img {
   margin-right: auto;
 }
 
-img.no_frame {
+img.no_frame, img.no-frame {
   border: none;
   box-shadow: none;
 }

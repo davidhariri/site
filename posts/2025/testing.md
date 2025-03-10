@@ -5,6 +5,7 @@ tags:
   - Code
   - Startups
   - Learnings
+description: A few lessons I've learned about testing code while building Ada
 ---
 
 When we were just getting started on [Ada](https://ada.cx), we didn't write any tests. I came from an agency background where we concentrated on the first release of the product. As far as I remember, our clients didn't want us to "waste time" writing tests. The codebase that became Ada as it is today was the third full rewrite of the product so we were still in a mode of writing code quickly, testing it out with customers, and then iterating or throwing it away. Given how likely we were to throw the code away, there was no point in writing tests.
@@ -15,9 +16,9 @@ Knowing nothing about testing code and learning as much as I could, we decided t
 
 The result was thousands of little tests that tested the contracts between the parts of our system, but not the behaviour of the system as a user would feel it. This made changing the system hard (changes would often break the tests) and it made the test suite take a super long time to run.
 
-The other mistake we made was writing tests that expected the production database to be available. Each test would read, write, and delete data. If you didn't know this, you could get some really confusing side-effects in your queries as we only reset the database at the end of each full suite run to save on time.
+The other mistake we made was writing tests that expected a production-like database to be available. Each test would read, write, and delete data. So, we were testing some business logic, but we were also testing the database. Dumb. If developers didn't know this, they could get some really confusing side-effects within the results of their test's queries as we only reset the database at the end of each full suite run to save on time.
 
-Now, we're a much more mature team and we've learned a lot about testing. Our test suite still has some of those unit tests kicking around, but we've since added lots of integration tests that test the behaviour of the system as a user experiences it. These give us much more confidence in the system and are less likely to have to be changed even as the system underneath is refactored significantly.
+Now, we're a much more mature team and I've learned a lot about testing. Our test suite still has some of those unit tests kicking around, but we've since added lots of integration tests that test the behaviour of the system as a user experiences it. These give us much more confidence in the system and are less likely to have to be changed even as the system underneath is refactored significantly.
 
 ## Learnings
 

@@ -1,7 +1,8 @@
 {% extends "base.jinja" %}
 {% block body %}
     <p>Welcome!</p>
-    <p>I'm <a href="about.html">David</a> and this my website.</p>
+    <p>I'm <a href="about.html">David</a> and this is my website.</p>
+    <hr />
     {% for post in posts %}
         {% include "post_preview.jinja" with context %}
     {% endfor %}

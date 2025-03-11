@@ -11,7 +11,7 @@ cover_photo: /static/media/fle_diagram.png
 
 [Jack Hopkins](https://jackhopkins.github.io/) has created ['FLE' (Factorio Learning Environment)](https://jackhopkins.github.io/factorio-learning-environment/), an LLM test environment for Factorio where he tests  to see how well they can programatically play the game.
 
-![An LLM agent plays Factorio](/static/media/factorio-claude.mp4){:.no-frame}
+<video src="/static/media/factorio-claude.mp4" controls autoplay muted loop class="no-frame" title="An LLM agent plays Factorio"></video>
 
 The architecture is policy-driven, where the policy is a sequence of actions for various scenarios.
 

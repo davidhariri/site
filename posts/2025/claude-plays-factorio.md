@@ -7,6 +7,7 @@ tags:
   - Games
 link: https://jackhopkins.github.io/factorio-learning-environment/
 cover_photo: /static/media/fle_diagram.png
+description: Jack Hopkins tests LLMs in his 'FLE' - Factorio Learning Environment.
 ---
 
 [Jack Hopkins](https://jackhopkins.github.io/) has created ['FLE' (Factorio Learning Environment)](https://jackhopkins.github.io/factorio-learning-environment/), an LLM test environment for Factorio where he tests  to see how well they can programatically play the game.

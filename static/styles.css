@@ -199,7 +199,7 @@ ol li {
   margin-bottom: 0.4rem;
 }
 
-img {
+img, video {
   max-width: calc(100% + 12px);
   box-sizing: border-box;
   border: 6px solid var(--pic-frame);
@@ -211,7 +211,7 @@ img {
   margin-right: auto;
 }
 
-img.no_frame, img.no-frame {
+img.no_frame, img.no-frame, video.no_frame, video.no-frame {
   border: none;
   box-shadow: none;
 }

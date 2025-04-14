@@ -1,5 +1,5 @@
 post:
-	python new_post.py
+	python new_post.py $(title)
 
 site:
 	uv run make_site.py --with-drafts

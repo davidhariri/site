@@ -12,4 +12,5 @@ dependencies = [
     "pymdown-extensions>=10.14.3",
     "pygments>=2.19.1",
     "watchfiles>=1.0.4",
+    "python-slugify>=8.0.1",
 ]

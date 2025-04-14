@@ -1,3 +1,6 @@
+post:
+	python new_post.py
+
 site:
 	uv run make_site.py --with-drafts
 

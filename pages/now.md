@@ -16,12 +16,3 @@ I believe that by 2030, 95% of customer support will be handled by AI agents, no
 **[This Site](https://dhariri.com)**
 
 Call it old school, but I still believe in the dream of a global network of computers that can be used to share information and ideas. I also believe that the web is a better place when it is [open](https://github.com/davidhariri/site), protocol-driven and independent. I believe that we should all be able to make some sort of website that represents who we are and what we care about. I also believe that individuals should be the curators of what they consume. While social platforms like X, Instagram, TikTok and Reddit make it easier than ever to learn and share, they are engineered for engagement and to serve the interests of their owners and their customers (advertisers).
-
-**[Pocket-To-RSS](https://pocket-rss.com)**
-
-Pocket decided to kill all of their RSS feeds and I was sad. So I made a thing that converts your Pocket saves into an RSS feed. It's not pretty, but it's free (for now) and solves the problem.
-
-
-## Life Events
-- ~~Expecting my son (our first born!) on June 7th 2024~~ [He is here!](/blog/jasper)
-- Finishing the home we have been designing and building with [my dad](https://en.wikipedia.org/wiki/Siamak_Hariri) since 2021

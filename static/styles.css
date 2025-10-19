@@ -133,16 +133,24 @@ p.message:last-of-type {
 }
 
 p.message.loud {
-  animation: loud 1.2s cubic-bezier(.67,-0.62,.18,1.44) 0.5s;
+  animation: loud 1.2s cubic-bezier(.67, -0.62, .18, 1.44) 0.5s;
   transform-origin: center;
   box-shadow: inset 0 0 0 2px var(--bg-color);
   z-index: 1;
 }
 
 @keyframes loud {
-  0% { transform: rotate(0deg) translateY(0px) scale(1); }
-  50% { transform: rotate(2deg) translateY(-1px) scale(1.1); }
-  100% { transform: rotate(0deg) translateY(0px) scale(1); }
+  0% {
+    transform: rotate(0deg) translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: rotate(2deg) translateY(-1px) scale(1.1);
+  }
+
+  100% {
+    transform: rotate(0deg) translateY(0px) scale(1);
+  }
 }
 
 a {
@@ -199,7 +207,8 @@ ol li {
   margin-bottom: 0.4rem;
 }
 
-img, video {
+img,
+video {
   max-width: calc(100% + 12px);
   box-sizing: border-box;
   border: 6px solid var(--pic-frame);
@@ -211,7 +220,10 @@ img, video {
   margin-right: auto;
 }
 
-img.no_frame, img.no-frame, video.no_frame, video.no-frame {
+img.no_frame,
+img.no-frame,
+video.no_frame,
+video.no-frame {
   border: none;
   box-shadow: none;
 }
@@ -318,18 +330,21 @@ table {
   margin-bottom: 1rem;
 }
 
-table th, table td {
+table th,
+table td {
   padding: 0.5rem;
   border: none;
   border-bottom: 1px solid var(--hr-color);
   vertical-align: top;
 }
 
-table th:first-child, table td:first-child {
+table th:first-child,
+table td:first-child {
   padding-left: 0;
 }
 
-table th:last-child, table td:last-child {
+table th:last-child,
+table td:last-child {
   padding-right: 0;
 }
 
@@ -435,15 +450,15 @@ a.footnote-ref {
   align-items: center;
   justify-content: center;
   color: var(--bg-color);
-  background-color: var(--description-color);
-  padding: 0.2rem 0.5rem;
+  background-color: var(--text-color);
+  padding: 0.2rem 0.3rem;
   border-radius: 1rem;
   font-weight: 600;
   text-decoration: none;
   width: 0.6rem;
   height: 0.5rem;
   text-align: center;
-  margin-left: 0.1rem;
+  margin-left: 0.2rem;
   margin-right: 0.2rem;
 }
 
@@ -454,7 +469,7 @@ a.footnote-ref:hover {
 }
 
 .footnote {
-  color: var(--description-color);
+  color: var(--text-color);
   font-size: 0.8rem;
 }
 
@@ -464,7 +479,7 @@ a.footnote-ref:hover {
 }
 
 .footnote a {
-  color: var(--description-color);
+  color: var(--text-color);
   text-decoration: underline;
 }
 
@@ -696,3 +711,111 @@ a.footnote-ref:hover {
 }
 
 /* Literal.Number.Integer.Long */
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.step::before {
+  content: attr(data-num);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  font-size: 1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.link_preview {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 0.85rem;
+  row-gap: 0.2rem;
+  padding: 1rem 1.1rem;
+  margin: 1.25rem 0;
+  border-radius: 1.5rem;
+  background-color: var(--bg-set-in-color);
+  color: var(--text-color);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.link_preview:visited {
+  color: var(--text-color);
+}
+
+.link_preview:hover,
+.link_preview:focus-visible {
+  text-decoration: none;
+}
+
+.link_preview:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 3px;
+}
+
+.link_preview:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.link_preview_icon {
+  grid-row: 1 / span 2;
+  align-self: start;
+  width: 48px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.link_preview_title,
+.link_preview_description {
+  display: block;
+}
+
+.link_preview_title {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.link_preview_description {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.link_preview:hover .link_preview_title,
+.link_preview:focus-visible .link_preview_title {
+  text-decoration: none;
+}
+
+.key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  padding: 0.1rem 0.35rem;
+  margin: 0 0.12rem;
+  border-radius: 0.3rem;
+  background-color: var(--bg-set-in-color);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 1px 1px rgba(0, 0, 0, 0.04);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}

@@ -51,7 +51,7 @@ Homerow enables you to never have to use your mouse again. By typing <span class
     <span class="link_preview_description">Write 3x faster without lifting a finger</span>
 </a>
 
-Lastly, I find myself really enjoying Slacking, Emailing, Messaging, ChatGPTing using Superwhisper. It's a great way to "type" when precision is not required. So almost any time my writing will be interpreted by another person, I use Superwhisper to get the idea across with just my voice.
+Lastly, I find myself really enjoying Slacking, Emailing, Messaging, ChatGPTing using Superwhisper. It's a great way to "type" when precision is not required. I just type <span class="key">⌥</span><span class="key">A</span> to start dictating in any focussed field and then <span class="key">⌥</span><span class="key">A</span> again to stop and paste. So almost any time my writing will be interpreted by another person, I use Superwhisper to get the idea across with just my voice.
 
 ### To Explore...
 

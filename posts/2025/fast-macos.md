@@ -26,7 +26,7 @@ From now on, you can just <span class="key">⌘</span> <span class="key">⇥</sp
 <div class="step" data-num="2">Install Rectangle</div>
 
 <a class="link_preview" href="https://rectangleapp.com/" target="_blank">
-    <img class="link_preview_icon" src="static/rectangle_icon.png">
+    <img class="link_preview_icon" src="/static/rectangle_icon.png">
     <span class="link_preview_title">Rectangle</span>
     <span class="link_preview_description">Move and resize windows in macOS using keyboard shortcuts or snap areas.</span>
 </a>
@@ -36,7 +36,7 @@ Rectangle is our tiling window manager. While holding <span class="key">⌘</spa
 <div class="step" data-num="3">Install Homerow</div>
 
 <a class="link_preview" href="https://www.homerow.app/" target="_blank">
-    <img class="link_preview_icon" src="static/homerow_icon.png">
+    <img class="link_preview_icon" src="/static/homerow_icon.png">
     <span class="link_preview_title">Homerow</span>
     <span class="link_preview_description">Keyboard shortcuts for every button in macOS</span>
 </a>
@@ -46,7 +46,7 @@ Homerow enables you to never have to use your mouse again. By typing <span class
 <div class="step" data-num="4">Install Superwhisper</div>
 
 <a class="link_preview" href="https://superwhisper.com/" target="_blank">
-    <img class="link_preview_icon" src="static/superwhisper_icon.png">
+    <img class="link_preview_icon" src="/static/superwhisper_icon.png">
     <span class="link_preview_title">Superwhisper</span>
     <span class="link_preview_description">Write 3x faster without lifting a finger</span>
 </a>

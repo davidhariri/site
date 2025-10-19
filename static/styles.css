@@ -379,8 +379,11 @@ table tr:last-child td {
 }
 
 a.tag {
-  text-decoration: underline;
   color: var(--description-color);
+}
+
+a.tag:hover {
+  text-decoration: underline;
 }
 
 ul.post-tags {

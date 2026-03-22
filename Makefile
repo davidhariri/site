@@ -8,7 +8,7 @@ clean:
 	rm -rf public
 
 run:
-	python -m http.server --directory=public 8000
+	python -m http.server --directory=public 8001
 
 watch:
 	uv run -m watchfiles "make site" posts pages templates static drafts

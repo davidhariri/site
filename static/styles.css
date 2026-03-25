@@ -353,7 +353,7 @@ table th {
 }
 
 table tr:last-child td {
-  border-bottom: none;
+  border-bottom: 1px solid var(--hr-color);
 }
 
 .tag {

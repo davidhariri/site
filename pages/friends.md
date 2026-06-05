@@ -58,4 +58,9 @@ Friends with personal websites. Say hi to them.
     <td>Nic Haley</td>
     <td style="text-align: right;"><a href="https://www.nichaley.com" target="_blank" rel="noopener">nichaley.com</a></td>
   </tr>
+  <tr>
+    <td style="vertical-align: middle; width: 24px;"><img class="no-frame" style="border-radius: 1px;" src="https://www.google.com/s2/favicons?domain=hlynur.org&sz=32" width="16" height="16" /></td>
+    <td>Hlynur Andrason</td>
+    <td style="text-align: right;"><a href="https://www.hlynur.org" target="_blank" rel="noopener">hlynur.org</a></td>
+  </tr>
 </table>

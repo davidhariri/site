@@ -2,8 +2,14 @@
 title: "Quotes"
 description: "Quotes that I like"
 date_published: 2022-11-27
-date_last_updated: 2025-02-24
+date_last_updated: 2026-06-15
 ---
+
+[Louis Kahn](https://en.wikipedia.org/wiki/Louis_Kahn) to his students:
+
+> "You say to brick, 'What do you want, brick?' and Brick says to you, 'I like an arch.' if you say to brick, 'arches are expensive and I can use a concrete lintel over an opening. What do you think of that, brick?' Brick says:
+> 
+> 'I like an arch.'"
 
 [Steve Jobs](https://en.wikipedia.org/wiki/Steve_Jobs) in [an email](https://putsomethingback.stevejobsarchive.com/) to himself:
 

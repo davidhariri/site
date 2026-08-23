@@ -7,7 +7,7 @@ date_last_updated: 2026-08-23
 
 Still is a quiet, unguided meditation timer made only for Apple Watch.
 
-### Start a Meditation
+## Start a Meditation
 
 1. Turn the Digital Crown to choose a duration.
 2. Tap **Start**.
@@ -17,13 +17,13 @@ Still is a quiet, unguided meditation timer made only for Apple Watch.
 
 Only sessions you save are written to Apple Health as Mindful Minutes.
 
-### Set Your Daily Goal
+## Set Your Daily Goal
 
 Tap the target button on Still's main screen. Turn the Digital Crown to choose a daily Mindful Minutes goal.
 
 A goal change applies from that day forward. Earlier days keep the goal that was active on those days.
 
-### Add a Complication
+## Add a Complication
 
 Edit a compatible Apple Watch face, choose a circular complication position and select either:
 
@@ -32,16 +32,16 @@ Edit a compatible Apple Watch face, choose a circular complication position and 
 
 Complications may take a short time to refresh after Health data changes.
 
-### Health Permissions
+## Health Permissions
 
 Still needs permission to read and write Mindful Minutes. You can review these permissions in the Health app or Settings on your Apple devices.
 
 If a saved meditation does not appear, confirm that Still has permission to write Mindful Minutes, then reopen Still.
 
-### Privacy
+## Privacy
 
 Still has no account, advertising, analytics or tracking. Health information is not sent to the developer. Read the [Still Privacy Policy](/still-privacy).
 
-### Contact
+## Contact
 
 For help, email **[mail@dhariri.com](mailto:mail@dhariri.com)**. Please include your Apple Watch model and watchOS version. Do not include private health information.

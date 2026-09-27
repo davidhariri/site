@@ -2,17 +2,23 @@
 title: "Now"
 description: "What I'm working on"
 date_published: 2022-02-18
-date_last_updated: 2024-11-01
+date_last_updated: 2026-09-27
 ---
 
 This is my [now](https://nownownow.com/about) page.
 
-## Working On
+## Working on
 
-**[AI Agents for Customer Support at Ada](https://ada.support) (2016 — Present)**
+**[Shopify](https://shopify.com) (2026–Present)**
 
-I believe that by 2030, 95% of customer support will be handled by AI agents, not people. That used to be a weird idea, but since ChatGPT, it now feels almost inevitable. Customer support is often a repetitive and thankless job. Most businesses are forced to use contract labor to grow their customer support teams which often leads to a lack of training and a lack of motivation to satisfy customers. I want to change that by building a system that delights customers and beats competent human performance for the majority of many business' customer support needs.
+After ten years building [Ada](https://ada.support), I joined Shopify. I am working on AI assistants that can take on larger projects and keep making progress beyond a single conversation.
+
+**[Debow Musical Instruments](https://debowmusic.com)**
+
+On weekends, I am helping Dan Debow build a new musical instrument. I mostly work on the firmware, Bluetooth connection and mobile app. It is a fun change from building software that only lives on a screen.
 
 **[This Site](https://dhariri.com)**
 
-Call it old school, but I still believe in the dream of a global network of computers that can be used to share information and ideas. I also believe that the web is a better place when it is [open](https://github.com/davidhariri/site), protocol-driven and independent. I believe that we should all be able to make some sort of website that represents who we are and what we care about. I also believe that individuals should be the curators of what they consume. While social platforms like X, Instagram, TikTok and Reddit make it easier than ever to learn and share, they are engineered for engagement and to serve the interests of their owners and their customers (advertisers).
+I still believe in the old-school vision of the web as a network of personal documents, published independently and linked together.
+
+This is where I write about software, AI and whatever else I am thinking about. It is also an excuse to keep making a website by hand.
